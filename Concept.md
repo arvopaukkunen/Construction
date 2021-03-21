@@ -1,4 +1,4 @@
-# The Concept
+# The Concept for near arctic area
 
 Create a main powerplant for household electrical needs. Goal is to get free and unlimited energy at the time of consume. That means initial investement does not be in usage costs, they are included in contruction cost.
 
