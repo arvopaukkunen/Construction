@@ -2,7 +2,7 @@
 
 Create a main powerplant for household electrical needs. Goal is to get free and unlimited energy at the time of consume. That means initial investement does not be in usage costs, they are included in contruction cost.
 
-# Step 1 - start with a small plant
+# Step 1 - start with a small powerplant
 
 Small powerplant will cover a small house with 2 persons energy needs with limited needs. It will be a backup system for a mail powerplant, which will cover a small family needs without limting virtually anything.
 It is build with solar, wind and ecodiesel generator. They will 'feed' the batteries and inverted electricity will be distributed on house.
