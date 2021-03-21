@@ -12,7 +12,7 @@ Monitoring example here : https://vrm.victronenergy.com/installation/27801/dashb
 Batteries are at start level Sunwind AGM 360 Ah lead based box.
 
 # Step 2 - main powerplant
-Planne mainsystem:
+Planned mainsystem:
 ## Batteries
 Lithium worth for 6K€...
 ## Solar
