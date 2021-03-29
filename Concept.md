@@ -16,7 +16,8 @@ Planned mainsystem:
 ## Batteries
 Lithium worth for 6K€...
 ## Solar
-
+####Starts with this: 
+- https://www.swenergia.fi/aurinkoenergia-mokille/mokin-sahkoistaminen/mokkivoimalat/victron-mokkivoimala-9000-3-vaihe-2
 ## Wind
 Turbine - several options like 4kW Ista Breeze 350VAC HELI. 
 https://verkkokauppa.saaristotekniikka.com/product/348/230vac--4kw-tuulivoimala--verkkoinvertteri
