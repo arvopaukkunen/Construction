@@ -9,3 +9,4 @@ Powerplant, House plans and more
 - Electricity sensors are included and activated/consumed by Victron energy as https://vrm.victronenergy.com/login
 -   I will share the actual realtime information as soon as all components are in place and issues has been solved.
 -   At the latest - in sep - oct 2021
+-   Yes, it's there... 
