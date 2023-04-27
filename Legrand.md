@@ -3,7 +3,7 @@ Choose a place to put the gateway power outlet Control,
 where a standard power outlet is located:
 
 
-![Step1](https://file%2B.vscode-resource.vscode-cdn.net/Users/arvo.paukkunen/Projects/Construction/media/ValenaHubStep1.png?version%3D1682581264122)
+![Step1](../media/ValenaHubStep1.png)
 
 ![Markdown Logo](https://www.tutorialsandyou.com/images/markdownlogo.png 'Markdown Tutorial')
 
