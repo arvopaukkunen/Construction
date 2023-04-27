@@ -31,4 +31,6 @@ attached with screws or claws.
 
  # 5. Power the wired products
 
- ![Step1](./media/ValenaHubStep5.png)
+ ![Step1](./media/ValenaHubStep5_1.png)
+
+![Step1](./media/ValenaHubStep5_2.png)
