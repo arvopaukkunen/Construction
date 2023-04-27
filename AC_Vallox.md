@@ -97,7 +97,15 @@ This document describes how to make those settings using either the MyVallox Con
 
 # MODBUS SETTINGS USING THE WEB INTERFACE
 
+![Step1](./media/MODBUS_SETTINGS_USING_THE_WEB_INTERFACE.png)
+
 # MODBUS OBJECTS
+
+| addr | Variable name     | # R/RW | # Min   | # Max  | # Type | # Description                            |
+|:-----|:------------------|:------:|:-------:|:------:|:------:|:-----------------------------------------|
+| 4353 |  FAN_SPEED        |      R | 0       |  100   |%       |        Current fan speed                 |
+| 4354 |  TEMP_EXTRACT_AIR |      R | 21000   |  33224 |  cK    |        Temperature, extract, cell input  |
+|  |   |      |    |   |      |         |
 
 # Modbus Master
 
