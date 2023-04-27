@@ -106,6 +106,35 @@ This document describes how to make those settings using either the MyVallox Con
 | 4353 |  FAN_SPEED        |      R | 0       |  100   |%       |        Current fan speed                 |
 | 4354 |  TEMP_EXTRACT_AIR |      R | 21000   |  33224 |  cK    |        Temperature, extract, cell input  |
 |  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
+|  |   |      |    |   |      |         |
 
 # Modbus Master
 
