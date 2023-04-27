@@ -3,7 +3,7 @@ Choose a place to put the gateway power outlet Control,
 where a standard power outlet is located:
 
 
-![Step1](../media/ValenaHubStep1.png)
+![Step1](./media/ValenaHubStep1.png)
 
 ![Markdown Logo](https://www.tutorialsandyou.com/images/markdownlogo.png 'Markdown Tutorial')
 
