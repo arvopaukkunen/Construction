@@ -28,3 +28,7 @@ attached with screws or claws.
 ![Step1](./media/ValenaHubStep4.png)
 
  The wireless switches will be installed later
+
+ # 5. Power the wired products
+
+ ![Step1](./media/ValenaHubStep5.png)
