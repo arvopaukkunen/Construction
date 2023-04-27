@@ -14,3 +14,17 @@ outlet is. This is compatible with standard, 40mm-deep flush-mounting boxes
 attached with screws or claws.
 
 # 2. Necessary safety precautions
+
+![Step1](./media/ValenaHubStep2.png)
+
+
+# 3. Install the gateway power outlet Control
+
+![Step1](./media/ValenaHubStep3.png)
+
+# 4. Complete your installation with additional products
+ (not included in this pack) :
+
+![Step1](./media/ValenaHubStep4.png)
+
+ The wireless switches will be installed later
