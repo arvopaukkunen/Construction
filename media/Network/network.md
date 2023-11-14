@@ -63,6 +63,9 @@ Conclusion: *(I kinda agree all of this - author of this)*
 
 Most of the time, finding some unknown device on your network isn’t going to cause any problems for you. But it is not proper for someone to use the service you are paying for, even when that device could be someone you’ve given access to before, and you don’t recognize their name. Also, there are chances for malicious persons to steal your data, so one should always be careful about taking all the above-mentioned precautions.
 
+Other observations:
+I found out that the issues root cause was my laptop (Mac) host files and it was a mess... I got rid of that file and problem was solved :) That's it !
+
 ## How To Fix the “Warning: Remote Host Identification Has Changed” Error
 A secure internet connection is not just the ideal — it’s essential. In fact, we’re going to go as far as saying it’s the number one priority for your website. The “Warning: Remote host identification has changed” error protects your connection from certain malicious attacks, although in some cases, you can inadvertently cause the error too.
 
