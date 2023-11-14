@@ -16,7 +16,52 @@ Every device has a unique address called IP (Internet Protocol) address on your 
 
 You can find the IP address on the windows by the following steps:
 
+Click on the Start option, then go to the “Settings” option.
+Go to the “Network & Internet” option.
+Here you select your network connection, and you can view the IP address beside the “IP Address.” 
+Now click on the “Wi-Fi” option, then go to “Advanced Options,” here IP address will be displayed next to “IPv4 Address.” Here you can find the IP address of the devices connected to your network and therefore check for devices that are unknown to you.
 
+But still, the above method doesn’t give sufficient information, so there is another way of finding the unknown devices connected to your network regardless of what devices you use or have access to if you have the internet at home and can access a web browser. Before that, you need to have the router’s login information. The chances are your login info is set to default. It’s usually a combination of “username” for the username field and “password” for the password field, but this does change depending on your router and further you can put your own username and password, so make sure you have the correct information. Find your default gateway IP address which is your router’s IP address (like http://192.168.1.1)you can use to enter into a web browser like a URL to access your router’s web-management setup, you can get your router’s IP address by following the first 3 steps in the above-mentioned process.
+
+Now you can find the devices connected to your Wi-Fi network by following the steps:
+
+Open up any web browser tab on a mobile device or a computer; type in your default gateway IP address, and press Enter for it to load.
+Now login to your router’s web management portal by entering in your username and password.
+Navigate around and look for the list to find the connected devices. Many times, routers will divide up lists of connections by connection type, depending on the type of your devices choose wired devices and Wi-Fi devices.
+
+As you find your device list, there may be a chance that you don’t recognize the name of every device connected to your network. Some devices of your devices will have identifiable names, but others may come up as an unknown or random string of letters and numbers. Now take a count of your internet-enabled devices to compare with the list you find to find out the unknown devices.
+
+There is another method to find all devices on your network including wired devices by following steps (For Windows): –
+Using cmd command open the command prompt utility and run it as an administrator.
+Type arp -a command and push enter. *(Works in mac & Linux too)*
+You will view a list of IP addresses and MAC addresses of connected devices on your screen.
+![Alt text](image-6.png)
+
+Also, you can identify the device by using its IP address and MAC address, the information can be obtained by pinging the device on your command prompt on your Windows Devices. This is done by following steps (For Windows): –
+
+ Using cmd command open the command prompt utility and make sure to run it as an administrator.
+ Use the ping command and type ping -a XYZ, where XYZ is the IP address of the device which you want to find.
+ Now you can see if it is pinging a certain network name. But it won’t work if you turned your devices.
+ ![Alt text](image-7.png)
+
+ Now you can use a network scanning tool to monitor, discover, map, and scan the network devices to protect your network against unknown devices. Some commonly used tools are: 
+
+Auvik
+Intruder
+SolarWinds
+NetScan Tools Pro.
+NMap
+
+Prevention:
+Scan your home network at regular intervals to remove the devices which you see as fit.
+Update your Wi-Fi password with a stronger one and try to change it after a period of time.
+Update your default Wi-Fi SSID (Service Set Identifier). 
+Disable WPS (Wi-Fi Protected Setup) through your router’s admin panel.
+Enable New Device Approval.
+
+Conclusion: *(I kinda agree all of this - author of this)*
+
+Most of the time, finding some unknown device on your network isn’t going to cause any problems for you. But it is not proper for someone to use the service you are paying for, even when that device could be someone you’ve given access to before, and you don’t recognize their name. Also, there are chances for malicious persons to steal your data, so one should always be careful about taking all the above-mentioned precautions.
 
 ## How To Fix the “Warning: Remote Host Identification Has Changed” Error
 A secure internet connection is not just the ideal — it’s essential. In fact, we’re going to go as far as saying it’s the number one priority for your website. The “Warning: Remote host identification has changed” error protects your connection from certain malicious attacks, although in some cases, you can inadvertently cause the error too.
