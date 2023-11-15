@@ -1,4 +1,4 @@
-# VLAN
+# VLAN by Teltonika wiki
 
 sources:
 https://osi-model.com/data-link-layer/
