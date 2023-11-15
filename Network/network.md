@@ -59,7 +59,8 @@ Update your default Wi-Fi SSID (Service Set Identifier).
 Disable WPS (Wi-Fi Protected Setup) through your router’s admin panel.
 Enable New Device Approval.
 
-Conclusion: *(I kinda agree all of this - author of this)*
+Conclusion: *(I kinda agree all of this - ...post comments of mine)*
+But it was not all... problem was not solved yet!
 
 Most of the time, finding some unknown device on your network isn’t going to cause any problems for you. But it is not proper for someone to use the service you are paying for, even when that device could be someone you’ve given access to before, and you don’t recognize their name. Also, there are chances for malicious persons to steal your data, so one should always be careful about taking all the above-mentioned precautions.
 
