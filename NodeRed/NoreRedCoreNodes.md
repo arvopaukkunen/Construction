@@ -13,6 +13,7 @@ All nodes include documentation you can see in the Info sidebar tab when you sel
 ##Inject
 
 ![Alt text](image-20.png)
+
 The Inject node can be used to manual trigger a flow by clicking the node’s button within the editor. It can also be used to automatically trigger flows at regular intervals.
 
 The message sent by the Inject node can have its payload and topic properties set.
@@ -24,6 +25,7 @@ The payload can be set to a variety of different types:
 ##Debug
 
 ![Alt text](image-21.png)
+
 The Debug node can be used to display messages in the Debug sidebar within the editor.
 
 The sidebar provides a structured view of the messages it is sent, making it easier to explore the message.
@@ -38,12 +40,14 @@ The page on Working with messages gives more information about using the Debug s
 ##Function
 
 ![Alt text](image-22.png)
+
 The Function node allows JavaScript code to be run against the messages that are passed through it.
 A complete guide for using the Function node is available here.
 https://nodered.org/docs/user-guide/writing-functions
 ##Change
 
 ![Alt text](image-23.png)
+
 The Change node can be used to modify a message’s properties and set context properties without having to resort to a Function node.
 
 Each node can be configured with multiple operations that are applied in order. The available operations are:
@@ -57,6 +61,7 @@ https://jsonata.org/
 
 ##Switch
 ![Alt text](image-24.png)
+
 The Switch node allows messages to be routed to different branches of a flow by evaluating a set of rules against each message.
 The node is configured with the property to test - which can be either a message property or a context property.
 There are four types of rule:
@@ -68,6 +73,7 @@ There are four types of rule:
 The node will route a message to all outputs corresponding to matching rules. But it can also be configured to stop evaluating rules when it finds one that matches.
 ##Template
 ![Alt text](image-25.png)
+
 The Template node can be used to generate text using a message’s properties to fill out a template.
 It uses the Mustache templating language to generate the result.
 For example, a template of:
