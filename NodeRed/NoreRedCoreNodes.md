@@ -11,6 +11,7 @@ All nodes include documentation you can see in the Info sidebar tab when you sel
 - Template
 
 ##Inject
+
 ![Alt text](image-20.png)
 The Inject node can be used to manual trigger a flow by clicking the node’s button within the editor. It can also be used to automatically trigger flows at regular intervals.
 
@@ -21,6 +22,7 @@ The payload can be set to a variety of different types:
 - a String, number, boolean, Buffer or Object
 - a Timestamp in milliseconds since January 1st, 1970
 ##Debug
+
 ![Alt text](image-21.png)
 The Debug node can be used to display messages in the Debug sidebar within the editor.
 
@@ -34,11 +36,13 @@ The node can also be configured to send all messages to the runtime log, or to s
 
 The page on Working with messages gives more information about using the Debug sidebar.
 ##Function
+
 ![Alt text](image-22.png)
 The Function node allows JavaScript code to be run against the messages that are passed through it.
 A complete guide for using the Function node is available here.
 https://nodered.org/docs/user-guide/writing-functions
 ##Change
+
 ![Alt text](image-23.png)
 The Change node can be used to modify a message’s properties and set context properties without having to resort to a Function node.
 
