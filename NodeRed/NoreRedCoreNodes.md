@@ -60,6 +60,7 @@ When setting a property, the value can also be the result of a JSONata expressio
 https://jsonata.org/
 
 ##Switch
+
 ![Alt text](image-24.png)
 
 The Switch node allows messages to be routed to different branches of a flow by evaluating a set of rules against each message.
@@ -72,6 +73,7 @@ There are four types of rule:
   
 The node will route a message to all outputs corresponding to matching rules. But it can also be configured to stop evaluating rules when it finds one that matches.
 ##Template
+
 ![Alt text](image-25.png)
 
 The Template node can be used to generate text using a message’s properties to fill out a template.
