@@ -78,3 +78,38 @@ In this case - it will show:
 %MW1            1
 %MW2        33014
 ```
+-w specifies the data type. In this case, unsigned 16 bit integers.
+
+-p specifies the port number.
+
+192.168.xxx.xxx - the router's LAN IP address.
+
+%MW001 specifies the register address.
+
+2 - specifies how many registers should be read. 
+
+![alt text](image-1.png)
+As you can see from the example above, the router returns the values stored in two registers: the first one and the second one. The values returned are presented in decimal form. 
+
+# Interpreting the response
+The values are returned in decimal and, if you add -D to the command, hexadecimal forms. Sometimes the answer is self-explanatory as in the example above. But, since a register only hold 2 bytes (16 bits) of information, the value stored in a register can't be higher than 65535 (216 -1). So what happens if the router's uptime is higher than that? Lets examine another example where the router's uptime is higher than 65535: 
+![alt text](image-2.png)
+When the value climbs over 65535 the counter resets and the value held by the first register increases by 1. So one way to interpret the results would be to multiply the value in the first register by 65536 (216) and add it to the value of the second register: **%MW1 * 65536 + %MW2**. Which, following from the example above, would be: **1 * 65536 + 3067 = 68603 s or 19 hours 3 minutes 23 seconds**. 
+
+However, while this works when calculating uptime values, it will not work for all parameters. The correct way to calculate the final values would be to first convert them to binary. As mentioned earlier in this chapter, a register holds 16 bits of information, which can be represented by a 16-digit long binary number. Following from the example above, the first register's value of 1 converted to binary would be 0000 0000 0000 0001 and the second register's value of 3067 would be 0000 1011 1111 1011. You can easily convert numbers from one numeral system to another using any online conversion tool: 
+![alt text](image-3.png)
+The zeros at the beginning are added to represent the fact that the numbers are expressed in a 16-bit format. The next step is to add the two values, but not in the traditional sense. Instead, the value of the second register should act as an extension of the value of the first register or, to put it more simply, the values should be added up as if they were strings, **i.e., 0000 0000 0000 0001 + 0000 1011 1111 1011 = 0000 0000 0000 0001 0000 1011 1111 1011**. What happens here is that in this sum the first register's value of 1 shouldn't be considered as 1, but instead as ![alt text](image-4.png) , which is the value of the 17th digit of a 32-bit long binary number. If you convert this value back to decimal, you will see that we get the same answer: 
+![alt text](image-5.png)
+# WAN IP address
+Lets examine a different, more complex example by issuing a request for the router's WAN IP address. If you look at the table above, you will see that the WAN IP address value is contained within the 139th and 140th registers. Therefore, we should specify the 139th address and read 2 registers from that address: 
+```
+$ modbus read -w -p 502 192.168.123.12 %MW139 2
+
+%MW139      49320
+%MW140      31490
+
+```
+![alt text](image-6.png)
+An IPv4 address is divided into 4 segments. Each segment contains 8 bits (or 1 byte) of information: 
+![alt text](image-7.png)
+
