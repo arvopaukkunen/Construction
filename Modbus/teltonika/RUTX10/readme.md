@@ -26,4 +26,7 @@ $ sudo gem install modbus-cli
 *I did that in my mac ...*
 
 # Getting router parameters
-Modbus TCP can be used to both get and set certain router parameters. First lets do an overview of how to obtain parameters via Modbus TCP. Please keep in mind that in order to get routers parameters when using Request Configuration ([Request Configuration](https://wiki.teltonika-networks.com/view/RUTX10_Modbus#Requests_configuration ):target="_blank") you need to use Register Number instead of Register Address. 
+Modbus TCP can be used to both get and set certain router parameters. First lets do an overview of how to obtain parameters via Modbus TCP. Please keep in mind that in order to get routers parameters when using Request Configuration ( [Request Configuration](https://wiki.teltonika-networks.com/view/RUTX10_Modbus#Requests_configuration) ) you need to use Register Number instead of Register Address. 
+
+Click [here](https://www.geeksforgeeks.org/){:target="_blank"} 
+to visit GeeksForGeeks website.
