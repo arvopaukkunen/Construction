@@ -71,5 +71,10 @@ For the first example, lets use a modbus read command to attempt to obtain the r
 
 
 ```ruby
-$ modbus read -w -p 12345 192.168.123.2 %MW001 2
+$ modbus read -w -p portnumber 192.168.xxx.xxx %MW001 2
+```
+In this case - it will show:
+```
+%MW1            1
+%MW2        33014
 ```
