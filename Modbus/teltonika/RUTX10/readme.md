@@ -36,32 +36,19 @@ Modbus parameters are held within registers. Each register contains 2 bytes of i
 The register numbers and corresponding system values are described in the table below: 
 
 | required value  | register address |register number | number of registers | representation |
+|---|---|---|---|---|
 |System uptime|1|2|2|32 bit unsigned integer|
 |System hostname | 7 | 8 | 16 | Text |
+| Router serial number | 39 | 40 | 16 | Text |
+| LAN MAC address | 55 | 56 | 16 | Text |
+| Router name | 71 | 72 | 16 | Text |
+| Current WAN IP address | 139 | 140 | 2 | 8 bit unsigned integer |
+| Digital non-isolated input | 342 | 325 | 1 | 16 bit unsigned integer |
+| Digital open collector output | 325 | 365 | 1 | 16 bit unsigned integer |
+| Unix timestamp | 364 | 365 | 2 | 32 bit unsigned integer |
+| Local ISO time | 366 | 367 | 12 |Text |
+| UTC time | 378 | 389 | 12 |Text |
+| LAN IP | 394 | 395 | 2 | 8 bit unsigned integer |
+| | | | | |
 
 
- 
-| | | | | |
-| | | | | |
-| | | | | |
-| | | | | |
-| | | | | |
-| | | | | |
-| | | | | |
-| | | | | |
-| | | | | |
-| | | | | |
-| | | | | |
- 	 	 	 	
-
- 	7 	8 	16 	Text
-Router serial number 	39 	40 	16 	Text
-LAN MAC address 	55 	56 	16 	Text
-Router name 	71 	72 	16 	Text
-Current WAN IP address 	139 	140 	2 	8 bit unsigned integer
-Digital non-isolated input 	324 	325 	1 	16 bit unsigned integer
-Digital open collector output 	325 	326 	1 	16 bit unsigned integer
-Unix timestamp 	364 	365 	2 	32 bit unsigned integer
-Local ISO time 	366 	367 	12 	Text
-UTC time 	378 	389 	12 	Text
-LAN IP 	394 	395 	2 	8 bit unsigned integer
