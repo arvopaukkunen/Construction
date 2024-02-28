@@ -24,7 +24,7 @@ Next you'll need software capable of communicating via Modbus. The software that
 ```
 $ sudo apt-get install ruby
 $ sudo gem install modbus-cli
-````
+```
 *I did that in my mac ...*
 
 # Getting router parameters
@@ -51,4 +51,25 @@ The register numbers and corresponding system values are described in the table 
 | LAN IP | 394 | 395 | 2 | 8 bit unsigned integer |
 | | | | | |
 
+# Modbus read
+To obtain parameters from the system, the modbus read command is used. The syntax for this command is: 
 
+```ruby
+ $ modbus read [OPTIONS] HOST_NAME REGISTER_ADDRESS NUMBER_OF_REGISTERS
+```
+OPTIONS can describe things like data type, port number, type of addressing, etc.
+
+HOST_NAME is the router's hostname or IP address (WAN IP, if you are connecting remotely).
+
+REGISTER_ADDRESS specifies the register that you wish to read.
+
+NUMBER_OF_REGISTERS specifies how many registers should be read starting from the register specified in REGISTER_ADDRESS.
+
+Note: all of this information and more can be viewed by executing these commands in The Linux Terminal: modbus read -h or modbus read --help.
+
+For the first example, lets use a modbus read command to attempt to obtain the router's uptime value in seconds. If you look back at the table above, you will see that the uptime value is stored in two registers starting from the first register, therefore: 
+
+
+```ruby
+$ modbus read -w -p 12345 192.168.123.2 %MW001 2
+```
