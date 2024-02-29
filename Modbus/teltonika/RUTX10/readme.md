@@ -103,7 +103,7 @@ The zeros at the beginning are added to represent the fact that the numbers are 
 # WAN IP address
 Lets examine a different, more complex example by issuing a request for the router's WAN IP address. If you look at the table above, you will see that the WAN IP address value is contained within the 139th and 140th registers. Therefore, we should specify the 139th address and read 2 registers from that address: 
 ```
-$ modbus read -w -p 502 192.168.123.12 %MW139 2
+$ modbus read -w -p xxx 192.168.xxx.xxx %MW139 2
 
 %MW139      49320
 %MW140      31490
@@ -112,4 +112,39 @@ $ modbus read -w -p 502 192.168.123.12 %MW139 2
 ![alt text](image-6.png)
 An IPv4 address is divided into 4 segments. Each segment contains 8 bits (or 1 byte) of information: 
 ![alt text](image-7.png)
+
+So in order to get the WAN IP address from the response received, we'll need to convert the values of both registers to binary and split them into 8-bit segments. Lets do that with the values from the last example: 
+**%MW139 49320** and **%MW140 31490** which converted to binary would be: 49320 = 1100000010101000 ; 31490 = 111101100000010
+As discussed earlier, we'll need to separate the two numbers into 8-bit segments to get the IP address: 
+
+11000000    10101000    11110110    0000010
+    192         168         246         2
+https://www.rapidtables.com/convert/number/decimal-to-binary.html
+https://www.rapidtables.com/convert/number/binary-to-decimal.html
+
+# Text
+Some values like Hostname, Router name, Network type are represented as text in their original form, but are stored in registers as numbers. You can interpret these values the same way as all discussed before (by converting them to binary and then to text), but a simpler way would be to get them in hexadecimal form and then convert them to text. To do so, we'll have to add the -D parameter to the command. Lets do it by asking for the router's Hostname: 
+```
+$ modbus read -D -w -p 502 192.168.123.2 %MW007 16
+
+Tx (12 bytes): [00][01][00][00][00][06][01][03][00][07][00][10]
+Rx (41 bytes): [00][01][00][00][00][23][01][03][20][54][65][6c][74][6f][6e][69][6b][61][2d][52][55][54][58][31][30][5f][31][2e][63][6f][6d][00][00][00][00][00][00][00][00][00][00]
+%MW7        21605
+%MW8        27764
+%MW9        28526
+%MW10       26987
+%MW11       24877
+%MW12       21077
+%MW13       21592
+%MW14       12592
+%MW15       24369
+%MW16       11875
+%MW17       28525
+%MW18           0
+%MW19           0
+%MW20           0
+%MW21           0
+%MW22           0
+
+```
 
