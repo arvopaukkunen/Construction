@@ -11,6 +11,10 @@ In this chapter, we are going to cover the following main topics:
 # Technical requirements
 The code examples used in this chapter can be found at https://github.com/PacktPublishing/Arduino-Data-Communications/tree/main/chapter-3.
 
+or :
+https://github.com/PacktPublishing/Arduino-Data-Communications/tree/main/Chapter03/Arduino-MKR-WiFi-1010-Carrier
+
+
 You will also require the following:
 
     Arduino MKR WiFi 1010
