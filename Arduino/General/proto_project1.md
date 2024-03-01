@@ -241,15 +241,4 @@ The MKR GPS Shield utilizes various satellites to provide location information. 
 
 We have had a brief discussion of shields, so let’s proceed to discuss the MKR IoT Carrier, which provides additional capabilities.
 
-# Working with the MKR IoT Carrier
-The MKR IoT Carrier is designed for the MKR board to be attached on top of it. It comes with the following sensors:
 
-    Five capacitive touch sensors
-    A temperature, humidity, and barometric pressure sensor
-    A six-axis inertial measurement unit
-    A color detection sensor
-    A gesture sensor
-
-It also has an OLED display, two onboard relays, two analog Grove connectors, and one I2C Grove connector. You can see the MKR IoT Carrier in this video: https://packt.link/sfncm.
-
-Let’s work with the MKR IoT Carrier to collect sensor data.
