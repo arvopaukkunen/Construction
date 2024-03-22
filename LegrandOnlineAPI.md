@@ -372,4 +372,5 @@ This is caused by an URI issue. Either you're not specifying the same URI in you
 
 
 
-## Data from cloud to OnPrem NoSql
+## Data from cloud to OnPrem NoSql /RDBMS
+Since suitable nosql db is not available, mySQL would be stable and small footprint db for this. At the end - data doesnot need ti 'live' a long time here. Hirtorical data will be stored in cloud.  Most promising db in test/PoC phase - was Ravendb, Unfortunately it was too unstable in ubuntu/raspberrypi and must be rejected in this case. MySQL & Influx timeseries db together is replacing the Raven - too bad, because instead of one raspberry pi, I need now 2 of them to get reliable HW setup. I may still have to consider so called real pc server for that. We'll see that in the future
