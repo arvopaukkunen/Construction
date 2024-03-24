@@ -270,3 +270,4 @@ Latest AI services data. It's used only is is it more recent than the current on
 ![alt text](image-2.png)
 
 ### Sensor data From cloud SQL Server to local mySQL (NodeRed ETL)
+![alt text](image-3.png)
