@@ -254,4 +254,4 @@ ORDER BY 10
 ```
 ### Event table
 Holds the events of change. Example Bathroom temperature is too low or too high. That subject relates to table decision, what describes the actual change action needed - based on AI recomendation, or if there isn't one (or it's same as current value) let the current value be a valid. Which means the event of change is 'none', based on decision 'do not change value'.
-  
+The field 'propertytag' holds the information which profiled classification valuetype is valid on this sensor. This can be something like : 'Temperature or Humidity' depends what sensor and even and decision says.
