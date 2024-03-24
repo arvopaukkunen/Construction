@@ -11,9 +11,8 @@ This holds a house device like washing machine etc or a AC or heatpump besic inf
 ### Sensor table
 Related table with Appliance, holds possible many endpoints / sensors in that appliance and a current value. Value depends on the sensor. It may be something like %, mV, Celsius etc. depends on purpose. That purpose and unit is also what is classification and is used to dataprofiling. Profiled data is simply executed all the time when sensor data is transferred to cloud - for AI to do some clever things to it :
 
-´´´ 
 
-
+``` 
 SELECT name
 	,value
 	,description
@@ -252,4 +251,4 @@ WHERE description <> '%'
 	AND description <> 'ppm'
 	AND description <> '°'
 ORDER BY 10
-´´´
+```
