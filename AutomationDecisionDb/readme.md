@@ -10,8 +10,10 @@ This holds a house device like washing machine etc or a AC or heatpump besic inf
 
 ### Sensor table
 Related table with Appliance, holds possible many endpoints / sensors in that appliance and a current value. Value depends on the sensor. It may be something like %, mV, Celsius etc. depends on purpose. That purpose and unit is also what is classification and is used to dataprofiling. Profiled data is simply executed all the time when sensor data is transferred to cloud - for AI to do some clever things to it :
+#### Nodered ETL process
+![alt text](image-1.png)
 
-
+#### SQL for this profiling and classification
 ``` 
 SELECT name
 	,value
@@ -255,3 +257,16 @@ ORDER BY 10
 ### Event table
 Holds the events of change. Example Bathroom temperature is too low or too high. That subject relates to table decision, what describes the actual change action needed - based on AI recomendation, or if there isn't one (or it's same as current value) let the current value be a valid. Which means the event of change is 'none', based on decision 'do not change value'.
 The field 'propertytag' holds the information which profiled classification valuetype is valid on this sensor. This can be something like : 'Temperature or Humidity' depends what sensor and even and decision says.
+
+### Decision
+Desribes and holds the reason for a change. It is directly from sensor data and even table. If AI data is updated later that event table data, only then AI altered data will be compared with the current value. Offline version of the AI data lives in sensor_ai table
+
+### Sensor_ai table
+Latest AI services data. It's used only is is it more recent than the current one. (Check the logic in the tests)
+
+## Cloud transfer ETL (there and back)
+
+### Sensor data from local mySQL To cloud SQL Server(NodeRed ETL)
+![alt text](image-2.png)
+
+### Sensor data From cloud SQL Server to local mySQL (NodeRed ETL)
