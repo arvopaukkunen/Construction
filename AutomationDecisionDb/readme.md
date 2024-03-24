@@ -1,6 +1,7 @@
 # mySQL db
 
 *Don't expect to find any Nodered flow JSON's here to download until I have done full testing :)*
+This implementation is done with all my experience with several decades of data engineer & data architect work in complex production systems. I'm following very tight security and best practise quidance and strict cloud dependencies policys. Everything must work even if there is not internet connection. Naturally cloud AI and some other online features can be automatically off - for a moment or longer period of time.
 
 ![alt text](image.png)
 *Iteration 2*
