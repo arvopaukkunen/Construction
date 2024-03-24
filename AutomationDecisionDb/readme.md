@@ -1,7 +1,7 @@
 # mySQL db
 
 *Don't expect to find any Nodered flow JSON's here to download until I have done full testing :)*
-This implementation is done with all my experience with several decades of data engineer & data architect work in complex production systems. I'm following very tight security and best practise quidance and strict cloud dependencies policys. Everything must work even if there is not internet connection. Naturally cloud AI and some other online features can be automatically off - for a moment or longer period of time.
+This implementation is done with all my experience with several decades of data engineer & data architect work in complex production systems. I'm following very tight security and best practice guidance and strict cloud dependencies policy. Everything must work even if there is not internet connection. Naturally cloud AI and some other online features can be automatically off - for a moment or longer period of time.
 
 ![alt text](image.png)
 *Iteration 2*
@@ -9,10 +9,10 @@ This implementation is done with all my experience with several decades of data 
 ## Description of this iteration:
 
 ### Appliance table
-This holds a house device like washing machine etc or a AC or heatpump basic information. Connection prefixed fields holds needed information to connect the device for reading or writing a data. For example connection protocol is something like ModbusSerial, ModbusTCP, MQTT or more convinient REST API if available/implemented. All in LAN.
+This holds a house device like washing machine etc or a AC or heat-pump basic information. Connection prefixed fields holds needed information to connect the device for reading or writing a data. For example connection protocol is something like ModbusSerial, ModbusTCP, MQTT or more convenient REST API if available/implemented. All in LAN.
 
 ### Sensor table
-Related table with Appliance, holds possible many endpoints / sensors in that appliance and a current value. Value depends on the sensor. It may be something like %, mV, Celsius etc. depends on purpose. That purpose and unit is also what is classification and is used to dataprofiling. Profiled data is simply executed all the time when sensor data is transferred to cloud - for AI to do some clever things to it :
+Related table with Appliance, holds possible many endpoints / sensors in that appliance and a current value. Value depends on the sensor. It may be something like %, mV, Celsius etc. depends on purpose. That purpose and unit is also what is classification and is used to data-profiling. Profiled data is simply executed all the time when sensor data is transferred to cloud - for AI to do some clever things to it :
 #### Nodered ETL process
 ![alt text](image-1.png)
 
@@ -258,11 +258,11 @@ WHERE description <> '%'
 ORDER BY 10
 ```
 ### Event table
-Holds the events of change. Example Bathroom temperature is too low or too high. That subject relates to table decision, what describes the actual change action needed - based on AI recomendation, or if there isn't one (or it's same as current value) let the current value be a valid. Which means the event of change is 'none', based on decision 'do not change value'.
-The field 'propertytag' holds the information which profiled classification valuetype is valid on this sensor. This can be something like : 'Temperature or Humidity' depends what sensor and even and decision says.
+Holds the events of change. Example Bathroom temperature is too low or too high. That subject relates to table decision, what describes the actual change action needed - based on AI recommendation, or if there isn't one (or it's same as current value) let the current value be a valid. Which means the event of change is 'none', based on decision 'do not change value'.
+The field 'property-tag' holds the information which profiled classification value-type is valid on this sensor. This can be something like : 'Temperature or Humidity' depends what sensor and even and decision says.
 
 ### Decision
-Desribes and holds the reason for a change. It is directly from sensor data and even table. If AI data is updated later that event table data, only then AI altered data will be compared with the current value. Offline version of the AI data lives in sensor_ai table
+Describes and holds the reason for a change. It is directly from sensor data and even table. If AI data is updated later that event table data, only then AI altered data will be compared with the current value. Offline version of the AI data lives in sensor_ai table
 
 ### Sensor_ai table
 Latest AI services data. It's used only is is it more recent than the current one. (Check the logic in the tests)
