@@ -6,4 +6,4 @@ Some of the devices are approved and some rejected. Here's the reasons for these
 2. Functionality like capable for edge and function without stable internet connection
 3. else ?
 
-[](Airam/Lightbulbs.md)
+[Airam](Airam/Lightbulbs.md)
