@@ -1037,4 +1037,1625 @@ Display, dbus path: /EnableDisplay, type enum
     0 - Locked
     1 - Unlocked
 
+Firmware version, dbus path: /FirmwareVersion, type float
+Maximum charge current (A), dbus path: /MaxCurrent, type float
+Mode, dbus path: /Mode, type enum
 
+
+    0 - Manual
+    1 - Auto
+    2 - Schedule
+
+Model, dbus path: /Model, type float
+Product ID, dbus path: /ProductId, type float
+Serial, dbus path: /Serial, type string
+Set charge current (manual mode) (A), dbus path: /SetCurrent, type float
+Start/stop charging (manual mode), dbus path: /StartStop, type enum
+
+    0 - Stop
+    1 - Start
+
+Status, dbus path: /Status, type enum
+
+    0 - Disconnected
+    1 - Connected
+    2 - Charging
+    3 - Charged
+    4 - Waiting for sun
+    5 - Waiting for RFID
+    6 - Waiting for start
+    7 - Low SOC
+    8 - Ground fault
+    9 - Welded contacts
+    10 - CP Input shorted
+    11 - Residual current detected
+    12 - Under voltage detected
+    13 - Overvoltage detected
+    14 - Overheating detected
+
+### Fuel cell
+See https://github.com/victronenergy/venus/wiki/dbus#fuelcell for more information.
+
+High voltage alarm, dbus path: /Alarms/HighVoltage, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+High auxiliary voltage alarm, dbus path: /Alarms/HighStarterVoltage, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+High temperature alarm, dbus path: /Alarms/HighTemperature, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+Low auxiliary voltage alarm, dbus path: /Alarms/LowStarterVoltage, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+Low temperature alarm, dbus path: /Alarms/LowTemperature, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+Low voltage alarm, dbus path: /Alarms/LowVoltage, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+Battery current (A), dbus path: /Dc/0/Current, type float
+Battery temperature (°C), dbus path: /Dc/0/Temperature, type float
+Battery voltage (V DC), dbus path: /Dc/0/Voltage, type float
+Auxiliary voltage (V DC), dbus path: /Dc/1/Voltage, type float
+Total energy produced (kWh), dbus path: /History/EnergyOut, type float
+
+### Generator
+Generator input node for relay controlled and Fischer Panda generators.In order to use the relay for controlling a generator, make sure to set the relay to Generator via the (remote) console first.Also see here for more information.
+
+Generator not detected at AC input alarm, dbus path: /Alarms/NoGeneratorAtAcIn, type enum
+
+    0 - No alarm
+    2 - Alarm
+
+Auto start enabled/disabled, dbus path: /AutoStartEnabled, type enum
+
+    0 - Autostart disabled
+    1 - Autostart enabled
+
+Generator remote error, dbus path: /Error, type enum
+
+    0 - No Error
+    1 - Remote disabled
+    2 - Remote fault
+
+Manual Start, dbus path: /ManualStart, type enum
+
+    0 - Stop generator
+    1 - Start generator
+
+Quiet hours active, dbus path: /QuietHours, type enum
+
+    0 - Quiet hours inactive
+    1 - Quiet hours active
+
+Condition that started the generator, dbus path: /RunningByConditionCode, type enum
+
+    0 - Stopped
+    1 - Manual
+    2 - TestRun
+    3 - LossOfComms
+    4 - Soc
+    5 - AcLoad
+    6 - BatteryCurrent
+    7 - BatteryVoltage
+    8 - InverterTemperatur
+    9 - InverterOverload
+    10 - StopOnAc1
+
+Runtime in seconds (seconds), dbus path: /Runtime, type float
+Service countdown counter (seconds until next generator service), dbus path: /ServiceCounter, type float
+Generator start/stop state, dbus path: /State, type enum
+
+    0 - Stopped
+    1 - Running
+    10 - Error
+
+### Energy Meter
+This node is essentially an energy meter showing volts, amps, power, energy etc. It is comparable with the input-gridmeter.
+
+Phase 1 current (A AC), dbus path: /Ac/L1/Current, type float
+Phase 1 frequency (Hz), dbus path: /Ac/L1/Frequency, type float
+Phase 1 power (W), dbus path: /Ac/L1/Power, type float
+Phase 1 voltage (V AC), dbus path: /Ac/L1/Voltage, type float
+Phase 2 current (A AC), dbus path: /Ac/L2/Current, type float
+Phase 2 frequency (Hz), dbus path: /Ac/L2/Frequency, type float
+Phase 2 power (W), dbus path: /Ac/L2/Power, type float
+Phase 2 voltage (V AC), dbus path: /Ac/L2/Voltage, type float
+Phase 3 current (A AC), dbus path: /Ac/L3/Current, type float
+Phase 3 frequency (Hz), dbus path: /Ac/L3/Frequency, type float
+Phase 3 power (W), dbus path: /Ac/L3/Power, type float
+Phase 3 voltage (V AC), dbus path: /Ac/L3/Voltage, type float
+Auto start, dbus path: /AutoStart, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+DC output 1 - Current (A), dbus path: /Dc/0/Current, type float
+DC output 1 - Power (W), dbus path: /Dc/0/Power, type float
+DC output 1 - Voltage (V), dbus path: /Dc/0/Voltage, type float
+Engine coolant temperature (°C), dbus path: /Engine/CoolantTemperature, type float
+Engine exhaust temperature (°C), dbus path: /Engine/ExaustTemperature, type float
+Engine load (%), dbus path: /Engine/Load, type float
+Oil pressure (kPa), dbus path: /Engine/OilPressure, type float
+Engine operating hours (s), dbus path: /Engine/OperatingHours, type float
+Engine speed (RPM), dbus path: /Engine/Speed, type float
+Engine winding temperature (°C), dbus path: /Engine/WindingTemperature, type float
+Error, dbus path: /ErrorCode, type enum
+
+    0 - No error
+    1 - AC voltage L1 too low
+    2 - AC frequency L1 too low
+    3 - AC current too low
+    4 - AC power too low
+    5 - Emergency stop
+    6 - Servo current too low
+    7 - Oil pressure too low
+    8 - Engine temperature too low
+    9 - Winding temperature too low
+    10 - Exhaust temperature too low
+    13 - Starter current too low
+    14 - Glow current too low
+    15 - Glow current too low
+    16 - Fuel holding magnet current too low
+    17 - Stop solenoid hold coil current too low
+    18 - Stop solenoid pull coil current too low
+    19 - Optional DC out current too low
+    20 - 5V output voltage too low
+    21 - Boost output current too low
+    22 - Panel supply current too high
+    25 - Starter battery voltage too low
+    26 - Startup aborted (rotation too low)
+    28 - Rotation too low
+    29 - Power contactor current too low
+    30 - AC voltage L2 too low
+    31 - AC frequency L2 too low
+    32 - AC current L2 too low
+    33 - AC power L2 too low
+    34 - AC voltage L3 too low
+    35 - AC frequency L3 too low
+    36 - AC current L3 too low
+    37 - AC power L3 too low
+    62 - Fuel temperature too low
+    63 - Fuel level too low
+    65 - AC voltage L1 too high
+    66 - AC frequency too high
+    67 - AC current too high
+    68 - AC power too high
+    70 - Servo current too high
+    71 - Oil pressure too high
+    72 - Engine temperature too high
+    73 - Winding temperature too high
+    74 - Exhaust temperature too low
+    77 - Starter current too low
+    78 - Glow current too high
+    79 - Glow current too high
+    80 - Fuel holding magnet current too high
+    81 - Stop solenoid hold coil current too high
+    82 - Stop solenoid pull coil current too high
+    83 - Optional DC out current too high
+    84 - 5V output voltage too high
+    85 - Boost output current too high
+    89 - Starter battery voltage too high
+    90 - Startup aborted (rotation too high)
+    92 - Rotation too high
+    93 - Power contactor current too high
+    94 - AC voltage L2 too high
+    95 - AC frequency L2 too high
+    96 - AC current L2 too high
+    97 - AC power L2 too high
+    98 - AC voltage L3 too high
+    99 - AC frequency L3 too high
+    100 - AC current L3 too high
+    101 - AC power L3 too high
+    126 - Fuel temperature too high
+    127 - Fuel level too high
+    130 - Lost control unit
+    131 - Lost panel
+    132 - Service needed
+    133 - Lost 3-phase module
+    134 - Lost AGT module
+    135 - Synchronization failure
+    137 - Intake airfilter
+    139 - Lost sync. module
+    140 - Load-balance failed
+    141 - Sync-mode deactivated
+    142 - Engine controller
+    148 - Rotating field wrong
+    149 - Fuel level sensor lost
+    150 - Init failed
+    151 - Watchdog
+    152 - Out: winding
+    153 - Out: exhaust
+    154 - Out: Cyl. head
+    155 - Inverter over temperature
+    156 - Inverter overload
+    157 - Inverter communication lost
+    158 - Inverter sync failed
+    159 - CAN communication lost
+    160 - L1 overload
+    161 - L2 overload
+    162 - L3 overload
+    163 - DC overload
+    164 - DC overvoltage
+    165 - Emergency stop
+    166 - No connection
+
+Heatsink temperature (°C), dbus path: /HeatsinkTemperature, type float
+Generator model, dbus path: /ProductId, type float
+Starter voltage (V DC), dbus path: /StarterVoltage, type float
+Status, dbus path: /StatusCode, type enum
+
+    0 - Standby
+    1 - Startup 1
+    2 - Startup 2
+    3 - Startup 3
+    4 - Startup 4
+    5 - Startup 5
+    6 - Startup 6
+    7 - Startup 7
+    8 - Running
+    9 - Stopping
+    10 - Error
+
+### GPS
+GPS information can be obtained with this node. For an example usage see the location based scheduling example.
+
+Altitude (m), dbus path: /Altitude, type float
+Course (Deg), dbus path: /Course, type float
+Fix, dbus path: /Fix, type integer
+Number of satellites, dbus path: /NrOfSatellites, type integer
+Latitude (LAT), dbus path: /Position/Latitude, type float
+Longitude (LNG), dbus path: /Position/Longitude, type float
+Speed (m/s), dbus path: /Speed, type float
+
+### Grid Meter
+This node gives allows for monitoring the grid. See also energy meters accessories.
+
+Frequency (Hz), dbus path: /Ac/Frequency, type float
+Total Forward Energy (bought) (kWh), dbus path: /Ac/Energy/Forward, type float
+Total Reverse Energy (sold) (kWh), dbus path: /Ac/Energy/Reverse, type float
+L1 Current (A), dbus path: /Ac/L1/Current, type float
+L1 Forward energy (bought) (kWh), dbus path: /Ac/L1/Energy/Forward, type float
+L1 Reverse energy (sold) (kWh), dbus path: /Ac/L1/Energy/Reverse, type float
+L1 Power (W), dbus path: /Ac/L1/Power, type float
+L1 Voltage (V), dbus path: /Ac/L1/Voltage, type float
+L2 Current (A), dbus path: /Ac/L2/Current, type float
+L2 Forward energy (bought) (kWh), dbus path: /Ac/L2/Energy/Forward, type float
+L2 Reverse energy (sold) (kWh), dbus path: /Ac/L2/Energy/Reverse, type float
+L2 Power (W), dbus path: /Ac/L2/Power, type float
+L2 Voltage (V), dbus path: /Ac/L2/Voltage, type float
+L3 Current (A), dbus path: /Ac/L3/Current, type float
+L3 Forward energy (bought) (kWh), dbus path: /Ac/L3/Energy/Forward, type float
+L3 Reverse energy (sold) (kWh), dbus path: /Ac/L3/Energy/Reverse, type float
+L3 Power (W), dbus path: /Ac/L3/Power, type float
+L3 Voltage (V), dbus path: /Ac/L3/Voltage, type float
+Power (W), dbus path: /Ac/Power, type float
+Serial, dbus path: /Serial, type string
+
+### Inverter
+This node is for reading from an inverter.
+
+Output current (A), dbus path: /Ac/Out/L1/I, type float
+Output power (W AC), dbus path: /Ac/Out/L1/P, type float
+Output voltage (V), dbus path: /Ac/Out/L1/V, type float
+High temperature alarm, dbus path: /Alarms/HighTemperature, type enum
+
+    0 - No alarm
+    1 - Warning
+    2 - Alarm
+
+High battery voltage alarm, dbus path: /Alarms/HighVoltage, type enum
+
+    0 - No alarm
+    1 - Warning
+    2 - Alarm
+
+High AC-Out voltage alarm, dbus path: /Alarms/HighVoltageAcOut, type enum
+
+    0 - No alarm
+    1 - Warning
+    2 - Alarm
+
+Low SOC alarm, dbus path: /Alarms/LowSoc, type enum
+
+    0 - No alarm
+    1 - Warning
+    2 - Alarm
+
+Low temperature alarm, dbus path: /Alarms/LowTemperature, type enum
+
+    0 - No alarm
+    1 - Warning
+    2 - Alarm
+
+Low battery voltage alarm, dbus path: /Alarms/LowVoltage, type enum
+
+    0 - No alarm
+    1 - Warning
+    2 - Alarm
+
+Low AC-Out voltage alarm, dbus path: /Alarms/LowVoltageAcOut, type enum
+
+    0 - No alarm
+    1 - Warning
+    2 - Alarm
+
+Overload alarm, dbus path: /Alarms/Overload, type enum
+
+    0 - No alarm
+    1 - Warning
+    2 - Alarm
+
+Ripple alarm, dbus path: /Alarms/Ripple, type enum
+
+    0 - No alarm
+    1 - Warning
+    2 - Alarm
+
+Battery current (A DC), dbus path: /Dc/0/Current, type float
+Input voltage (V), dbus path: /Dc/0/Voltage, type float
+Energy from battery to AC-out (kWh), dbus path: /Energy/InverterToAcOut, type float
+Energy from AC-out to battery (kWh), dbus path: /Energy/OutToInverter, type float
+Energy from solar to AC-out (kWh), dbus path: /Energy/SolarToAcOut, type float
+Energy from solar to battery (kWh), dbus path: /Energy/SolarToBattery, type float
+Firmware version, dbus path: /FirmwareVersion, type float
+Maximum power for today on tracker 0 (W), dbus path: /History/Daily/0/Pv/0/MaxPower, type float
+Yield today for today on tracker 0 (kWh), dbus path: /History/Daily/0/Pv/0/Yield, type float
+Maximum power for today on tracker 1 (W), dbus path: /History/Daily/0/Pv/1/MaxPower, type float
+Yield today for today on tracker 1 (kWh), dbus path: /History/Daily/0/Pv/1/Yield, type float
+Maximum power for today on tracker 2 (W), dbus path: /History/Daily/0/Pv/2/MaxPower, type float
+Yield today for today on tracker 2 (kWh), dbus path: /History/Daily/0/Pv/2/Yield, type float
+Maximum power for today on tracker 3 (W), dbus path: /History/Daily/0/Pv/3/MaxPower, type float
+Yield today for today on tracker 3 (kWh), dbus path: /History/Daily/0/Pv/3/Yield, type float
+Maximum power for yesterday on tracker 0 (W), dbus path: /History/Daily/1/Pv/0/MaxPower, type float
+Yield today for yesterday on tracker 0 (kWh), dbus path: /History/Daily/1/Pv/0/Yield, type float
+Maximum power for yesterday on tracker 1 (W), dbus path: /History/Daily/1/Pv/1/MaxPower, type float
+Yield today for yesterday on tracker 1 (kWh), dbus path: /History/Daily/1/Pv/1/Yield, type float
+Maximum power for yesterday on tracker 2 (W), dbus path: /History/Daily/1/Pv/2/MaxPower, type float
+Yield today for yesterday on tracker 2 (kWh), dbus path: /History/Daily/1/Pv/2/Yield, type float
+Maximum power for yesterday on tracker 3 (W), dbus path: /History/Daily/1/Pv/3/MaxPower, type float
+Yield today for yesterday on tracker 3 (kWh), dbus path: /History/Daily/1/Pv/3/Yield, type float
+Mode, dbus path: /Mode, type enum
+
+    2 - Inverter on
+    4 - Off
+    5 - Low Power/ECO
+
+Inverter model, dbus path: /ProductId, type float
+MPP operation mode tracker 1, dbus path: /Pv/0/MppOperationMode, type enum
+
+    0 - Off
+    1 - Voltage/current limited
+    2 - MPPT active
+    255 - Not available
+
+PV power for tracker 0 (W), dbus path: /Pv/0/P, type float
+PV voltage for tracker 0 (V DC), dbus path: /Pv/0/V, type float
+MPP operation mode tracker 2, dbus path: /Pv/1/MppOperationMode, type enum
+
+    0 - Off
+    1 - Voltage/current limited
+    2 - MPPT active
+    255 - Not available
+
+PV power for tracker 1 (W), dbus path: /Pv/1/P, type float
+PV voltage for tracker 1 (V DC), dbus path: /Pv/1/V, type float
+MPP operation mode tracker 3, dbus path: /Pv/2/MppOperationMode, type enum
+
+    0 - Off
+    1 - Voltage/current limited
+    2 - MPPT active
+    255 - Not available
+
+PV power for tracker 2 (W), dbus path: /Pv/2/P, type float
+PV voltage for tracker 2 (V DC), dbus path: /Pv/2/V, type float
+MPP operation mode tracker 4, dbus path: /Pv/3/MppOperationMode, type enum
+
+    0 - Off
+    1 - Voltage/current limited
+    2 - MPPT active
+    255 - Not available
+
+PV power for tracker 3 (W), dbus path: /Pv/3/P, type float
+PV voltage for tracker 3 (V DC), dbus path: /Pv/3/V, type float
+PV voltage (for single tracker units) (V DC), dbus path: /Pv/V, type float
+Relay state, dbus path: /Relay/0/State, type enum
+
+    0 - Open
+    1 - Closed
+
+State, dbus path: /State, type enum
+
+    0 - Off
+    1 - Low Power
+    2 - Fault
+    9 - Inverting
+
+### Meteo
+input-meteo node allows for Solar Irradiance, Temperature and Wind Speed Sensors measuring.More information and supported devices can be found in the manual.
+
+Sensor cell temperature (°C), dbus path: /CellTemperature, type float
+External temperature (°C), dbus path: /ExternalTemperature, type float
+External temperature – second sensor (Degrees celsius), dbus path: /ExternalTemperature2, type float
+Solar Irradiance (W/m^2), dbus path: /Irradiance, type float
+Wind speed (m/s), dbus path: /WindSpeed, type float
+
+### Motordrive
+
+This is the motordrive input node. See https://bitbucket.org/oceanvolt/dbus_motordrive/src for more information.
+
+Controller Temperature (°C), dbus path: /Controller/Temperature, type float
+Motor RPM (RPM), dbus path: /Motor/RPM, type float
+Motor temperature (°C), dbus path: /Motor/Temperature, type float
+Controller DC Current (A DC), dbus path: /Dc/0/Current, type float
+Controller DC Power (W), dbus path: /Dc/0/Power, type float
+Controller DC Voltage (V DC), dbus path: /Dc/0/Voltage, type float
+
+### Multi RS
+
+This is the Multi RS input node.
+
+Active AC input, dbus path: /Ac/ActiveIn/ActiveInput, type enum
+
+    0 - AC Input 1
+    1 - AC Input 2
+    240 - Disconnected
+
+Ac input 1 current limit (A), dbus path: /Ac/In/1/CurrentLimit, type float
+Input frequency phase 1 (Hz), dbus path: /Ac/In/1/L1/F, type float
+Input current phase 1 (A AC), dbus path: /Ac/In/1/L1/I, type float
+Input power phase 1 (W), dbus path: /Ac/In/1/L1/P, type float
+Input voltage phase 1 (V AC), dbus path: /Ac/In/1/L1/V, type float
+Input current phase 2 (A AC), dbus path: /Ac/In/1/L2/I, type float
+Input power phase 2 (W), dbus path: /Ac/In/1/L2/P, type float
+Input voltage phase 2 (V AC), dbus path: /Ac/In/1/L2/V, type float
+Input current phase 3 (A AC), dbus path: /Ac/In/1/L3/I, type float
+Input power phase 3 (W), dbus path: /Ac/In/1/L3/P, type float
+Input voltage phase 3 (V AC), dbus path: /Ac/In/1/L3/V, type float
+AC input 1 source type, dbus path: /Ac/In/1/Type, type enum
+
+    0 - Unused
+    1 - Grid
+    2 - Genset
+    3 - Shore
+
+Ac input 2 current limit (A), dbus path: /Ac/In/2/CurrentLimit, type float
+AC input 2 source type, dbus path: /Ac/In/2/Type, type enum
+
+    0 - Unused
+    1 - Grid
+    2 - Genset
+    3 - Shore
+
+Phase count (count), dbus path: /Ac/NumberOfPhases, type float
+Output frequency phase 1 (Hz), dbus path: /Ac/Out/L1/F, type float
+Output current phase 1 (A AC), dbus path: /Ac/Out/L1/I, type float
+Output power phase 1 (W), dbus path: /Ac/Out/L1/P, type float
+Output voltage phase 1 (V AC), dbus path: /Ac/Out/L1/V, type float
+Output current phase 2 (A AC), dbus path: /Ac/Out/L2/I, type float
+Output power phase 2 (W), dbus path: /Ac/Out/L2/P, type float
+Output voltage phase 2 (V AC), dbus path: /Ac/Out/L2/V, type float
+Output current phase 3 (A AC), dbus path: /Ac/Out/L3/I, type float
+Output power phase 3 (W), dbus path: /Ac/Out/L3/P, type float
+Output voltage phase 3 (V AC), dbus path: /Ac/Out/L3/V, type float
+Temperature alarm, dbus path: /Alarms/HighTemperature, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+High voltage alarm, dbus path: /Alarms/HighVoltage, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+High AC-Out voltage alarm, dbus path: /Alarms/HighVoltageAcOut, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+Low SOC alarm, dbus path: /Alarms/LowSoc, type enum
+
+    0 - No alarm
+    1 - Warning
+    2 - Alarm
+
+Low battery temperature alarm, dbus path: /Alarms/LowTemperature, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+Low voltage alarm, dbus path: /Alarms/LowVoltage, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+Low AC-Out voltage alarm, dbus path: /Alarms/LowVoltageAcOut, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+Overload alarm, dbus path: /Alarms/Overload, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+High DC ripple alarm, dbus path: /Alarms/Ripple, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+Battery current (A DC), dbus path: /Dc/0/Current, type float
+Battery temperature (°C), dbus path: /Dc/0/Temperature, type float
+Battery voltage (V DC), dbus path: /Dc/0/Voltage, type float
+Energy from AC-in-1 to AC-out (kWh), dbus path: /Energy/AcIn1ToAcOut, type float
+Energy from AC-in-1 to battery (kWh), dbus path: /Energy/AcIn1ToInverter, type float
+Energy from AC-in-2 to AC-out (kWh), dbus path: /Energy/AcIn2ToAcOut, type float
+Energy from AC-in-2 to battery (kWh), dbus path: /Energy/AcIn2ToInverter, type float
+Energy from AC-out to AC-in-1 (kWh), dbus path: /Energy/AcOutToAcIn1, type float
+Energy from AC-out to AC-in-2 (kWh), dbus path: /Energy/AcOutToAcIn2, type float
+Energy from battery to AC-in-1 (kWh), dbus path: /Energy/InverterToAcIn1, type float
+Energy from battery to AC-in-2 (kWh), dbus path: /Energy/InverterToAcIn2, type float
+Energy from battery to AC-out (kWh), dbus path: /Energy/InverterToAcOut, type float
+Energy from AC-out to battery (kWh), dbus path: /Energy/OutToInverter, type float
+Energy from solar to AC-in-1 (kWh), dbus path: /Energy/SolarToAcIn1, type float
+Energy from solar to AC-in-2 (kWh), dbus path: /Energy/SolarToAcIn2, type float
+Energy from solar to AC-out (kWh), dbus path: /Energy/SolarToAcOut, type float
+Energy from solar to battery (kWh), dbus path: /Energy/SolarToBattery, type float
+Error code, dbus path: /ErrorCode, type enum
+
+    0 - No error
+    1 - Battery temperature too high
+    2 - Battery voltage too high
+    3 - Battery temperature sensor miswired (+)
+    4 - Battery temperature sensor miswired (-)
+    5 - Battery temperature sensor disconnected
+    6 - Battery voltage sense miswired (+)
+    7 - Battery voltage sense miswired (-)
+    8 - Battery voltage sense disconnected
+    9 - Battery voltage wire losses too high
+    17 - Charger temperature too high
+    18 - Charger over-current
+    19 - Charger current polarity reversed
+    20 - Bulk time limit reached
+    22 - Charger temperature sensor miswired
+    23 - Charger temperature sensor disconnected
+    34 - Input current too high
+
+Maximum charge power today (W), dbus path: /History/Daily/0/MaxPower, type float
+Maximum charge power today for tracker 0 (W), dbus path: /History/Daily/0/Pv/0/MaxPower, type float
+Yield today for tracker 0 (kWh), dbus path: /History/Daily/0/Pv/0/Yield, type float
+Maximum charge power today for tracker 1 (W), dbus path: /History/Daily/0/Pv/1/MaxPower, type float
+Yield today for tracker 1 (kWh), dbus path: /History/Daily/0/Pv/1/Yield, type float
+Maximum charge power today for tracker 2 (W), dbus path: /History/Daily/0/Pv/2/MaxPower, type float
+Yield today for tracker 2 (kWh), dbus path: /History/Daily/0/Pv/2/Yield, type float
+Yield today for tracker 3 (kWh), dbus path: /History/Daily/0/Pv/3/Yield, type float
+Maximum charge power today for tracker 3 (W), dbus path: /History/Daily/0/Pv/3/MaxPower, type float
+Yield today (kWh), dbus path: /History/Daily/0/Yield, type float
+Maximum charge power yesterday (W), dbus path: /History/Daily/1/MaxPower, type float
+Maximum charge power yesterday tracker 0 (W), dbus path: /History/Daily/1/Pv/0/MaxPower, type float
+Yield yesterday for tracker 0 (kWh), dbus path: /History/Daily/1/Pv/0/Yield, type float
+Maximum charge power yesterday tracker 1 (W), dbus path: /History/Daily/1/Pv/1/MaxPower, type float
+Yield yesterday for tracker 1 (kWh), dbus path: /History/Daily/1/Pv/1/Yield, type float
+Maximum charge power yesterday tracker 2 (W), dbus path: /History/Daily/1/Pv/2/MaxPower, type float
+Yield yesterday for tracker 2 (kWh), dbus path: /History/Daily/1/Pv/2/Yield, type float
+Maximum charge power yesterday tracker 3 (W), dbus path: /History/Daily/1/Pv/3/MaxPower, type float
+Yield yesterday for tracker 3 (kWh), dbus path: /History/Daily/1/Pv/3/Yield, type float
+Yield yesterday (kWh), dbus path: /History/Daily/1/Yield, type float
+MPP operation mode, dbus path: /MppOperationMode, type enum
+
+    0 - Off
+    1 - Voltage/current limited
+    2 - MPPT active
+    255 - Not available
+
+MPP operation mode tracker 1, dbus path: /Pv/0/MppOperationMode, type enum
+
+    0 - Off
+    1 - Voltage/current limited
+    2 - MPPT active
+    255 - Not available
+
+PV power for tracker 0 (W), dbus path: /Pv/0/P, type float
+PV voltage for tracker 0 (V DC), dbus path: /Pv/0/V, type float
+MPP operation mode tracker 2, dbus path: /Pv/1/MppOperationMode, type enum
+
+    0 - Off
+    1 - Voltage/current limited
+    2 - MPPT active
+    255 - Not available
+
+PV power for tracker 1 (W), dbus path: /Pv/1/P, type float
+PV voltage for tracker 1 (V DC), dbus path: /Pv/1/V, type float
+MPP operation mode tracker 3, dbus path: /Pv/2/MppOperationMode, type enum
+
+    0 - Off
+    1 - Voltage/current limited
+    2 - MPPT active
+    255 - Not available
+
+PV power for tracker 2 (W), dbus path: /Pv/2/P, type float
+PV voltage for tracker 2 (V DC), dbus path: /Pv/2/V, type float
+MPP operation mode tracker 4, dbus path: /Pv/3/MppOperationMode, type enum
+
+    0 - Off
+    1 - Voltage/current limited
+    2 - MPPT active
+    255 - Not available
+
+PV power for tracker 3 (W), dbus path: /Pv/3/P, type float
+PV voltage for tracker 3 (V DC), dbus path: /Pv/3/V, type float
+PV voltage (V DC), dbus path: /Pv/V, type float
+Relay on the Multi RS, dbus path: /Relay/0/State, type enum
+
+    0 - Open
+    1 - Closed
+
+Battery State of Charge (%), dbus path: /Soc, type float
+Inverter/Charger state, dbus path: /State, type enum
+
+    0 - Off
+    1 - Low Power
+    2 - Fault
+    3 - Bulk
+    4 - Absorption
+    5 - Float
+    6 - Storage
+    7 - Equalize
+    8 - Passthru
+    9 - Inverting
+    10 - Power assist
+    11 - Power supply
+    252 - External control
+
+Switch position, dbus path: /Mode, type enum
+
+    1 - Charger Only
+    2 - Inverter Only
+    3 - On
+    4 - Off
+
+PV power (W), dbus path: /Yield/Power, type float
+User yield (kWh), dbus path: /Yield/User, type float
+
+### Pulsemeter
+
+This node is for obtaining information from a pulsemeter. In order to use this, set a digital input to Pulse meter first via the GUI (Under I/O -> Digital inputs).
+
+Count (number of pulses on meter), dbus path: /Count, type float
+Aggregate (measured value) (m3), dbus path: /Aggregate, type float
+Pump
+
+Node for getting pump information.
+
+Pump State, dbus path: /State, type enum
+
+    0 - Stopped
+    1 - Running
+
+Auto start enabled, dbus path: /Settings/Pump0/AutoStartEnabled, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+Mode, dbus path: /Settings/Pump0/Mode, type enum
+
+    0 - Auto
+    1 - On
+    2 - Off
+
+Start value (%), dbus path: /Settings/Pump0/StartValue, type float
+Stop value (%), dbus path: /Settings/Pump0/StopValue, type float
+
+### PV Inverter
+
+This node is for obtaining information from the PV inverter.
+
+Total energy (kWh), dbus path: /Ac/Energy/Forward, type float
+L1 Current (A), dbus path: /Ac/L1/Current, type float
+L1 Energy (kWh), dbus path: /Ac/L1/Energy/Forward, type float
+L1 Power (W), dbus path: /Ac/L1/Power, type float
+Power limit (W), dbus path: /Ac/PowerLimit, type float
+L1 Voltage (V), dbus path: /Ac/L1/Voltage, type float
+L2 Current (A), dbus path: /Ac/L2/Current, type float
+L2 Energy (kWh), dbus path: /Ac/L2/Energy/Forward, type float
+L2 Power (W), dbus path: /Ac/L2/Power, type float
+L2 Voltage (V), dbus path: /Ac/L2/Voltage, type float
+L3 Current (A), dbus path: /Ac/L3/Current, type float
+L3 Energy (kWh), dbus path: /Ac/L3/Energy/Forward, type float
+L3 Power (W), dbus path: /Ac/L3/Power, type float
+L3 Voltage (V), dbus path: /Ac/L3/Voltage, type float
+Maximum Power Capacity (kW), dbus path: /Ac/MaxPower, type float
+Total Power (W), dbus path: /Ac/Power, type float
+Error, dbus path: /ErrorCode, type enum
+
+    0 - No Error
+
+Position, dbus path: /Position, type enum
+
+    0 - AC input 1
+    1 - AC output
+    2 - AC input 2
+
+Serial, dbus path: /Serial, type string
+Status, dbus path: /StatusCode, type enum
+
+    0 - Startup 0
+    1 - Startup 1
+    2 - Startup 2
+    3 - Startup 3
+    4 - Startup 4
+    5 - Startup 5
+    6 - Startup 6
+    7 - Running
+    8 - Standby
+    9 - Boot loading
+    10 - Error
+    11 - Running (MPPT)
+    12 - Running (Throttled)
+
+### Relay
+
+input-relay node reads the state of the relay(s) of the Venus device.
+
+Venus relay 1 state, dbus path: /Relay/0/State, type enum
+
+    0 - Open
+    1 - Closed
+
+Venus relay 2 state, dbus path: /Relay/1/State, type enum
+
+    0 - Open
+    1 - Closed
+
+Venus relay 3 state, dbus path: /Relay/2/State, type enum
+
+    0 - Open
+    1 - Closed
+
+Venus relay 4 state, dbus path: /Relay/3/State, type enum
+
+    0 - Open
+    1 - Closed
+
+Relay on the charger, dbus path: /Relay/0/State, type enum
+
+    0 - Open
+    1 - Closed
+
+Relay status, dbus path: /Relay/0/State, type enum
+
+    0 - Open
+    1 - Closed
+
+Relay on the charger, dbus path: /Relay/0/State, type enum
+
+    0 - Open
+    1 - Closed
+
+Relay state, dbus path: /Relay/0/State, type enum
+
+    0 - Open
+    1 - Closed
+
+Relay on the Multi RS, dbus path: /Relay/0/State, type enum
+
+    0 - Open
+    1 - Closed
+
+Relay on the charger, dbus path: /Relay/0/State, type enum
+
+    0 - Open
+    1 - Closed
+
+### Settings
+
+With this node several settings can be read. Currently the focus is mainly on the Carlo Gavazzi Wired AC Sensors (cgwacs).
+
+ESS max charge current (fractional) (%), dbus path: /Settings/CGwacs/MaxChargePercentage, type float
+ESS max discharge current (fractional) (%), dbus path: /Settings/CGwacs/MaxDischargePercentage, type float
+Maximum System Grid Feed In (W), dbus path: /Settings/CGwacs/MaxFeedInPower, type integer
+
+    -1: No limit
+    >=0: limited system feed-in
+
+Applies to DC-coupled and AC-coupled feed-in.
+ESS BatteryLife SoC limit (read only) (%), dbus path: /Settings/CGwacs/BatteryLife/SocLimit, type float
+Enable status LEDs, dbus path: /Settings/LEDs/Enable, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+AC input 1 source (for VE.Bus inverter/chargers), dbus path: /Settings/SystemSetup/AcInput1, type enum
+
+    0 - Unused
+    1 - Grid
+    2 - Genset
+    3 - Shore
+
+AC input 2 source (for VE.Bus inverter/chargers), dbus path: /Settings/SystemSetup/AcInput2, type enum
+
+    0 - Unused
+    1 - Grid
+    2 - Genset
+    3 - Shore
+
+System name, dbus path: /Settings/SystemSetup/SystemName, type string
+Grid limiting status, dbus path: /PvPowerLimiterActive, type enum
+
+    0 - Feed-in limiting is inactive
+    1 - Feed-in limiting is active
+
+Applies to both AC-coupled and DC-coupled limiting.
+Solar Charger
+
+Information from the Solar charger can be read with this node.
+
+Alarm, dbus path: /Alarms/Alarm, type enum
+
+    0 - No alarm
+    2 - Alarm
+
+High batt. voltage alarm, dbus path: /Alarms/HighVoltage, type enum
+
+    0 - No alarm
+    1 - Alarm
+
+Low batt. voltage alarm, dbus path: /Alarms/LowVoltage, type enum
+
+    0 - No alarm
+    1 - Alarm
+
+Battery current (A), dbus path: /Dc/0/Current, type float
+Battery temperature (°C), dbus path: /Dc/0/Temperature, type float
+Battery voltage (V), dbus path: /Dc/0/Voltage, type float
+Equalization pending, dbus path: /Equalization/Pending, type enum
+
+    0 - No
+    1 - Yes
+    2 - Error
+    3 - Unavailable- Unknown
+
+Equalization time remaining (seconds), dbus path: /Equalization/TimeRemaining, type float
+Error code, dbus path: /ErrorCode, type enum
+
+    0 - No error
+    1 - #1 - Battery temperature too high
+    2 - #2 - Battery voltage too high
+    3 - #3 - Battery temperature sensor miswired (+)
+    4 - #4 - Battery temperature sensor miswired (-)
+    5 - #5 - Battery temperature sensor disconnected
+    6 - #6 - Battery voltage sense miswired (+)
+    7 - #7 - Battery voltage sense miswired (-)
+    8 - #8 - Battery voltage sense disconnected
+    9 - #9 - Battery voltage wire losses too high
+    10 - #10 - Battery voltage too low
+    11 - #11 - Battery ripple voltage on terminals too high
+    12 - #12 - Battery low state of charge
+    13 - #13 - Battery mid-point voltage issue
+    14 - #14 - Battery temperature too low
+    17 - #17 - Charger temperature too high
+    18 - #18 - Charger over-current
+    19 - #19 - Charger current polarity reversed
+    20 - #20 - Max Bulk-time exceeded
+    21 - #21 - Charger current sensor issue
+    22 - #22 - Temperature sensor miswired
+    23 - #23 - Charger temperature sensor disconnected
+    24 - #24 - Charger internal fan not detected
+    25 - #25 - Charger internal fan over-current
+    26 - #26 - Charger terminal overheated
+    27 - #27 - Charger short circuit
+    28 - #28 - Charger issue with power stage
+    29 - #29 - Over-charge protection
+    31 - #31 - Input voltage out of range
+    32 - #32 - Input voltage too low
+    33 - #33 - Input voltage too high
+    34 - #34 - PV over current
+    35 - #35 - Input excessive power
+    36 - #36 - Input polarity issue
+    37 - #37 - Input voltage absent (mains removed, fuse blown?)
+    38 - #38 - Input shutdown due to battery over-voltage
+    39 - #39 - Input shutdown due to battery over-voltage
+    40 - #40 - Internal failure (PV Input failed to shutdown)
+    41 - #41 - Inverter shutdown (panel isolation resistance too low)
+    42 - #42 - Inverter shutdown (ground current too high: >30mA)
+    43 - #43 - Inverter shutdown (voltage over ground relay too high)
+    50 - #50 - Inverter overload (iit protection)
+    51 - #51 - Inverter temperature too high
+    52 - #52 - Inverter excessive current
+    53 - #53 - Inverter dc level (internal dc rail voltage)
+    54 - #54 - Inverter ac level (output voltage not ok)
+    55 - #55 - Inverter dc fail (dc on output)
+    56 - #56 - Inverter ac fail (shape wrong)*/
+    57 - #57 - Inverter ac on output (inverter only)
+    58 - #58 - Inverter bridge fault (hardware signal)
+    59 - #59 - ACIN1 relay test fault
+    60 - #60 - ACIN2 relay test fault
+    65 - #65 - Device disappeared during parallel operation (broken cable?)
+    66 - #66 - Incompatible device encountered for parallel operation (e.g. old firmware/different settings)
+    67 - #67 - No BMS
+    68 - #68 - Network misconfigured
+    113 - #113 - Non-volatile storage write error
+    114 - #114 - CPU temperature to high
+    115 - #115 - CAN/SCI communication lost (when critical)
+    116 - #116 - Calibration data lost
+    117 - #117 - Incompatible firmware encountered
+    118 - #118 - Incompatible hardware encountered
+    119 - #119 - Settings data lost
+    120 - #120 - Reference voltage failure
+    121 - #121 - Tester fail
+    122 - #122 - Non-volatile history data invalid/corrupted
+    200 - #200 - Internal error
+    201 - #201 - Internal error
+    203 - #203 - Internal error
+    205 - #205 - Internal error
+    212 - #212 - Internal error
+    215 - #215 - Internal error
+
+Maximum charge power today (W), dbus path: /History/Daily/0/MaxPower, type float
+Maximum charge power today for tracker 0 (W), dbus path: /History/Daily/0/Pv/0/MaxPower, type float
+Yield today for tracker 0 (kWh), dbus path: /History/Daily/0/Pv/0/Yield, type float
+Maximum charge power today for tracker 1 (W), dbus path: /History/Daily/0/Pv/1/MaxPower, type float
+Yield today for tracker 1 (kWh), dbus path: /History/Daily/0/Pv/1/Yield, type float
+Maximum charge power today for tracker 2 (W), dbus path: /History/Daily/0/Pv/2/MaxPower, type float
+Yield today for tracker 2 (kWh), dbus path: /History/Daily/0/Pv/2/Yield, type float
+Maximum charge power today for tracker 3 (W), dbus path: /History/Daily/0/Pv/3/MaxPower, type float
+Yield today for tracker 3 (kWh), dbus path: /History/Daily/0/Pv/3/Yield, type float
+Yield today (kWh), dbus path: /History/Daily/0/Yield, type float
+Maximum charge power yesterday (W), dbus path: /History/Daily/1/MaxPower, type float
+Maximum charge power yesterday tracker 0 (W), dbus path: /History/Daily/1/Pv/0/MaxPower, type float
+Yield yesterday for tracker 0 (kWh), dbus path: /History/Daily/1/Pv/0/Yield, type float
+Maximum charge power yesterday tracker 1 (W), dbus path: /History/Daily/1/Pv/1/MaxPower, type float
+Yield yesterday for tracker 1 (kWh), dbus path: /History/Daily/1/Pv/1/Yield, type float
+Maximum charge power yesterday tracker 2 (W), dbus path: /History/Daily/1/Pv/2/MaxPower, type float
+Yield yesterday for tracker 2 (kWh), dbus path: /History/Daily/1/Pv/2/Yield, type float
+Maximum charge power yesterday tracker 3 (W), dbus path: /History/Daily/1/Pv/3/MaxPower, type float
+Yield yesterday for tracker 3 (kWh), dbus path: /History/Daily/1/Pv/3/Yield, type float
+Yield yesterday (kWh), dbus path: /History/Daily/1/Yield, type float
+Load state, dbus path: /Load/State, type enum
+
+    0 - Off
+    1 - On
+
+Charger on/off, dbus path: /Mode, type enum
+
+    1 - On
+    4 - Off
+
+MPP operation mode, dbus path: /MppOperationMode, type enum
+
+    0 - Off
+    1 - Voltage or current limited
+    2 - MPPT Tracker active
+    255 - Not available
+
+MPP operation mode tracker 1, dbus path: /Pv/0/MppOperationMode, type enum
+
+    0 - Off
+    1 - Voltage/current limited
+    2 - MPPT active
+    255 - Not available
+
+Tracker 1 power, dbus path: /Pv/0/P, type float
+Tracker 1 voltage, dbus path: /Pv/0/V, type float
+MPP operation mode tracker 2, dbus path: /Pv/1/MppOperationMode, type enum
+
+    0 - Off
+    1 - Voltage/current limited
+    2 - MPPT active
+    255 - Not available
+
+Tracker 2 power, dbus path: /Pv/1/P, type float
+Tracker 2 voltage, dbus path: /Pv/1/V, type float
+MPP operation mode tracker 3, dbus path: /Pv/2/MppOperationMode, type enum
+
+    0 - Off
+    1 - Voltage/current limited
+    2 - MPPT active
+    255 - Not available
+
+Tracker 3 power, dbus path: /Pv/2/P, type float
+Tracker 3 voltage, dbus path: /Pv/2/V, type float
+MPP operation mode tracker 4, dbus path: /Pv/3/MppOperationMode, type enum
+
+    0 - Off
+    1 - Voltage/current limited
+    2 - MPPT active
+    255 - Not available
+
+Tracker 4 power, dbus path: /Pv/3/P, type float
+Tracker 4 voltage, dbus path: /Pv/3/V, type float
+PV voltage, dbus path: /Pv/V, type float
+Relay on the charger, dbus path: /Relay/0/State, type enum
+
+    0 - Open
+    1 - Closed
+
+Charge state, dbus path: /State, type enum
+
+    0 - Off
+    2 - Fault
+    3 - Bulk
+    4 - Absorption
+    5 - Float
+    6 - Storage
+    7 - Equalize
+    245 - Off
+    247 - Equalize
+    252 - External Control
+
+PV Power (W), dbus path: /Yield/Power, type float
+Yield since last update (kWh), dbus path: /Yield/System, type string
+Yield since reset (kWh), dbus path: /Yield/User, type string
+
+### System
+
+This input node takes is for retrieving information from the com.victronenergy.system dbus path.
+
+AC-Input, dbus path: /Ac/ActiveIn/Source, type enum
+
+    0 - Not available
+    1 - Grid
+    2 - Generator
+    3 - Shore
+    240 - Inverting
+
+AC Consumption L1 (W), dbus path: /Ac/Consumption/L1/Power, type float
+AC Consumption L2 (W), dbus path: /Ac/Consumption/L2/Power, type float
+AC Consumption L3 (W), dbus path: /Ac/Consumption/L3/Power, type float
+Genset Device Type, dbus path: /Ac/Genset/DeviceType, type float
+Genset L1 (W), dbus path: /Ac/Genset/L1/Power, type float
+Genset L2 (W), dbus path: /Ac/Genset/L2/Power, type float
+Genset L3 (W), dbus path: /Ac/Genset/L3/Power, type float
+Genset Number Of Phases, dbus path: /Ac/Genset/NumberOfPhases, type integer
+Grid Device Type, dbus path: /Ac/Grid/DeviceType, type float
+Grid L1 (W), dbus path: /Ac/Grid/L1/Power, type float
+Grid L2 (W), dbus path: /Ac/Grid/L2/Power, type float
+Grid L3 (W), dbus path: /Ac/Grid/L3/Power, type float
+Grid Number Of Phases, dbus path: /Ac/Grid/NumberOfPhases, type integer
+PV Power AC-tied on Generator L1, dbus path: /Ac/PvOnGenset/L1/Power, type float
+PV Power AC-tied on Generator L2, dbus path: /Ac/PvOnGenset/L2/Power, type float
+PV Power AC-tied on Generator L3, dbus path: /Ac/PvOnGenset/L3/Power, type float
+PV Power AC-tied on Generator Number Of Phases, dbus path: /Ac/PvOnGenset/NumberOfPhases, type integer
+PV - AC-coupled on input L1 (W), dbus path: /Ac/PvOnGrid/L1/Power, type float
+PV - AC-coupled on input L2 (W), dbus path: /Ac/PvOnGrid/L2/Power, type float
+PV - AC-coupled on input L3 (W), dbus path: /Ac/PvOnGrid/L3/Power, type float
+PV - AC-coupled on input Number Of Phases, dbus path: /Ac/PvOnGrid/NumberOfPhases, type integer
+PV - AC-coupled on output L1 (W), dbus path: /Ac/PvOnOutput/L1/Power, type float
+PV - AC-coupled on output L2 (W), dbus path: /Ac/PvOnOutput/L2/Power, type float
+PV - AC-coupled on output L3 (W), dbus path: /Ac/PvOnOutput/L3/Power, type float
+PV - AC-coupled on output Number Of Phases, dbus path: /Ac/PvOnOutput/NumberOfPhases, type integer
+Buzzer State, dbus path: /Buzzer/State, type float
+ESS active SOC limit (%), dbus path: /Control/ActiveSocLimit, type integer
+Battery Consumed Amphours (Ah), dbus path: /Dc/Battery/ConsumedAmphours, type float
+Battery current (A), dbus path: /Dc/Battery/Current, type float
+Battery Power (W), dbus path: /Dc/Battery/Power, type float
+Battery State of Charge (%), dbus path: /Dc/Battery/Soc, type float
+Battery state, dbus path: /Dc/Battery/State, type enum
+
+    0 - idle
+    1 - charging
+    2 - discharging
+
+Battery temperature (°C), dbus path: /Dc/Battery/Temperature, type float
+Battery Time to Go (s), dbus path: /Dc/Battery/TimeToGo, type float
+Battery voltage (V), dbus path: /Dc/Battery/Voltage, type float
+AC-Chargers - power (W), dbus path: /Dc/Charger/Power, type integer
+MPPTs - current (A), dbus path: /Dc/Pv/Current, type float
+MPPTs - power (W), dbus path: /Dc/Pv/Power, type float
+DC System (W), dbus path: /Dc/System/Power, type float
+VE.Bus charge current (A), dbus path: /Dc/Vebus/Current, type float
+VE.Bus charge power (W), dbus path: /Dc/Vebus/Power, type float
+Serial (System), dbus path: /Serial, type string
+System type, dbus path: /SystemType, type string
+Time off (s), dbus path: /Timers/TimeOff, type float
+Time generator (s), dbus path: /Timers/TimeOnGenerator, type float
+Time grid (s), dbus path: /Timers/TimeOnGrid, type float
+Time inverting (s), dbus path: /Timers/TimeOnInverter, type float
+
+### Tank Sensor
+
+The input-tank node is for retrieving tank level sensor information.Also see the manual for more information.
+
+Tank capacity (m3), dbus path: /Capacity, type float
+Fluid type, dbus path: /FluidType, type enum
+
+    0 - Fuel
+    1 - Fresh water
+    2 - Waste water
+    3 - Live well
+    4 - Oil
+    5 - Black water (sewage)
+    6 - Gasoline
+    7 - Diesel
+    8 - Liquid Petroleum Gas (LPG)
+    9 - Liquid Natural Gas (LNG)
+    10 - Hydraulic oil
+    11 - Raw water
+
+Tank level (%), dbus path: /Level, type float
+Product ID, dbus path: /ProductId, type float
+Fluid remaining (m3), dbus path: /Remaining, type float
+Tank sensor status, dbus path: /Status, type enum
+
+    0 - Ok
+    1 - Disconnected
+    2 - Short circuited
+    3 - Unknown
+
+### Temperature Sensor
+
+input-temperature node reads the temperate information from the dbus. This means that source of the temperature sensor can obtain its information from different sources (e.g. directly connected probe or Bluetooth connected Ruuvi tag).See the manual for information on connecting a temperature sensor.Tank sensors also expose temperature, so they can appear under the dropdown too.
+
+Acceleration X (g), dbus path: /AccelX, type float
+Acceleration Y (g), dbus path: /AccelY, type float
+Acceleration Z (g), dbus path: /AccelZ, type float
+Sensor battery voltage (V), dbus path: /BatteryVoltage, type float
+Humidity (%), dbus path: /Humidity, type float
+Temperature offset, dbus path: /Offset, type float
+Pressure (kPa), dbus path: /Pressure, type float
+Product ID, dbus path: /ProductId, type float
+Temperature scale factor, dbus path: /Scale, type float
+Sensor status, dbus path: /Status, type enum
+
+    0 - Ok
+    1 - Disconnected
+    2 - Short circuited
+    3 - Reverse polarity
+    4 - Unknown
+
+Temperature (°C), dbus path: /Temperature, type float
+Sensor type, dbus path: /TemperatureType, type enum
+
+    0 - Battery
+    1 - Fridge
+    2 - Generic
+
+Sensor battery voltage (V), dbus path: /BatteryVoltage, type float
+Temperature (°C), dbus path: /Temperature, type float
+VE.Bus System
+
+Information from VE.Bus connected devices can be obtained with this node.
+
+Active input, dbus path: /Ac/ActiveIn/ActiveInput, type enum
+
+    0 - AC Input 1
+    1 - AC Input 2
+    240 - Disconnected
+
+Active input current limit (A), dbus path: /Ac/ActiveIn/CurrentLimit, type float
+Input frequency phase 1 (Hz), dbus path: /Ac/ActiveIn/L1/F, type float
+Input current phase 1 (A), dbus path: /Ac/ActiveIn/L1/I, type float
+Input power phase 1 (W), dbus path: /Ac/ActiveIn/L1/P, type float
+Input voltage phase 1 (VAC), dbus path: /Ac/ActiveIn/L1/V, type float
+Input frequency phase 2 (Hz), dbus path: /Ac/ActiveIn/L2/F, type float
+Input current phase 2 (A), dbus path: /Ac/ActiveIn/L2/I, type float
+Input power phase 2 (W), dbus path: /Ac/ActiveIn/L2/P, type float
+Input voltage phase 2 (VAC), dbus path: /Ac/ActiveIn/L2/V, type float
+Input frequency phase 3 (Hz), dbus path: /Ac/ActiveIn/L3/F, type float
+Input current phase 3 (A), dbus path: /Ac/ActiveIn/L3/I, type float
+Input power phase 3 (W), dbus path: /Ac/ActiveIn/L3/P, type float
+Input voltage phase 3 (VAC), dbus path: /Ac/ActiveIn/L3/V, type float
+Select Remote Generator, dbus path: /Ac/Control/RemoteGeneratorSelected, type enum
+
+    0 - Generator not selected
+    1 - Generator selected
+
+Input 1 current limit (A), dbus path: /Ac/In/1/CurrentLimit, type float
+Input 1 current limit is adjustable, dbus path: /Ac/In/1/CurrentLimitIsAdjustable, type enum
+
+    0 - No
+    1 - Yes
+
+Input 2 current limit (A), dbus path: /Ac/In/2/CurrentLimit, type float
+Input 2 current limit is adjustable, dbus path: /Ac/In/2/CurrentLimitIsAdjustable, type enum
+
+    0 - No
+    1 - Yes
+
+Phase count, dbus path: /Ac/NumberOfPhases, type float
+Output frequency phase 1 (Hz), dbus path: /Ac/Out/L1/F, type float
+Output current phase 1 (A), dbus path: /Ac/Out/L1/I, type float
+Output power phase 1 (W), dbus path: /Ac/Out/L1/P, type float
+Output voltage phase 1 (VAC), dbus path: /Ac/Out/L1/V, type float
+Output current phase 2 (A), dbus path: /Ac/Out/L2/I, type float
+Output power phase 2 (W), dbus path: /Ac/Out/L2/P, type float
+Output voltage phase 2 (VAC), dbus path: /Ac/Out/L2/V, type float
+Output current phase 3 (A), dbus path: /Ac/Out/L3/I, type float
+Output power phase 3 (W), dbus path: /Ac/Out/L3/P, type float
+Output voltage phase 3 (VAC), dbus path: /Ac/Out/L3/V, type float
+AC input 1 ignored, dbus path: /Ac/State/IgnoreAcIn1, type enum
+
+    0 - AC input not ignored
+    1 - AC input ignored
+
+AC input 2 ignored, dbus path: /Ac/State/IgnoreAcIn2, type enum
+
+    0 - AC input not ignored
+    1 - AC input ignored
+
+Remote generator selected, dbus path: /Ac/State/RemoteGeneratorSelected, type enum
+
+    0 - Generator not selected
+    1 - Generator selected
+
+Low cell voltage imminent, dbus path: /Alarms/BmsPreAlarm, type enum
+
+    0 - OK
+    1 - Warning
+
+Grid lost alarm, dbus path: /Alarms/GridLost, type enum
+
+    0 - Ok
+    2 - Alarm
+
+Temperature, dbus path: /Alarms/HighTemperature, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+Temperature alarm L1, dbus path: /Alarms/L1/HighTemperature, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+Low battery alarm L1, dbus path: /Alarms/L1/LowBattery, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+Overload alarm L1, dbus path: /Alarms/L1/Overload, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+Ripple alarm L1, dbus path: /Alarms/L1/Ripple, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+Temperature alarm L2, dbus path: /Alarms/L2/HighTemperature, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+Low battery alarm L2, dbus path: /Alarms/L2/LowBattery, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+Overload alarm L2, dbus path: /Alarms/L2/Overload, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+Ripple alarm L2, dbus path: /Alarms/L2/Ripple, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+Temperature alarm L3, dbus path: /Alarms/L3/HighTemperature, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+Low battery alarm L3, dbus path: /Alarms/L3/LowBattery, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+Overload alarm L3, dbus path: /Alarms/L3/Overload, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+Ripple alarm L3, dbus path: /Alarms/L3/Ripple, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+Low battery, dbus path: /Alarms/LowBattery, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+Overload, dbus path: /Alarms/Overload, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+Phase Rotation, dbus path: /Alarms/PhaseRotation, type enum
+
+    0 - Ok
+    1 - Warning
+
+Temperature sensor alarm, dbus path: /Alarms/TemperatureSensor, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+Voltage sensor alarm, dbus path: /Alarms/VoltageSensor, type enum
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+BMS allows battery to be charged, dbus path: /Bms/AllowToCharge, type enum
+
+    0 - No
+    1 - Yes
+
+BMS allows battery to be discharged, dbus path: /Bms/AllowToDischarge, type enum
+
+    0 - No
+    1 - Yes
+
+VE.Bus BMS is expected, dbus path: /Bms/BmsExpected, type enum
+
+    0 - No
+    1 - Yes
+
+VE.Bus BMS error, dbus path: /Bms/Error, type enum
+
+    0 - No
+    1 - Yes
+
+Low cell voltage imminent, dbus path: /Bms/PreAlarm, type enum
+
+    0 - OK
+    1 - Pre-Alarm
+
+Battery current (A), dbus path: /Dc/0/Current, type float
+Prefer Renewable Energy, dbus path: /Dc/0/PreferRenewableEnergy, type enum
+
+    0 - Renewable energy not preferred
+    1 - Renewable energy preferred
+
+Battery temperature (°C), dbus path: /Dc/0/Temperature, type float
+Battery voltage (V), dbus path: /Dc/0/Voltage, type float
+Configured boost factor for VE.Bus unit 1, dbus path: /Devices/0/Settings/AssistCurrentBoostFactor, type float
+Configured output voltage for VE.Bus unit 1 (V AC), dbus path: /Devices/0/Settings/InverterOutputVoltage, type float
+PowerAssist enabled unit 1, dbus path: /Devices/0/Settings/PowerAssistEnabled, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+Configured boost factor for VE.Bus unit 1, dbus path: /Devices/1/Settings/AssistCurrentBoostFactor, type float
+Configured output voltage for VE.Bus unit 1 (V AC), dbus path: /Devices/1/Settings/InverterOutputVoltage, type float
+PowerAssist enabled unit 1, dbus path: /Devices/1/Settings/PowerAssistEnabled, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+Configured boost factor for VE.Bus unit 1, dbus path: /Devices/2/Settings/AssistCurrentBoostFactor, type float
+Configured output voltage for VE.Bus unit 1 (V AC), dbus path: /Devices/2/Settings/InverterOutputVoltage, type float
+PowerAssist enabled unit 1, dbus path: /Devices/2/Settings/PowerAssistEnabled, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+Configured boost factor for VE.Bus unit 1, dbus path: /Devices/3/Settings/AssistCurrentBoostFactor, type float
+Configured output voltage for VE.Bus unit 1 (V AC), dbus path: /Devices/3/Settings/InverterOutputVoltage, type float
+PowerAssist enabled unit 1, dbus path: /Devices/3/Settings/PowerAssistEnabled, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+Configured boost factor for VE.Bus unit 1, dbus path: /Devices/4/Settings/AssistCurrentBoostFactor, type float
+Configured output voltage for VE.Bus unit 1 (V AC), dbus path: /Devices/4/Settings/InverterOutputVoltage, type float
+PowerAssist enabled unit 1, dbus path: /Devices/4/Settings/PowerAssistEnabled, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+Configured boost factor for VE.Bus unit 1, dbus path: /Devices/5/Settings/AssistCurrentBoostFactor, type float
+Configured output voltage for VE.Bus unit 1 (V AC), dbus path: /Devices/5/Settings/InverterOutputVoltage, type float
+PowerAssist enabled unit 1, dbus path: /Devices/5/Settings/PowerAssistEnabled, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+Configured boost factor for VE.Bus unit 1, dbus path: /Devices/6/Settings/AssistCurrentBoostFactor, type float
+Configured output voltage for VE.Bus unit 1 (V AC), dbus path: /Devices/6/Settings/InverterOutputVoltage, type float
+PowerAssist enabled unit 1, dbus path: /Devices/6/Settings/PowerAssistEnabled, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+Configured boost factor for VE.Bus unit 1, dbus path: /Devices/7/Settings/AssistCurrentBoostFactor, type float
+Configured output voltage for VE.Bus unit 1 (V AC), dbus path: /Devices/7/Settings/InverterOutputVoltage, type float
+PowerAssist enabled unit 1, dbus path: /Devices/7/Settings/PowerAssistEnabled, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+Configured boost factor for VE.Bus unit 1, dbus path: /Devices/8/Settings/AssistCurrentBoostFactor, type float
+Configured output voltage for VE.Bus unit 1 (V AC), dbus path: /Devices/8/Settings/InverterOutputVoltage, type float
+PowerAssist enabled unit 1, dbus path: /Devices/8/Settings/PowerAssistEnabled, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+Configured boost factor for VE.Bus unit 1, dbus path: /Devices/9/Settings/AssistCurrentBoostFactor, type float
+Configured output voltage for VE.Bus unit 1 (V AC), dbus path: /Devices/9/Settings/InverterOutputVoltage, type float
+PowerAssist enabled unit 1, dbus path: /Devices/9/Settings/PowerAssistEnabled, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+Configured boost factor for VE.Bus unit 1, dbus path: /Devices/10/Settings/AssistCurrentBoostFactor, type float
+Configured output voltage for VE.Bus unit 1 (V AC), dbus path: /Devices/10/Settings/InverterOutputVoltage, type float
+PowerAssist enabled unit 1, dbus path: /Devices/10/Settings/PowerAssistEnabled, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+Configured boost factor for VE.Bus unit 1, dbus path: /Devices/11/Settings/AssistCurrentBoostFactor, type float
+Configured output voltage for VE.Bus unit 1 (V AC), dbus path: /Devices/11/Settings/InverterOutputVoltage, type float
+PowerAssist enabled unit 1, dbus path: /Devices/11/Settings/PowerAssistEnabled, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+Energy ACIn1 to AcOut (kWh), dbus path: /Energy/AcIn1ToAcOut, type float
+Energy AcIn1 to Inverter (kWh), dbus path: /Energy/AcIn1ToInverter, type float
+Energy ACIn2 to AcOut (kWh), dbus path: /Energy/AcIn2ToAcOut, type float
+Energy ACIn2 to Inverter (kWh), dbus path: /Energy/AcIn2ToInverter, type float
+Energy AcOut to AcIn1 (kWh), dbus path: /Energy/AcOutToAcIn1, type float
+Energy AcOut to AcIn2 (kWh), dbus path: /Energy/AcOutToAcIn2, type float
+Energy Inverter to AcIn1 (kWh), dbus path: /Energy/InverterToAcIn1, type float
+Energy Inverter to AcIn2 (kWh), dbus path: /Energy/InverterToAcIn2, type float
+Inverter To AcOut (kWh), dbus path: /Energy/InverterToAcOut, type float
+AcOut to Inverter (kWh), dbus path: /Energy/OutToInverter, type float
+ESS disable charge flag phase, dbus path: /Hub4/DisableCharge, type enum
+
+    0 - Charge allowed
+    1 - Charge disabled
+
+Solar offset voltage, dbus path: /Hub4/FixSolarOffsetTo100mV, type enum
+
+    0 - OvervoltageFeedIn uses 1V offset
+    1 - OvervoltageFeedIn uses 0.1V offset
+
+Sustain active, dbus path: /Hub4/Sustain, type enum
+
+    0 - Sustain inactive
+    1 - Sustain active
+
+AcPowerSetpoint acts as feed-in limit, dbus path: /Hub4/TargetPowerIsMaxFeedIn, type enum
+
+    0 - AcPowerSetpoint interpreted normally
+    1 - AcPowerSetpoint is OvervoltageFeedIn limit
+
+Switch Position, dbus path: /Mode, type enum
+
+    1 - Charger Only
+    2 - Inverter Only
+    3 - On
+    4 - Off
+
+Mode is adjustable, dbus path: /ModeIsAdjustable, type enum
+
+    0 - No
+    1 - Yes
+
+VE.Bus state of charge (%), dbus path: /Soc, type float
+VE.Bus state, dbus path: /State, type enum
+
+    0 - Off
+    1 - Low Power
+    2 - Fault
+    3 - Bulk
+    4 - Absorption
+    5 - Float
+    6 - Storage
+    7 - Equalize
+    8 - Passthru
+    9 - Inverting
+    10 - Power assist
+    11 - Power supply
+    252 - External control
+
+Charge state, dbus path: /VebusChargeState, type enum
+
+    0 - Initialising
+    1 - Bulk
+    2 - Absorption
+    3 - Float
+    4 - Storage
+    5 - Absorb repeat
+    6 - Forced absorb
+    7 - Equalise
+    8 - Bulk stopped
+    9 - Unknown
+
+VE.Bus Error, dbus path: /VebusError, type enum
+
+    0 - No error
+    1 - VE.Bus Error 1: Device is switched off because one of the other phases in the system has switched off
+    2 - VE.Bus Error 2: New and old types MK2 are mixed in the system
+    3 - VE.Bus Error 3: Not all, or more than, the expected devices were found in the system
+    4 - VE.Bus Error 4: No other device whatsoever detected
+    5 - VE.Bus Error 5: Overvoltage on AC-out
+    6 - VE.Bus Error 6: Error in DDC Program
+    7 - VE.Bus Error 7: BMS connected, which requires an Assistant, but no assistant found
+    8 - VE.Bus Error 8: Ground relay test failed
+    9 - VE.Bus Error 9
+    10 - VE.Bus Error 10: System time synchronisation problem occurred
+    11 - VE.Bus Error 11: Relay test fault
+    12 - VE.Bus Error 12
+    13 - VE.Bus Error 13
+    14 - VE.Bus Error 14: Device cannot transmit data
+    15 - VE.Bus Error 15
+    16 - VE.Bus Error 16: Awaiting configuration or dongle missing
+    17 - VE.Bus Error 17: Phase master missing
+    18 - VE.Bus Error 18: AC Overvoltage on the output of a slave has occurred while already switched off
+    19 - VE.Bus Error 19
+    20 - VE.Bus Error 20
+    21 - VE.Bus Error 21
+    22 - VE.Bus Error 22: This device cannot function as slave
+    23 - VE.Bus Error 23
+    24 - VE.Bus Error 24: Switch-over system protection initiated
+    25 - VE.Bus Error 25: Firmware incompatibility. The firmware of one of the connected device is not sufficiently up to date to operate in conjunction with this device
+    26 - VE.Bus Error 26: Internal error
+    27 - VE.Bus Error 27
+    28 - VE.Bus Error 28
+    29 - VE.Bus Error 29
+    30 - VE.Bus Error 30
+    31 - VE.Bus Error 31
+    32 - VE.Bus Error 32
+
+## Output nodes
+Output nodes have the same options available as input nodes, but the selectable measurement only lists writable services. Additionally, the user can set an initial value to the service, which is sent whenever the flow is deployed.
+
+
+    - Device select - lists all available devices
+    - Measurement select - lists all available device-specific measurements
+    - Initial value input field - lists all available device-specific measurements
+    - Node label input field - sets a custom label for the node
+
+All output nodes should have the control value set in its incoming messages msg.payload property.
+
+![alt text](edit-relay-output.png)
