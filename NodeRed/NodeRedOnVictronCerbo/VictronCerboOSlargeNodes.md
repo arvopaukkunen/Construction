@@ -2659,3 +2659,603 @@ Output nodes have the same options available as input nodes, but the selectable 
 All output nodes should have the control value set in its incoming messages msg.payload property.
 
 ![alt text](edit-relay-output.png)
+
+### AC Charger Control
+
+This node is for controlling the AC charger.
+
+AC Current limit (A), dbus path: /Ac/In/CurrentLimit, type float
+Charger on/off, dbus path: /Mode, type enum
+
+    1 - On
+    4 - Off
+
+Relay on the charger, dbus path: /Relay/0/State, type enum
+
+    0 - Open
+    1 - Closed
+
+### Battery Monitor Control
+
+Battery monitor output node, which can be used for controlling a Lynx Smart BMS.
+
+Mode, dbus path: /Mode, type enum
+
+    3 - On
+    252 - Standby
+
+### Charger Control
+
+This node allows for controlling a connected charger.
+
+AC Current limit (A AC), dbus path: /Ac/In/CurrentLimit, type float
+Charger on/off, dbus path: /Mode, type enum
+
+    0 - Off
+    1 - On
+
+### DC-DC Control
+
+This node allows for controlling an Orion XS.
+
+/Mode, dbus path: /Mode, type enum
+
+    1 - On
+    4 - Off
+
+### ESS Control
+
+This node allows for controlling the Energy Storage System (ESS).
+
+Disable charge, dbus path: /Hub4/DisableCharge, type enum
+
+    0 - No
+    1 - Yes
+
+Disable feed-in, dbus path: /Hub4/DisableFeedIn, type enum
+
+    0 - No
+    1 - Yes
+
+Feed in overvoltage, dbus path: /Hub4/DoNotFeedInOvervoltage, type enum
+
+    0 - Yes
+    1 - No
+
+AC Power L1 setpoint (W), dbus path: /Hub4/L1/AcPowerSetpoint, type integer
+Maximum overvoltage feed-in power L1 (W), dbus path: /Hub4/L1/MaxFeedInPower, type integer
+AC Power L2 setpoint (W), dbus path: /Hub4/L2/AcPowerSetpoint, type integer
+Maximum overvoltage feed-in power L2 (W), dbus path: /Hub4/L2/MaxFeedInPower, type integer
+AC Power L3 setpoint (W), dbus path: /Hub4/L3/AcPowerSetpoint, type integer
+Maximum overvoltage feed-in power L3 (W), dbus path: /Hub4/L3/MaxFeedInPower, type integer
+Grid set-point (W), dbus path: /Settings/CGwacs/AcPowerSetPoint, type integer
+Minimum Discharge SOC (%), dbus path: /Settings/CGwacs/BatteryLife/MinimumSocLimit, type integer
+Schedule 1: Self-consumption above limit, dbus path: /Settings/CGwacs/BatteryLife/Schedule/Charge/0/AllowDischarge, type enum
+
+    0 - Yes
+    1 - No
+
+Schedule 1: Day, dbus path: /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Day, type enum
+
+    0 - Sunday
+    1 - Monday
+    2 - Tuesday
+    3 - Wednesday
+    4 - Thursday
+    5 - Friday
+    6 - Saturday
+    7 - Every day
+    8 - Weekdays
+    9 - Weekends
+
+Writing a negative value to the path will de-activate the schedule.
+Schedule 1: Duration (seconds), dbus path: /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Duration, type integer
+Schedule 1: State of charge (%), dbus path: /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Soc, type integer
+Schedule 1: Start (seconds after midnight), dbus path: /Settings/CGwacs/BatteryLife/Schedule/Charge/0/Start, type integer
+Schedule 2: Self-consumption above limit, dbus path: /Settings/CGwacs/BatteryLife/Schedule/Charge/1/AllowDischarge, type enum
+
+    0 - Yes
+    1 - No
+
+Schedule 2: Day, dbus path: /Settings/CGwacs/BatteryLife/Schedule/Charge/1/Day, type enum
+
+    0 - Sunday
+    1 - Monday
+    2 - Tuesday
+    3 - Wednesday
+    4 - Thursday
+    5 - Friday
+    6 - Saturday
+    7 - Every day
+    8 - Weekdays
+    9 - Weekends
+
+Writing a negative value to the path will de-activate the schedule.
+Schedule 2: Duration (seconds), dbus path: /Settings/CGwacs/BatteryLife/Schedule/Charge/1/Duration, type integer
+Schedule 2: State of charge (%), dbus path: /Settings/CGwacs/BatteryLife/Schedule/Charge/1/Soc, type integer
+Schedule 2: Start (seconds after midnight), dbus path: /Settings/CGwacs/BatteryLife/Schedule/Charge/1/Start, type integer
+Schedule 3: Self-consumption above limit, dbus path: /Settings/CGwacs/BatteryLife/Schedule/Charge/2/AllowDischarge, type enum
+
+    0 - Yes
+    1 - No
+
+Schedule 3: Day, dbus path: /Settings/CGwacs/BatteryLife/Schedule/Charge/2/Day, type enum
+
+    0 - Sunday
+    1 - Monday
+    2 - Tuesday
+    3 - Wednesday
+    4 - Thursday
+    5 - Friday
+    6 - Saturday
+    7 - Every day
+    8 - Weekdays
+    9 - Weekends
+
+Writing a negative value to the path will de-activate the schedule.
+Schedule 3: Duration (seconds), dbus path: /Settings/CGwacs/BatteryLife/Schedule/Charge/2/Duration, type integer
+Schedule 3: State of charge (%), dbus path: /Settings/CGwacs/BatteryLife/Schedule/Charge/2/Soc, type integer
+Schedule 3: Start (seconds after midnight), dbus path: /Settings/CGwacs/BatteryLife/Schedule/Charge/2/Start, type integer
+Schedule 4: Self-consumption above limit, dbus path: /Settings/CGwacs/BatteryLife/Schedule/Charge/3/AllowDischarge, type enum
+
+    0 - Yes
+    1 - No
+
+Schedule 4: Day, dbus path: /Settings/CGwacs/BatteryLife/Schedule/Charge/3/Day, type enum
+
+    0 - Sunday
+    1 - Monday
+    2 - Tuesday
+    3 - Wednesday
+    4 - Thursday
+    5 - Friday
+    6 - Saturday
+    7 - Every day
+    8 - Weekdays
+    9 - Weekends
+
+Writing a negative value to the path will de-activate the schedule.
+Schedule 4: Duration (seconds), dbus path: /Settings/CGwacs/BatteryLife/Schedule/Charge/3/Duration, type integer
+Schedule 4: State of charge (%), dbus path: /Settings/CGwacs/BatteryLife/Schedule/Charge/3/Soc, type integer
+Schedule 4: Start (seconds after midnight), dbus path: /Settings/CGwacs/BatteryLife/Schedule/Charge/3/Start, type integer
+Schedule 5: Self-consumption above limit, dbus path: /Settings/CGwacs/BatteryLife/Schedule/Charge/4/AllowDischarge, type enum
+
+    0 - Yes
+    1 - No
+
+Schedule 5: Day, dbus path: /Settings/CGwacs/BatteryLife/Schedule/Charge/4/Day, type enum
+
+    0 - Sunday
+    1 - Monday
+    2 - Tuesday
+    3 - Wednesday
+    4 - Thursday
+    5 - Friday
+    6 - Saturday
+    7 - Every day
+    8 - Weekdays
+    9 - Weekends
+
+Writing a negative value to the path will de-activate the schedule.
+Schedule 5: Duration (seconds), dbus path: /Settings/CGwacs/BatteryLife/Schedule/Charge/4/Duration, type integer
+Schedule 5: State of charge (%), dbus path: /Settings/CGwacs/BatteryLife/Schedule/Charge/4/Soc, type integer
+Schedule 5: Start (seconds after midnight), dbus path: /Settings/CGwacs/BatteryLife/Schedule/Charge/4/Start, type integer
+ESS state, dbus path: /Settings/CGwacs/BatteryLife/State, type enum
+
+    1 - BatteryLife enabled (GUI controlled)
+    2 - Optimized Mode /w BatteryLife: self consumption
+    3 - Optimized Mode /w BatteryLife: self consumption, SoC exceeds 85%
+    4 - Optimized Mode /w BatteryLife: self consumption, SoC at 100%
+    5 - Optimized Mode /w BatteryLife: SoC below dynamic SoC limit
+    6 - Optimized Mode /w BatteryLife: SoC has been below SoC limit for more than 24 hours. Charging the battery (5A)
+    7 - Optimized Mode /w BatteryLife: Inverter/Charger is in sustain mode
+    8 - Optimized Mode /w BatteryLife: recharging, SoC dropped by 5% or more below the minimum SoC
+    9 - 'Keep batteries charged' mode is enabled
+    10 - Optimized mode w/o BatteryLife: self consumption, SoC at or above minimum SoC
+    11 - Optimized mode w/o BatteryLife: self consumption, SoC is below minimum SoC
+    12 - Optimized mode w/o BatteryLife: recharging, SoC dropped by 5% or more below minimum SoC
+
+ESS mode, dbus path: /Settings/CGwacs/Hub4Mode, type enum
+
+    1 - Optimized mode or 'keep batteries charged' and phase compensation enabled
+    2 - Optimized mode or 'keep batteries charged' and phase compensation disabled
+    3 - External control
+
+Max charge power (W), dbus path: /Settings/CGwacs/MaxChargePower, type integer
+
+*Not used with DVCC.*
+
+Max inverter power (W), dbus path: /Settings/CGwacs/MaxDischargePower, type integer
+Maximum System Grid Feed In (W), dbus path: /Settings/CGwacs/MaxFeedInPower, type integer
+
+    -1: No limit
+    >=0: limited system feed-in
+
+Applies to DC-coupled and AC-coupled feed-in.
+Feed excess DC-coupled PV into grid, dbus path: /Settings/CGwacs/OvervoltageFeedIn, type enum
+
+    0 - Don’t feed excess DC-tied PV into grid
+    1 - Feed excess DC-tied PV into the grid
+
+Don’t feed excess AC-coupled PV into grid, dbus path: /Settings/CGwacs/PreventFeedback, type enum
+
+    0 - Feed excess AC-tied PV into grid
+    1 - Don’t feed excess AC-tied PV into the grid
+
+Charge current limit (A), dbus path: /Settings/SystemSetup/MaxChargeCurrent, type float
+EV Charger Control
+
+With this node the EV charging station can be controlled.Note that you need to refresh the website of the EV charger in order to see the changed settings there.
+
+Display, dbus path: /EnableDisplay, type enum
+
+    0 - Locked
+    1 - Unlocked
+
+Maximum charge current (A), dbus path: /MaxCurrent, type float
+Mode, dbus path: /Mode, type enum
+
+    0 - Manual
+    1 - Auto
+    2 - Schedule
+
+Position, dbus path: /Position, type enum
+
+    0 - AC input 1
+    1 - AC output
+    2 - AC input 2
+
+Set charge current (manual mode) (A), dbus path: /SetCurrent, type float
+Start/stop charging (manual mode), dbus path: /StartStop, type enum
+
+    0 - Stop
+    1 - Start
+
+### GX Generator Control
+
+This node can be used for controlling a generator via the relay. In order to use the relay for controlling a generator, make sure to set the relay to Generator via the (remote) console first.
+
+Auto start enabled/disabled, dbus path: /AutoStartEnabled, type enum
+
+    0 - Autostart disabled
+    1 - Autostart enabled
+
+Manual Start, dbus path: /ManualStart, type enum
+
+    0 - Stop generator
+    1 - Start generator
+
+Service countdown reset (1=Reset service counter), dbus path: /ServiceCounterReset, type float
+Inverter Control
+
+This node can be used for controlling the inverter.
+
+Mode, dbus path: /Mode, type enum
+
+    2 - Inverter on
+    4 - Off
+    5 - Low Power/ECO
+
+### Multi RS Control
+
+Multi RS output node.
+
+Ac input 1 current limit (A), dbus path: /Ac/In/1/CurrentLimit, type float
+Ac input 2 current limit (A), dbus path: /Ac/In/2/CurrentLimit, type float
+Switch position, dbus path: /Mode, type enum
+
+    1 - Charger Only
+    2 - Inverter Only
+    3 - On
+    4 - Off
+
+### Pump Control
+
+Node for controlling a relay connected pump. In auto mode, the pump looks at the connected tank sensor levels for starting and stopping the pump.
+
+Auto start enabled, dbus path: /Settings/Pump0/AutoStartEnabled, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+Mode, dbus path: /Settings/Pump0/Mode, type enum
+
+    0 - Auto
+    1 - On
+    2 - Off
+
+Start value (%), dbus path: /Settings/Pump0/StartValue, type float
+Stop value (%), dbus path: /Settings/Pump0/StopValue, type float
+
+### PV Inverter Control
+
+This node is for setting information into the PV inverter.
+
+Power limit (W), dbus path: /Ac/PowerLimit, type float
+
+### Relay Control
+
+The relays of the Venus device can be controlled with this node. Make sure to set the relay(s) to Manual via the Venus OS GUI first.
+
+Venus relay 1 state, dbus path: /Relay/0/State, type enum
+
+    0 - Open
+    1 - Closed
+
+Venus relay 2 state, dbus path: /Relay/1/State, type enum
+
+    0 - Open
+    1 - Closed
+
+Venus relay 3 state, dbus path: /Relay/2/State, type enum
+
+    0 - Open
+    1 - Closed
+
+Venus relay 4 state, dbus path: /Relay/3/State, type enum
+
+    0 - Open
+    1 - Closed
+
+Relay status, dbus path: /Relay/0/State, type enum
+
+    0 - Open
+    1 - Closed
+
+Relay on the charger, dbus path: /Relay/0/State, type enum
+
+    0 - Open
+    1 - Closed
+
+Relay state, dbus path: /Relay/0/State, type enum
+
+    0 - Open
+    1 - Closed
+
+Relay on the Multi RS, dbus path: /Relay/0/State, type enum
+
+    0 - Open
+    1 - Closed
+
+### Settings Control
+
+With this node several settings can be adjusted. Currently the focus is mainly on the Carlo Gavazzi Wired AC Sensors (cgwacs).
+
+ESS control loop setpoint (W), dbus path: /Settings/CGwacs/AcPowerSetPoint, type float
+ESS Minimum SoC (unless grid fails) (%), dbus path: /Settings/CGwacs/BatteryLife/MinimumSocLimit, type float
+ESS BatteryLife state, dbus path: /Settings/CGwacs/BatteryLife/State, type enum
+
+    0 - Unused, BL disabled
+    1 - Restarting
+    2 - Self-consumption
+    3 - Self-consumption
+    4 - Self-consumption
+    5 - Discharge disabled
+    6 - Force charge
+    7 - Sustain
+    8 - Low Soc Recharge
+    9 - Keep batteries charged
+    10 - BL Disabled
+    11 - BL Disabled (Low SoC)
+    12 - BL Disabled (Low SOC recharge)
+
+Auto start enabled, dbus path: /Settings/Pump0/AutoStartEnabled, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+Mode, dbus path: /Settings/Pump0/Mode, type enum
+
+    0 - Auto
+    1 - On
+    2 - Off
+
+Start value (%), dbus path: /Settings/Pump0/StartValue, type float
+Stop value (%), dbus path: /Settings/Pump0/StopValue, type float
+DVCC system max charge current (A DC), dbus path: /Settings/SystemSetup/MaxChargeCurrent, type float
+ESS Mode, dbus path: /Settings/CGwacs/Hub4Mode, type enum
+
+    1 - ESS with Phase Compensation
+    2 - ESS without phase compensation
+    3 - Disabled/External Control
+
+ESS max charge current (fractional) (%), dbus path: /Settings/CGwacs/MaxChargePercentage, type float
+ESS max discharge current (fractional) (%), dbus path: /Settings/CGwacs/MaxDischargePercentage, type float
+ESS max charge power (W), dbus path: /Settings/CGwacs/MaxChargePower, type float
+ESS max discharge power (W), dbus path: /Settings/CGwacs/MaxDischargePower, type float
+Maximum System Grid Feed In (W), dbus path: /Settings/CGwacs/MaxFeedInPower, type float
+Feed excess DC-coupled PV into grid, dbus path: /Settings/CGwacs/OvervoltageFeedIn, type enum
+
+    0 - Don’t feed excess DC-tied PV into grid
+    1 - Feed excess DC-tied PV into the grid
+
+AC-coupled PV - grid feed in excess, dbus path: /Settings/CGwacs/PreventFeedback, type enum
+
+    0 - Feed excess AC-tied PV into grid
+    1 - Don’t feed excess AC-tied PV into the grid
+
+Enable status LEDs, dbus path: /Settings/LEDs/Enable, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+AC input 1 source (for VE.Bus inverter/chargers), dbus path: /Settings/SystemSetup/AcInput1, type enum
+
+    0 - Unused
+    1 - Grid
+    2 - Genset
+    3 - Shore
+
+AC input 2 source (for VE.Bus inverter/chargers), dbus path: /Settings/SystemSetup/AcInput2, type enum
+
+    0 - Unused
+    1 - Grid
+    2 - Genset
+    3 - Shore
+
+Limit managed battery voltage (V DC), dbus path: /Settings/SystemSetup/MaxChargeVoltage, type float
+Solar Charger Control
+
+With this node the solar charger can be switched on and off.
+
+Charger on/off, dbus path: /Mode, type enum
+
+    1 - On
+    4 - Off
+
+### VE.Bus System Control
+
+This output node is for writing to VE.Bus connected devices.
+
+Active input current limit (A), dbus path: /Ac/ActiveIn/CurrentLimit, type float
+Select Remote Generator, dbus path: /Ac/Control/RemoteGeneratorSelected, type enum
+
+    0 - Generator not selected
+    1 - Generator selected
+
+Input 1 current limit (A), dbus path: /Ac/In/1/CurrentLimit, type float
+Input 2 current limit (A), dbus path: /Ac/In/2/CurrentLimit, type float
+Prefer Renewable Energy, dbus path: /Dc/0/PreferRenewableEnergy, type enum
+
+    0 - Renewable energy not preferred
+    1 - Renewable energy preferred
+
+Configured boost factor for VE.Bus unit 1, dbus path: /Devices/0/Settings/AssistCurrentBoostFactor, type float
+Configured output voltage for VE.Bus unit 1 (V AC), dbus path: /Devices/0/Settings/InverterOutputVoltage, type float
+PowerAssist enabled unit 1, dbus path: /Devices/0/Settings/PowerAssistEnabled, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+Configured boost factor for VE.Bus unit 1, dbus path: /Devices/1/Settings/AssistCurrentBoostFactor, type float
+Configured output voltage for VE.Bus unit 1 (V AC), dbus path: /Devices/1/Settings/InverterOutputVoltage, type float
+PowerAssist enabled unit 1, dbus path: /Devices/1/Settings/PowerAssistEnabled, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+Configured boost factor for VE.Bus unit 1, dbus path: /Devices/2/Settings/AssistCurrentBoostFactor, type float
+Configured output voltage for VE.Bus unit 1 (V AC), dbus path: /Devices/2/Settings/InverterOutputVoltage, type float
+PowerAssist enabled unit 1, dbus path: /Devices/2/Settings/PowerAssistEnabled, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+Configured boost factor for VE.Bus unit 1, dbus path: /Devices/3/Settings/AssistCurrentBoostFactor, type float
+Configured output voltage for VE.Bus unit 1 (V AC), dbus path: /Devices/3/Settings/InverterOutputVoltage, type float
+PowerAssist enabled unit 1, dbus path: /Devices/3/Settings/PowerAssistEnabled, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+Configured boost factor for VE.Bus unit 1, dbus path: /Devices/4/Settings/AssistCurrentBoostFactor, type float
+Configured output voltage for VE.Bus unit 1 (V AC), dbus path: /Devices/4/Settings/InverterOutputVoltage, type float
+PowerAssist enabled unit 1, dbus path: /Devices/4/Settings/PowerAssistEnabled, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+Configured boost factor for VE.Bus unit 1, dbus path: /Devices/5/Settings/AssistCurrentBoostFactor, type float
+Configured output voltage for VE.Bus unit 1 (V AC), dbus path: /Devices/5/Settings/InverterOutputVoltage, type float
+PowerAssist enabled unit 1, dbus path: /Devices/5/Settings/PowerAssistEnabled, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+Configured boost factor for VE.Bus unit 1, dbus path: /Devices/6/Settings/AssistCurrentBoostFactor, type float
+Configured output voltage for VE.Bus unit 1 (V AC), dbus path: /Devices/6/Settings/InverterOutputVoltage, type float
+PowerAssist enabled unit 1, dbus path: /Devices/6/Settings/PowerAssistEnabled, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+Configured boost factor for VE.Bus unit 1, dbus path: /Devices/7/Settings/AssistCurrentBoostFactor, type float
+Configured output voltage for VE.Bus unit 1 (V AC), dbus path: /Devices/7/Settings/InverterOutputVoltage, type float
+PowerAssist enabled unit 1, dbus path: /Devices/7/Settings/PowerAssistEnabled, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+Configured boost factor for VE.Bus unit 1, dbus path: /Devices/8/Settings/AssistCurrentBoostFactor, type float
+Configured output voltage for VE.Bus unit 1 (V AC), dbus path: /Devices/8/Settings/InverterOutputVoltage, type float
+PowerAssist enabled unit 1, dbus path: /Devices/8/Settings/PowerAssistEnabled, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+Configured boost factor for VE.Bus unit 1, dbus path: /Devices/9/Settings/AssistCurrentBoostFactor, type float
+Configured output voltage for VE.Bus unit 1 (V AC), dbus path: /Devices/9/Settings/InverterOutputVoltage, type float
+PowerAssist enabled unit 1, dbus path: /Devices/9/Settings/PowerAssistEnabled, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+Configured boost factor for VE.Bus unit 1, dbus path: /Devices/10/Settings/AssistCurrentBoostFactor, type float
+Configured output voltage for VE.Bus unit 1 (V AC), dbus path: /Devices/10/Settings/InverterOutputVoltage, type float
+PowerAssist enabled unit 1, dbus path: /Devices/10/Settings/PowerAssistEnabled, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+Configured boost factor for VE.Bus unit 1, dbus path: /Devices/11/Settings/AssistCurrentBoostFactor, type float
+Configured output voltage for VE.Bus unit 1 (V AC), dbus path: /Devices/11/Settings/InverterOutputVoltage, type float
+PowerAssist enabled unit 1, dbus path: /Devices/11/Settings/PowerAssistEnabled, type enum
+
+    0 - Disabled
+    1 - Enabled
+
+ESS disable charge flag phase, dbus path: /Hub4/DisableCharge, type enum
+
+    0 - Charge allowed
+    1 - Charge disabled
+
+ESS disable feedback flag phase, dbus path: /Hub4/DisableFeedIn, type enum
+
+    0 - Feed in allowed
+    1 - Feed in disabled
+
+Feed DC overvoltage into grid, dbus path: /Hub4/DoNotFeedInOvervoltage, type enum
+
+    0 - Feed in overvoltage
+    1 - Do not feed in overvoltage
+
+Solar offset voltage, dbus path: /Hub4/FixSolarOffsetTo100mV, type enum
+
+    0 - OvervoltageFeedIn uses 1V offset
+    1 - OvervoltageFeedIn uses 0.1V offset
+
+ESS power setpoint phase 1 (W), dbus path: /Hub4/L1/AcPowerSetpoint, type float
+Maximum overvoltage feed-in power L1 (W), dbus path: /Hub4/L1/MaxFeedInPower, type float
+ESS power setpoint phase 2 (W), dbus path: /Hub4/L2/AcPowerSetpoint, type float
+Maximum overvoltage feed-in power L2 (W), dbus path: /Hub4/L2/MaxFeedInPower, type float
+ESS power setpoint phase 3 (W), dbus path: /Hub4/L3/AcPowerSetpoint, type float
+Maximum overvoltage feed-in power L3 (W), dbus path: /Hub4/L3/MaxFeedInPower, type float
+AcPowerSetpoint acts as feed-in limit, dbus path: /Hub4/TargetPowerIsMaxFeedIn, type enum
+
+    0 - AcPowerSetpoint interpreted normally
+    1 - AcPowerSetpoint is OvervoltageFeedIn limit
+
+Switch Position, dbus path: /Mode, type enum
+
+    1 - Charger Only
+    2 - Inverter Only
+    3 - On
+    4 - Off
+
+_
+
+Note that /ModeIsAdjustable needs to be set to 1.
+_ Disable PV inverter, dbus path: /PvInverter/Disable, type enum
+
+    0 - No
+    1 - Yes
+
+VE.Bus state of charge (%), dbus path: /Soc, type float
+VE.Bus Reset, dbus path: /SystemReset, type enum
+
+    0 - No
+    1 - Yes
+
+### Custom nodes
+
+The custom nodes also have 2 selectable inputs: the (dbus) service and the (dbus) path. This obviously comes with a risk, as not all services and paths are supposed to be written to. So only use the custom output node if you have read the documentation and know what you are doing. Also note that used services and paths might change, so there is no guarantee that a node will remain functional after a Venus firmware update.
