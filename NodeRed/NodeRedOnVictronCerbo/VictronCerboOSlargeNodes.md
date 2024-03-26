@@ -1022,4 +1022,19 @@ DVCC Maximum charge voltage (V), dbus path: /Settings/SystemSetup/MaxChargeVolta
 Active SOC limit (%), dbus path: /Control/ActiveSocLimit, type integer
 
 ### EV Charger
+The EV charger input node is for reading from the EV Charging Station.Also see here for more information.
+
+Energy consumed by charger (kWh), dbus path: /Ac/Energy/Forward, type float
+L1 Power (W), dbus path: /Ac/L1/Power, type float
+L2 Power (W), dbus path: /Ac/L2/Power, type float
+L3 Power (W), dbus path: /Ac/L3/Power, type float
+Total power (W), dbus path: /Ac/Power, type float
+Charging time (seconds), dbus path: /ChargingTime, type float
+Charge current (A), dbus path: /Current, type float
+Display, dbus path: /EnableDisplay, type enum
+
+
+    0 - Locked
+    1 - Unlocked
+
 
