@@ -108,3 +108,120 @@ Charge state, dbus path: /State, type enum
     247 - Equalize
     248 - Battery safe
 
+### AC Load
+This node allows for AC load monitoring. Measuring can be done by using an energy meter and assigning it the 'ac load' role.
+
+L1 Current (A), dbus path: /Ac/L1/Current, type float
+L1 Energy (kWh), dbus path: /Ac/L1/Energy/Forward, type float
+L1 Power (W), dbus path: /Ac/L1/Power, type float
+L1 Voltage (V AC), dbus path: /Ac/L1/Voltage, type float
+L2 Current (A), dbus path: /Ac/L2/Current, type float
+L2 Energy (kWh), dbus path: /Ac/L2/Energy/Forward, type float
+L2 Power (W), dbus path: /Ac/L2/Power, type float
+L2 Voltage (V AC), dbus path: /Ac/L2/Voltage, type float
+L3 Current (A), dbus path: /Ac/L3/Current, type float
+L3 Energy (kWh), dbus path: /Ac/L3/Energy/Forward, type float
+L3 Power (W), dbus path: /Ac/L3/Power, type float
+L3 Voltage (V AC), dbus path: /Ac/L3/Voltage, type float
+Serial number, dbus path: /Serial, type string
+
+### Alternator
+This node allows for monitoring the state of BMVs configured in Monitor Mode and DC meter type is Alternator or an alternator controller which is interfaced to the Venus OS.
+
+High auxiliary voltage alarm, dbus path: /Alarms/HighStarterVoltage, type enum
+
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+High temperature alarm, dbus path: /Alarms/HighTemperature, type enum
+
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+High voltage alarm, dbus path: /Alarms/HighVoltage, type enum
+
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+Low auxiliary voltage alarm, dbus path: /Alarms/LowStarterVoltage, type enum
+
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+Low temperature alarm, dbus path: /Alarms/LowTemperature, type enum
+
+
+    0 - Ok
+    1 - Warning
+    2 - Alarm
+
+Low voltage alarm, dbus path: /Alarms/LowVoltage, type enum
+
+
+    0 - No alarm
+    2 - Alarm
+
+Battery current (A), dbus path: /Dc/0/Current, type float
+Battery temperature (°C), dbus path: /Dc/0/Temperature, type float
+Battery voltage (V), dbus path: /Dc/0/Voltage, type float
+Auxiliary voltage (V DC), dbus path: /Dc/1/Voltage, type float
+Input voltage (before DC/DC converter) (V DC), dbus path: /Dc/In/V, type float
+Input power (W DC), dbus path: /Dc/In/P, type float
+Engine speed (RPM), dbus path: /Engine/Speed, type float
+Alternator error code, dbus path: /ErrorCode, type enum
+
+
+    12 - High battery temperature
+    13 - High battery voltage
+    14 - Low battery voltage
+    15 - VBat exceeds $CPB
+    21 - High alternator temperature
+    22 - Alternator overspeed
+    24 - Internal error
+    41 - High field FET temperature
+    42 - Sensor missing
+    43 - Low VAlt
+    44 - High Voltage offset
+    45 - VAlt exceeds $CPB
+    53 - Battery instance out of range
+    54 - Too many BMSes
+    55 - AEBus fault
+    56 - Too many Victron devices
+    91 - BMS lost
+    92 - Forced idle
+    201 - DCDC converter fail
+    51-52 - Battery disconnect request
+    58-61 - Battery requested disconnection
+    201-207 - DCDC error
+
+Alternator Field Drive %, dbus path: /FieldDrive, type float
+Cumulative amp-hours charged (Ah), dbus path: /History/Cumulative/User/ChargedAh, type float
+Total energy produced (kWh), dbus path: /History/EnergyOut, type float
+Mode, dbus path: /Mode, type enum
+
+
+    1 - On
+    4 - Off
+
+Alternator speed (RPM), dbus path: /Speed, type float
+Alternator state, dbus path: /State, type enum
+
+
+    0 - Off
+    2 - Fault
+    3 - Bulk
+    4 - Absorption
+    5 - Float
+    6 - Storage
+    7 - Equalize
+    11 - Psu
+    252 - External control
+
