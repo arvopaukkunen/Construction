@@ -225,3 +225,109 @@ Alternator state, dbus path: /State, type enum
     11 - Psu
     252 - External control
 
+### Battery Monitor
+This node allows for monitoring the state of the battery.
+
+Alarm, dbus path: /Alarms/Alarm, type enum
+
+
+    0 - No alarm
+    2 - Alarm
+
+Cell Imbalance alarm, dbus path: /Alarms/CellImbalance, type enum
+
+
+    0 - No alarm
+    1 - Warning
+    2 - Alarm
+
+Fuse blown alarm, dbus path: /Alarms/FuseBlown, type enum
+
+
+    0 - No alarm
+    2 - Alarm
+
+High charge current alarm, dbus path: /Alarms/HighChargeCurrent, type enum
+
+
+    0 - No alarm
+    1 - Warning
+    2 - Alarm
+
+High charge temperature alarm, dbus path: /Alarms/HighChargeTemperature, type enum
+
+
+    0 - No alarm
+    1 - Warning
+    2 - Alarm
+
+High discharge current alarm, dbus path: /Alarms/HighDischargeCurrent, type enum
+
+
+    0 - No alarm
+    1 - Warning
+    2 - Alarm
+
+High fused-voltage alarm, dbus path: /Alarms/HighFusedVoltage, type enum
+
+
+    0 - No alarm
+    2 - Alarm
+
+High internal-temperature alarm, dbus path: /Alarms/HighInternalTemperature, type enum
+
+
+    0 - No alarm
+    2 - Alarm
+
+High starter-voltage alarm, dbus path: /Alarms/HighStarterVoltage, type enum
+
+
+    0 - No alarm
+    2 - Alarm
+
+High battery temperature alarm, dbus path: /Alarms/HighTemperature, type enum
+
+
+    0 - No alarm
+    2 - Alarm
+
+High voltage alarm, dbus path: /Alarms/HighVoltage, type enum
+
+
+    0 - No alarm
+    2 - Alarm
+
+Internal failure, dbus path: /Alarms/InternalFailure, type enum
+
+
+    0 - No alarm
+    1 - Warning
+    2 - Alarm
+
+Low cell voltage alarm, dbus path: /Alarms/LowCellVoltage, type enum
+
+
+    0 - No alarm
+    1 - Almost discharged
+    2 - Alarm
+
+Low charge temperature alarm, dbus path: /Alarms/LowChargeTemperature, type enum
+
+
+    0 - No alarm
+    1 - Warning
+    2 - Alarm
+
+Low fused-voltage alarm, dbus path: /Alarms/LowFusedVoltage, type enum
+
+
+    0 - No alarm
+    2 - Alarm
+
+Low state-of-charge alarm, dbus path: /Alarms/LowSoc, type enum
+
+
+    0 - No alarm
+    2 - Alarm
+
