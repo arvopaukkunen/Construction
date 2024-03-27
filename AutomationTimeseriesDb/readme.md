@@ -22,3 +22,6 @@ Actual and final will be i grafana & Homeassistant
 - L1, L2 & L3 Battery charge (line)
 - Solar charge lastvalue (single number)
 - Solar charge Cumulative 24h (Single last value and line)
+
+
+![alt text](image-1.png)![alt text](image-1-1.png)
