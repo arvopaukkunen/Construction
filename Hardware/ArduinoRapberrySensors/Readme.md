@@ -1,6 +1,6 @@
 #Devices tested
 
-[Arduino Uno](/Readme.md)
+[Arduino Uno](Readme.md)
 
 [Arduino Mega](Arduino/Readme.md)
 
