@@ -1,3 +1,5 @@
+# IT Architecture
+![alt text](EA1.png)
 # Construction
 Powerplant, House plans and more
 
