@@ -38,6 +38,10 @@ They are suitable for targeted ventilation in large rooms.
 - Combination of Mechanical and Natural Ventilation
 They provide flexible and adaptable solutions but only with careful coordination. 
 
+## Considerable Factors For Choosing a Ventilation System
+The industries are required to consider multiple essential factors while choosing the selection of ventilation systems. Here are the key points necessary to be considered: 
+    Generator size and capacity: The design of adequate ventilation varies depending on the size and capacity of generators. The requirements will increase to manage the heat dissipation of large generators. 
+
 Ref:
 https://csdieselgenerators.com/generator-room-ventilation-requirements/
 
