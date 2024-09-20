@@ -1,5 +1,11 @@
 # IT Architecture (draft)
 ![alt text](EA1.png)
+
+# Homeassistant addons in use
+
+# Nodered addons in use
+Victron OS Large & Nodered build in installed on Cerbo CX linux box
+
 # Construction
 Powerplant, House plans and more
 
