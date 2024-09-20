@@ -9,7 +9,7 @@ https://csdieselgenerators.com/generator-room-ventilation-requirements/
 
 ### cons
 
-## 2 Senerator system
+## 2 Generator system
 
 ### pros
 
