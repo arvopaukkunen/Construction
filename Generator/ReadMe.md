@@ -40,14 +40,23 @@ They provide flexible and adaptable solutions but only with careful coordination
 
 ## Considerable Factors For Choosing a Ventilation System
 The industries are required to consider multiple essential factors while choosing the selection of ventilation systems. Here are the key points necessary to be considered: 
+
 **Generator size and capacity:** The design of adequate ventilation varies depending on the size and capacity of generators. The requirements will increase to manage the heat dissipation of large generators. 
+
 **Room size and layout:** The room configurations effectively decide the ventilation strategies to ensure even airflow. 
+
 **Generator type and fuel:** The type of generator and its fuel, like natural gas, diesel, or others, produce different types of exhaust composition. It impacts the ventilation requirements. 
+
 **Operational requirements:** The output and dissipated energies can be the same or different. The decision will be according to continuous airflows, emergency ventilation, and cooling. 
+
 **Environmental Conditions:** The temperature, humidity, and other weather patterns will require amendment in the design of ventilation according to changes. 
+
 **Integrability:** Compatibility for integration with ventilation systems with other systems like HVAC systems or emergency response mechanisms must also be considered. 
+
 **Regulatory compliance:** Consider the building codes, safety regulations, and industry standards before going with a specific choice. 
+
 **Future expansion:** There should always be room for scale-up facilities to accommodate the future needs of the industries. 
+
 
 ## Tips for Better Generator Room Ventilation
 Ample space presence between the generator and walls or any other blockages to the poor air is a must. 
