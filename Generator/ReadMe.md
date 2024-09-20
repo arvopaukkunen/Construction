@@ -49,6 +49,12 @@ The industries are required to consider multiple essential factors while choosin
 **Regulatory compliance:** Consider the building codes, safety regulations, and industry standards before going with a specific choice. 
 **Future expansion:** There should always be room for scale-up facilities to accommodate the future needs of the industries. 
 
+## Tips for Better Generator Room Ventilation
+Ample space presence between the generator and walls or any other blockages to the poor air is a must. 
+Proper room should be available for maintenance actions and inspection.
+Prefer curvature design or 45-degree bend angles over 90-degree bend angles to decrease energy consumption.
+Airflow must be horizontal and contact every important component for effective heat transfer. 
+Exhaust fans must be placed at heights and vertically above the generator for heat extraction and undesirable emissions.
 Ref:
 https://csdieselgenerators.com/generator-room-ventilation-requirements/
 
