@@ -18,6 +18,26 @@ Generator room ventilation is important according to different aspects of the co
 - Contributes to accumulation of carbon monoxide emissions aiding to potential lethality 
 - Enhances greenhouse gas emissions, hampering the air quality 
 
+The generator room ventilation systems are of different types. Choosing the one that suits the generator room and other factors is important. The requirements may vary, and here are the different types that should be known before choosing one: 
+
+- Forced Exhaust Ventilation
+It is effective in maintaining a controlled environment but requires a well-designed exhaust system with strategic placement of fans.
+
+- Supply and Exhaust Ventilation
+It required proper design for effective balance and to avoid air stagnation. It ensures a continuous supply of fresh air in combination with expelling.
+
+- Natural Ventilation with Louvers
+These are cost-effective and energy-efficient, suitable for small generator rooms. They also depend on external weather conditions. 
+
+- Emergency Ventilation Systems
+They are designed to ensure rapid fire evacuation of heat or gasses during emergencies. They work on integration with alarms or sensors. 
+
+- Ducted Ventilation Systems 
+They are suitable for targeted ventilation in large rooms. 
+
+- Combination of Mechanical and Natural Ventilation
+They provide flexible and adaptable solutions but only with careful coordination. 
+
 Ref:
 https://csdieselgenerators.com/generator-room-ventilation-requirements/
 
