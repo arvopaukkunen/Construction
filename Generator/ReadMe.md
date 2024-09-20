@@ -19,3 +19,4 @@ https://csdieselgenerators.com/generator-room-ventilation-requirements/
 Reduces emissions
 Increases engine lifetime
 ... more 
+![alt text](image.png)
