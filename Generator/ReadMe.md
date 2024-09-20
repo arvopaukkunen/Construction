@@ -15,7 +15,7 @@ https://csdieselgenerators.com/generator-room-ventilation-requirements/
 
 ### cons
 
-# Ventilations is critocal
+# Ventilations is critical
 Reduces emissions
 Increases engine lifetime
 ... more 
