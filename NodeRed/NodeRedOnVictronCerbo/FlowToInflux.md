@@ -1,6 +1,9 @@
 # NodeRed with Cerbo OS large - v.0.2
 ##
 ref: https://github.com/victronenergy/dbus-flashmq
+and
+https://communityarchive.victronenergy.com/questions/247171/explanation-on-mqtt-energy-entries.html
+
 
 When a value on the D-Bus changes, the plugin will initiate a publish. The MQTT topic looks like this:
 
