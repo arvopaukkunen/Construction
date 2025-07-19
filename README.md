@@ -1,3 +1,14 @@
+# Introduction in english 
+
+## general audience:
+[Home that Listens the Forest](/A%20Home%20That%20Listens%20to%20the%20Forest.md)
+
+## Technical audience:
+[Smarthousing in the Wild: A Blueprint for Autonomous, Resilient Architecture](/Technical%20Introduction.md)
+
+## Academic audience:
+[Reimagining Shelter: Off-Grid Smarthousing in Symbiosis with Nature](/Architectural%20&%20Sustainability%20Introduction.md)
+
 # Improvements 2025
 
 ## Jaspi safety switch automation and remote control
