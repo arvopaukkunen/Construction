@@ -9,6 +9,9 @@
 ## Academic audience:
 [Reimagining Shelter: Off-Grid Smarthousing in Symbiosis with Nature](/Architectural%20&%20Sustainability%20Introduction.md)
 
+## Development & Geek stuff
+Sensordevelopment
+
 # Improvements 2025
 
 ## Jaspi safety switch automation and remote control
