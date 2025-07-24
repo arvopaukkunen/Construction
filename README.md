@@ -10,7 +10,8 @@
 [Reimagining Shelter: Off-Grid Smarthousing in Symbiosis with Nature](/Architectural%20&%20Sustainability%20Introduction.md)
 
 ## Development & Geek stuff
-Sensordevelopment
+[Sensordevelopment](/DevelopmentAndGeekStuff/readme.md)
+
 
 # Improvements 2025
 
