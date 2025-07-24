@@ -41,7 +41,7 @@ Replace with your **WiFi** and **InfluxDB** details.
 const char* ssid = "YOUR_WIFI_SSID";
 const char* password = "YOUR_WIFI_PASSWORD";
 
-const char* influxHost = "http://192.168.123.115:8086";
+const char* influxHost = "http://192.xxx.xxx.xxx:xxxx";
 const char* influxOrg = "Arvosoft Oy";
 const char* influxBucket = "sensors";
 const char* influxToken = "your-influxdb-token";
