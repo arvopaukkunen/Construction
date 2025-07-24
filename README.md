@@ -1,7 +1,8 @@
 # Introduction in english 
-
+[Swedish](/A%20Home%20That%20Listens%20to%20the%20ForestSwe.md)
+[Finnish](/A%20Home%20That%20Listens%20to%20the%20Forest.md)
 ## General audience:
-[Home that Listens the Forest](/A%20Home%20That%20Listens%20to%20the%20Forest.md)
+[Home that Listens the Forest](/A%20Home%20That%20Listens%20to%20the%20ForestFin.md)
 
 ## Technical audience:
 [Smarthousing in the Wild: A Blueprint for Autonomous, Resilient Architecture](/Technical%20Introduction.md)
