@@ -13,7 +13,7 @@
 
 ## Jaspi safety switch automation and remote control
 
-![alt text](/media/Katko%20315%20m1%20kauko%20ohjauksella.png)
+![alt text](/media/Katko%20315%20m1%20kauko%20ohjauksella.png ){ width=50% }
 
 ### Remote Control for Jäspi 3-Phase Water Heater**
 
@@ -75,7 +75,7 @@ To remotely control your **Jäspi 3-phase water heater** while ensuring **safety
 
 ## Solar water heater
 
-![alt text](/media/Domestic%20water%20system%202.png)
+![alt text](/media/Domestic%20water%20system%202.png) { width=50% }
 
 ### System Overview
 
@@ -194,7 +194,7 @@ Would you like me to prepare a printable PDF version of this entire design and e
 
 # IT Architecture (draft)
 
-![alt text](EA1.png)
+![alt text](EA1.png){ width=25% }
 
 # Homeassistant addons in use
 

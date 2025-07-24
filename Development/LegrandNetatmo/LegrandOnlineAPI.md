@@ -1,7 +1,7 @@
 # Out of the box API by Netatmo 
-![Step1](./media/logo-netatmo-connect.webp)
-![Step1](./media/logo-wwl.png)
-![Step1](./media/WorksWithLEgrandlogo_app.png)
+![Step1](../../media/logo-netatmo-connect.webp)
+![Step1](../../media/logo-wwl.png)
+![Step1](../../media/WorksWithLEgrandlogo_app.png)
 
 
 https://dev.netatmo.com/apidocumentation/
@@ -21,8 +21,8 @@ Before reading or writing data with Netatmo Connect APIs, an application needs t
 
 This authentification method basically consist in asking the owner of the products for reading and writing rights. Rights are handled through "Scopes". Once the user has given you the permission you need, your server will receive a temporary code with which you will request an access and a refresh token. Once you have the access token, you will be able to retrieve data from the Netatmo API.
 
-![Step1](./media/Netatmo private_api.svg)
 
+![Step1](../../media/Netatmo%20private_api.svg)
 This standard method is the "Authorization code" grant type. For personal use only (the account with which the API application have been created), you can also authenticate with the "Client credentials" grant type in which the username and the password should be sent along with the request.
 
 In both cases, you will retrieve one access token and one refresh token. The access token represent a key for each user to access the data and it should be sent along with the request you will make to Netatmo backend. To know how you should send the access token, check out the "Using a token" part.
