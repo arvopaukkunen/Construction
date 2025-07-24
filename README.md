@@ -1,6 +1,6 @@
 # Introduction in english 
-[Swedish](/A%20Home%20That%20Listens%20to%20the%20ForestSwe.md)
-[Finnish](/A%20Home%20That%20Listens%20to%20the%20Forest.md)
+[Swedish](/READMESwe.md)
+[Finnish](/READMEFin.md)
 ## General audience:
 [Home that Listens the Forest](/A%20Home%20That%20Listens%20to%20the%20ForestFin.md)
 
