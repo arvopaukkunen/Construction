@@ -15,3 +15,5 @@
 [Latest improvements and ideas](/DevelopmentAndGeekStuff/latest.md)
 [Sensordevelopment](/DevelopmentAndGeekStuff/readme.md)
 
+### All IT architectual designs including data architecture
+[Architecture stuff](/diagrams/readme.md)
