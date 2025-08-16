@@ -10,7 +10,7 @@
 
   <rect x="330" y="80" width="220" height="120" rx="12" fill="#E3F2FD" stroke="#333"/>
   <text x="350" y="120" font-size="16" font-family="Arial">MQTT Broker</text>
-  <text x="350" y="142" font-size="12" font-family="Arial">192.168.123.115:1883</text>
+  <text x="350" y="142" font-size="12" font-family="Arial">000.000.000.115:1883</text>
 
   <rect x="590" y="80" width="230" height="120" rx="12" fill="#FFF3E0" stroke="#333"/>
   <text x="610" y="120" font-size="16" font-family="Arial">Telegraf</text>

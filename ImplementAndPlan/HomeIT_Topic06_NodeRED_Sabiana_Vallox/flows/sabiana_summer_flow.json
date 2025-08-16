@@ -86,7 +86,7 @@
     "id": "035511d8",
     "type": "mqtt-broker",
     "name": "Local MQTT",
-    "broker": "192.168.123.115",
+    "broker": "000.000.000.115",
     "port": "1883",
     "clientid": "",
     "usetls": false,

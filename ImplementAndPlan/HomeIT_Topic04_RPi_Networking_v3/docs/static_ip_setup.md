@@ -1,9 +1,9 @@
 # Raspberry Pi Networking — Disable Wi‑Fi & Set Static IP (Bookworm & Legacy)
 
 Target:
-- Static IP: **192.168.123.151/24**
-- Gateway: **192.168.123.1**
-- DNS: **192.168.123.1**
+- Static IP: **000.000.000.151/24**
+- Gateway: **000.000.000.1**
+- DNS: **000.000.000.1**
 
 Use **NetworkManager** (Bookworm default) or **dhcpcd** (legacy).
 
@@ -18,7 +18,7 @@ ip route
 ## A) NetworkManager (recommended)
 ```bash
 CON_NAME="Wired connection 1"
-sudo nmcli con mod "$CON_NAME" ipv4.method manual   ipv4.addresses 192.168.123.151/24   ipv4.gateway 192.168.123.1   ipv4.dns "192.168.123.1"   ipv6.method ignore
+sudo nmcli con mod "$CON_NAME" ipv4.method manual   ipv4.addresses 000.000.000.151/24   ipv4.gateway 000.000.000.1   ipv4.dns "000.000.000.1"   ipv6.method ignore
 sudo nmcli con down "$CON_NAME" || true
 sudo nmcli con up "$CON_NAME"
 ```
@@ -37,8 +37,8 @@ id=eth0-static
 type=ethernet
 interface-name=eth0
 [ipv4]
-address1=192.168.123.151/24,192.168.123.1
-dns=192.168.123.1;
+address1=000.000.000.151/24,000.000.000.1
+dns=000.000.000.1;
 method=manual
 [ipv6]
 method=ignore
@@ -49,9 +49,9 @@ Then `chmod 600` + `nmcli con reload && nmcli con up eth0-static`.
 `/etc/dhcpcd.conf`:
 ```ini
 interface eth0
-static ip_address=192.168.123.151/24
-static routers=192.168.123.1
-static domain_name_servers=192.168.123.1
+static ip_address=000.000.000.151/24
+static routers=000.000.000.1
+static domain_name_servers=000.000.000.1
 ```
 Then `sudo systemctl restart dhcpcd`.
 
@@ -71,7 +71,7 @@ nmcli dev show eth0 | grep -E 'IP4.DNS|IP4.ADDRESS'
 
 ## Rescue (if link lost)
 ```bash
-sudo ip addr add 192.168.123.151/24 dev eth0
-sudo ip route add default via 192.168.123.1
+sudo ip addr add 000.000.000.151/24 dev eth0
+sudo ip route add default via 000.000.000.1
 sudo systemctl restart NetworkManager || sudo systemctl restart dhcpcd
 ```

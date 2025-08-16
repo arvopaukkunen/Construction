@@ -1,7 +1,7 @@
 # InfluxDB — 24h Queries & Victron MQTT Mapping
 
 This pack gives you production-ready **Flux queries** for last-24h views plus a clean **Victron MQTT → InfluxDB** mapping.
-It matches your HomeIT setup (bucket `sensors`, Mosquitto on 192.168.123.115).
+It matches your HomeIT setup (bucket `sensors`, Mosquitto on 000.000.000.115).
 
 **Included**
 - `docs/influx_24h_queries.md` — patterns you can reuse everywhere

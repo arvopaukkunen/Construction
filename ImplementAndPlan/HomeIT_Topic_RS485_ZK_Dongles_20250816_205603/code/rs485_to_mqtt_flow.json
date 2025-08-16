@@ -93,7 +93,7 @@
     "id": "mqsrv",
     "type": "mqtt-broker",
     "name": "MQTT",
-    "broker": "192.168.123.2",
+    "broker": "000.000.000.2",
     "port": "1883",
     "clientid": ""
   }

@@ -4,17 +4,17 @@
 
   <rect x="60" y="80" width="240" height="110" fill="#f0f8ff" stroke="#000"/>
   <text x="80" y="110" font-size="16">Primary</text>
-  <text x="80" y="135" font-size="14">192.168.123.100</text>
+  <text x="80" y="135" font-size="14">000.000.000.100</text>
   <text x="80" y="155" font-size="12">Writes</text>
 
   <rect x="360" y="80" width="220" height="110" fill="#f8fff0" stroke="#000"/>
   <text x="380" y="110" font-size="16">Replica A</text>
-  <text x="380" y="135" font-size="14">192.168.123.101</text>
+  <text x="380" y="135" font-size="14">000.000.000.101</text>
   <text x="380" y="155" font-size="12">Reads</text>
 
   <rect x="620" y="80" width="220" height="110" fill="#f8fff0" stroke="#000"/>
   <text x="640" y="110" font-size="16">Replica B</text>
-  <text x="640" y="135" font-size="14">192.168.123.103</text>
+  <text x="640" y="135" font-size="14">000.000.000.103</text>
   <text x="640" y="155" font-size="12">Reads</text>
 
   <line x1="300" y1="120" x2="360" y2="120" stroke="#000" marker-end="url(#arrow)"/>

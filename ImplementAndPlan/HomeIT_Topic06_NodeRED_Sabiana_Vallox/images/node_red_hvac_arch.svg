@@ -6,7 +6,7 @@
 
   <rect x="60" y="80" width="300" height="120" rx="12" fill="#e3f2fd" stroke="#333"/>
   <text x="80" y="120" font-size="16" font-family="Arial">MQTT broker</text>
-  <text x="80" y="144" font-size="12" font-family="Arial">192.168.123.115:1883</text>
+  <text x="80" y="144" font-size="12" font-family="Arial">000.000.000.115:1883</text>
 
   <rect x="440" y="80" width="320" height="120" rx="12" fill="#e8f5e9" stroke="#333"/>
   <text x="460" y="120" font-size="16" font-family="Arial">Node-RED</text>

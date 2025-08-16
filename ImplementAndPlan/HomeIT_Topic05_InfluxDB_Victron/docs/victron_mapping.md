@@ -16,13 +16,13 @@ Start simple: treat payloads as numbers and write them as-is, then rename fields
 **Example: minimal numeric payloads**
 ```toml
 [[inputs.mqtt_consumer]]
-  servers = ["tcp://192.168.123.115:1883"]
+  servers = ["tcp://000.000.000.115:1883"]
   topics = ["N/+/battery/+/Soc","R/+/vebus/+/Dc/+/Current","N/+/generator/+/State"]
   data_format = "value"
   data_type   = "float"
 
 [[outputs.influxdb_v2]]
-  urls  = ["http://192.168.123.115:8086"]
+  urls  = ["http://000.000.000.115:8086"]
   token = "REDACTED"
   organization = "Arvosoft Oy"
   bucket = "sensors"

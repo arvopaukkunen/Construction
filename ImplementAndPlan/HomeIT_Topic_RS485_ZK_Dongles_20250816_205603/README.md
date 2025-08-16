@@ -68,7 +68,7 @@ inst = minimalmodbus.Instrument('/dev/ttyUSB0', 1)  # slave 1
 inst.serial.baudrate = 9600
 while True:
     co2 = inst.read_register(0, 0, 4)  # FC=3/4 depending on device
-    with InfluxDBClient(url="http://192.168.123.115:8086", token="YOUR_TOKEN", org="Arvosoft Oy") as c:
+    with InfluxDBClient(url="http://000.000.000.115:8086", token="YOUR_TOKEN", org="Arvosoft Oy") as c:
         w = c.write_api(write_options=None)
         w.write(bucket="sensors",
                 record=Point("co2").field("ppm", int(co2)),

@@ -310,7 +310,7 @@ Here's a full **Node-RED flow** to import:
   {
     "id": "influxdb2",
     "type": "influxdb",
-    "hostname": "192.168.123.115",
+    "hostname": "000.000.000.115",
     "port": "8086",
     "protocol": "http",
     "database": "sensors",

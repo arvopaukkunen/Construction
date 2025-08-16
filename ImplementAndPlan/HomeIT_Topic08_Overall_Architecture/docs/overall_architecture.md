@@ -8,10 +8,10 @@
 
 **Key components**
 - **Control/UI:** Apple Home, **.NET MAUI iOS app** (HomeKit), Home Assistant (HA), Node‑RED
-- **Messaging:** MQTT (Mosquitto) @ **192.168.123.115:1883**
+- **Messaging:** MQTT (Mosquitto) @ **000.000.000.115:1883**
 - **Metrics/TS:** Telegraf → **InfluxDB** (bucket `sensors`), optional downsample `sensors_agg`
-- **DB:** MariaDB (basic or **HA Galera** via HAProxy + Keepalived VIP `192.168.123.150:3306`)
-- **Edge:** Raspberry Pi nodes (e.g., static `192.168.123.151`, Wi‑Fi off), Arduino/Opta
+- **DB:** MariaDB (basic or **HA Galera** via HAProxy + Keepalived VIP `000.000.000.150:3306`)
+- **Edge:** Raspberry Pi nodes (e.g., static `000.000.000.151`, Wi‑Fi off), Arduino/Opta
 - **Devices:** Legrand Valena (Netatmo), Victron Cerbo, Sabiana, Vallox
 
 ---
@@ -36,10 +36,10 @@
 ---
 
 ## 4) Network & Hosts
-- MQTT/Influx/Telegraf host: **192.168.123.115**
-- HAProxy/Keepalived LBs: **192.168.123.140**, **192.168.123.141**, VIP **192.168.123.150**
-- MariaDB nodes: **192.168.123.100 / .101 / .103**
-- Raspberry Pi example (static): **192.168.123.151**
+- MQTT/Influx/Telegraf host: **000.000.000.115**
+- HAProxy/Keepalived LBs: **000.000.000.140**, **000.000.000.141**, VIP **000.000.000.150**
+- MariaDB nodes: **000.000.000.100 / .101 / .103**
+- Raspberry Pi example (static): **000.000.000.151**
 - Home Assistant / Node‑RED: _TBD_ (fill in actual IPs)
 - RS485 adapters: `/dev/ttyUSB0` (Sabiana), `/dev/ttyUSB1` (Vallox)
 

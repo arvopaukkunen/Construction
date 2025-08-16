@@ -2,17 +2,17 @@
 
 ## Summary
 Highly-available 3-node **MariaDB Galera** cluster, fronted by **HAProxy** (read/write routing) and **Keepalived** (VIP for client failover). 
-Same IPs: **192.168.123.100, 192.168.123.101, 192.168.123.103**. Clients use the **VIP** (e.g., `192.168.123.150`).
+Same IPs: **000.000.000.100, 000.000.000.101, 000.000.000.103**. Clients use the **VIP** (e.g., `000.000.000.150`).
 
 ## Architecture
 - **DB Nodes (Galera):**
-  - Node1: 192.168.123.100
-  - Node2: 192.168.123.101
-  - Node3: 192.168.123.103
+  - Node1: 000.000.000.100
+  - Node2: 000.000.000.101
+  - Node3: 000.000.000.103
 - **Load Balancers:**
-  - LB1 (HAProxy + Keepalived): 192.168.123.140
-  - LB2 (HAProxy + Keepalived): 192.168.123.141
-  - **VIP**: 192.168.123.150 (moves between LB1/LB2)
+  - LB1 (HAProxy + Keepalived): 000.000.000.140
+  - LB2 (HAProxy + Keepalived): 000.000.000.141
+  - **VIP**: 000.000.000.150 (moves between LB1/LB2)
 
 ![diagram](./diagram_galera.svg)
 
@@ -33,7 +33,7 @@ innodb_flush_log_at_trx_commit=2
 wsrep_on=ON
 wsrep_provider=/usr/lib/galera/libgalera_smm.so
 wsrep_cluster_name="homeit-galera"
-wsrep_cluster_address="gcomm://192.168.123.100,192.168.123.101,192.168.123.103"
+wsrep_cluster_address="gcomm://000.000.000.100,000.000.000.101,000.000.000.103"
 wsrep_node_address="CHANGE_ME"       # per node: this node's IP
 wsrep_node_name="CHANGE_ME"          # per node: node name
 wsrep_sst_method=rsync               # or mariabackup for large data
@@ -42,9 +42,9 @@ wsrep_sst_method=rsync               # or mariabackup for large data
 ```
 
 Set per-node values:
-- Node1: `wsrep_node_address=192.168.123.100`, `wsrep_node_name=node1`
-- Node2: `wsrep_node_address=192.168.123.101`, `wsrep_node_name=node2`
-- Node3: `wsrep_node_address=192.168.123.103`, `wsrep_node_name=node3`
+- Node1: `wsrep_node_address=000.000.000.100`, `wsrep_node_name=node1`
+- Node2: `wsrep_node_address=000.000.000.101`, `wsrep_node_name=node2`
+- Node3: `wsrep_node_address=000.000.000.103`, `wsrep_node_name=node3`
 
 ## Bootstrap Cluster
 On **one** node (Node1):
@@ -87,15 +87,15 @@ frontend mysql-in
 backend galera
   balance roundrobin
   option mysql-check user haproxy_check
-  server node1 192.168.123.100:3306 check
-  server node2 192.168.123.101:3306 check
-  server node3 192.168.123.103:3306 check
+  server node1 000.000.000.100:3306 check
+  server node2 000.000.000.101:3306 check
+  server node3 000.000.000.103:3306 check
 ```
 
 Create MySQL user for healthcheck (on any DB node):
 ```sql
-CREATE USER 'haproxy_check'@'192.168.123.%' IDENTIFIED BY '' WITH MAX_QUERIES_PER_HOUR 0;
-GRANT USAGE ON *.* TO 'haproxy_check'@'192.168.123.%';
+CREATE USER 'haproxy_check'@'000.000.000.%' IDENTIFIED BY '' WITH MAX_QUERIES_PER_HOUR 0;
+GRANT USAGE ON *.* TO 'haproxy_check'@'000.000.000.%';
 ```
 
 ## Keepalived (LB1 & LB2)
@@ -116,7 +116,7 @@ vrrp_instance VI_1 {
     auth_pass 1nternalVIP
   }
   virtual_ipaddress {
-    192.168.123.150/24 dev eth0
+    000.000.000.150/24 dev eth0
   }
   track_script {
     chk_haproxy
@@ -139,7 +139,7 @@ sudo systemctl restart haproxy keepalived
 ```
 
 ## Client Connection
-Point all clients (writers and readers) to `192.168.123.150:3306`.
+Point all clients (writers and readers) to `000.000.000.150:3306`.
 - Optionally split read/write with two frontends (RW to nodes in `wsrep_local_state_comment=Synced`, RO for analytics).
 
 ## Backups

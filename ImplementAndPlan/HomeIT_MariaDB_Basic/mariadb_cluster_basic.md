@@ -2,13 +2,13 @@
 
 ## Summary
 Small, reliable MariaDB for home-automation sensor data. Topology: **1 Primary + 2 Replicas** (async or semi-sync). 
-IPs: **192.168.123.100, 192.168.123.101, 192.168.123.103**. 
+IPs: **000.000.000.100, 000.000.000.101, 000.000.000.103**. 
 Use case: write to primary, read from replicas for dashboards/analytics.
 
 ## Architecture
-- **Primary:** 192.168.123.100
-- **Replica A:** 192.168.123.101
-- **Replica B:** 192.168.123.103
+- **Primary:** 000.000.000.100
+- **Replica A:** 000.000.000.101
+- **Replica B:** 000.000.000.103
 - Replication: MariaDB GTID-based (recommended) with optional semi-sync plugin.
 - Backups: `mariabackup` + nightly cron + test restores.
 - Monitoring: `performance_schema`, `information_schema`, and Telegraf → InfluxDB.
@@ -54,10 +54,10 @@ Set `server-id` per node:
 - Replica A: `server-id=101`
 - Replica B: `server-id=103`
 
-## Create Replication User (Primary @ 192.168.123.100)
+## Create Replication User (Primary @ 000.000.000.100)
 ```sql
-CREATE USER 'repl'@'192.168.123.%' IDENTIFIED BY 'Str0ngReplP@ss!';
-GRANT REPLICATION SLAVE ON *.* TO 'repl'@'192.168.123.%';
+CREATE USER 'repl'@'000.000.000.%' IDENTIFIED BY 'Str0ngReplP@ss!';
+GRANT REPLICATION SLAVE ON *.* TO 'repl'@'000.000.000.%';
 FLUSH PRIVILEGES;
 ```
 
@@ -85,7 +85,7 @@ On each replica:
 ```sql
 SET GLOBAL gtid_slave_pos='0-1-0';  -- optional reset if needed
 CHANGE MASTER TO
-  MASTER_HOST='192.168.123.100',
+  MASTER_HOST='000.000.000.100',
   MASTER_USER='repl',
   MASTER_PASSWORD='Str0ngReplP@ss!',
   MASTER_USE_GTID=slave_pos;
@@ -102,8 +102,8 @@ SET GLOBAL rpl_semi_sync_slave_enabled=ON;
 ```
 
 ## Client Connection Strategy
-- **Writes:** point Home Assistant / Node-RED / apps at primary `192.168.123.100`.
-- **Reads:** dashboards query replicas `192.168.123.101` and `192.168.123.103`.
+- **Writes:** point Home Assistant / Node-RED / apps at primary `000.000.000.100`.
+- **Reads:** dashboards query replicas `000.000.000.101` and `000.000.000.103`.
 
 ## Backups (Primary)
 Nightly mariabackup + weekly full + daily incrementals:
@@ -134,6 +134,6 @@ STOP SLAVE; RESET SLAVE ALL; RESET MASTER;
 ```
 
 ## Security Basics
-- Strong passwords, limit `root` remote access, use firewall to allow only 192.168.123.0/24.
+- Strong passwords, limit `root` remote access, use firewall to allow only 000.000.000.0/24.
 - Encrypt backups at rest; consider LUKS on backup disk.
 ```

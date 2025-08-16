@@ -5,10 +5,10 @@
   <text x="20" y="30" font-size="20">RPi Static IP Topology</text>
   <rect x="40" y="80" width="240" height="100" rx="12" fill="#eef" stroke="#333"/>
   <text x="60" y="110" font-size="14">Router/DHCP/DNS</text>
-  <text x="60" y="130" font-size="12">192.168.123.1</text>
+  <text x="60" y="130" font-size="12">000.000.000.1</text>
   <rect x="330" y="80" width="260" height="100" rx="12" fill="#efe" stroke="#333"/>
   <text x="350" y="110" font-size="14">Raspberry Pi (eth0)</text>
-  <text x="350" y="130" font-size="12">192.168.123.151/24</text>
+  <text x="350" y="130" font-size="12">000.000.000.151/24</text>
   <text x="350" y="148" font-size="12">Wi‑Fi disabled</text>
   <rect x="640" y="80" width="220" height="100" rx="12" fill="#ffe" stroke="#333"/>
   <text x="660" y="110" font-size="14">LAN Clients</text>

@@ -125,7 +125,7 @@ https://www.rapidtables.com/convert/number/binary-to-decimal.html
 # Text
 Some values like Hostname, Router name, Network type are represented as text in their original form, but are stored in registers as numbers. You can interpret these values the same way as all discussed before (by converting them to binary and then to text), but a simpler way would be to get them in hexadecimal form and then convert them to text. To do so, we'll have to add the -D parameter to the command. Lets do it by asking for the router's Hostname: 
 ```
-$ modbus read -D -w -p 502 192.168.123.2 %MW007 16
+$ modbus read -D -w -p 502 000.000.000.2 %MW007 16
 
 Tx (12 bytes): [00][01][00][00][00][06][01][03][00][07][00][10]
 Rx (41 bytes): [00][01][00][00][00][23][01][03][20][54][65][6c][74][6f][6e][69][6b][61][2d][52][55][54][58][31][30][5f][31][2e][63][6f][6d][00][00][00][00][00][00][00][00][00][00]

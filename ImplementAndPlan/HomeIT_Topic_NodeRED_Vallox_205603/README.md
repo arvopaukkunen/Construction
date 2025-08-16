@@ -1,7 +1,7 @@
 # Node‑RED + Vallox TSK Multi 80 MV — Configuration Guide
 
 **Target device:** Vallox TSK Multi 80 MV (B3608, SW 3.0.6)  
-**Local IP (example):** `192.168.123.123`  
+**Local IP (example):** `000.000.000.123`  
 **Goal:** Use Node‑RED to read/write Vallox parameters and integrate with MQTT / Home Assistant.
 
 ## 1. Install required nodes
@@ -11,7 +11,7 @@ In Node‑RED, go to **Manage palette → Install** and add:
 
 ## 2. Basic connection
 Create a Vallox node:
-- **Host:** 192.168.123.123
+- **Host:** 000.000.000.123
 - **Port:** 80 (or 8070 if your API exposes that)
 - **Polling:** 5 s
 - **Outputs:** full JSON state

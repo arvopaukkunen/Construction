@@ -5,28 +5,28 @@
   <!-- LBs -->
   <rect x="120" y="70" width="300" height="120" fill="#eef" stroke="#000"/>
   <text x="140" y="100" font-size="16">LB1 (HAProxy + Keepalived)</text>
-  <text x="140" y="125" font-size="14">192.168.123.140</text>
+  <text x="140" y="125" font-size="14">000.000.000.140</text>
 
   <rect x="560" y="70" width="300" height="120" fill="#eef" stroke="#000"/>
   <text x="580" y="100" font-size="16">LB2 (HAProxy + Keepalived)</text>
-  <text x="580" y="125" font-size="14">192.168.123.141</text>
+  <text x="580" y="125" font-size="14">000.000.000.141</text>
 
   <!-- VIP -->
   <rect x="380" y="220" width="220" height="60" fill="#ffe" stroke="#000"/>
-  <text x="400" y="255" font-size="16">VIP: 192.168.123.150:3306</text>
+  <text x="400" y="255" font-size="16">VIP: 000.000.000.150:3306</text>
 
   <!-- DB nodes -->
   <rect x="80" y="340" width="240" height="120" fill="#efe" stroke="#000"/>
   <text x="100" y="370" font-size="16">Node1</text>
-  <text x="100" y="395" font-size="14">192.168.123.100</text>
+  <text x="100" y="395" font-size="14">000.000.000.100</text>
 
   <rect x="370" y="340" width="240" height="120" fill="#efe" stroke="#000"/>
   <text x="390" y="370" font-size="16">Node2</text>
-  <text x="390" y="395" font-size="14">192.168.123.101</text>
+  <text x="390" y="395" font-size="14">000.000.000.101</text>
 
   <rect x="660" y="340" width="240" height="120" fill="#efe" stroke="#000"/>
   <text x="680" y="370" font-size="16">Node3</text>
-  <text x="680" y="395" font-size="14">192.168.123.103</text>
+  <text x="680" y="395" font-size="14">000.000.000.103</text>
 
   <!-- Lines -->
   <defs>
