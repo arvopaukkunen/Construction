@@ -1,0 +1,65 @@
+[
+  {
+    "id": "tab1",
+    "type": "tab",
+    "label": "Vallox Status \u2192 MQTT",
+    "disabled": false,
+    "info": "Reads Vallox and publishes to MQTT + HA discovery"
+  },
+  {
+    "id": "vx1",
+    "type": "vallox",
+    "z": "tab1",
+    "name": "Vallox 192.168.123.123",
+    "host": "192.168.123.123",
+    "port": "80",
+    "pollInterval": "5",
+    "x": 160,
+    "y": 80,
+    "wires": [
+      [
+        "sel1"
+      ]
+    ]
+  },
+  {
+    "id": "sel1",
+    "type": "function",
+    "z": "tab1",
+    "name": "Select & format",
+    "func": "const s = msg.payload || {};\nconst out = [];\nfunction pub(topic, val){ out.push({topic, payload: String(val)}) }\npub('vallox/airflow/supply', s.supplyFan || s.supply || 0);\npub('vallox/airflow/extract', s.extractFan || s.extract || 0);\npub('vallox/temp/outdoor', s.outdoorTemp || s.OutdoorTemp || 0);\npub('vallox/temp/supply', s.supplyTemp || s.SupplyAirTemp || 0);\npub('vallox/temp/extract', s.extractTemp || s.ExtractAirTemp || 0);\npub('vallox/mode', s.profile || s.mode || 'home');\nreturn [out];",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 380,
+    "y": 80,
+    "wires": [
+      [
+        "mqout"
+      ]
+    ]
+  },
+  {
+    "id": "mqout",
+    "type": "mqtt out",
+    "z": "tab1",
+    "name": "MQTT",
+    "topic": "",
+    "qos": "",
+    "retain": "",
+    "broker": "mq1",
+    "x": 610,
+    "y": 80,
+    "wires": []
+  },
+  {
+    "id": "mq1",
+    "type": "mqtt-broker",
+    "name": "MQTT",
+    "broker": "192.168.123.2",
+    "port": "1883",
+    "clientid": ""
+  }
+]

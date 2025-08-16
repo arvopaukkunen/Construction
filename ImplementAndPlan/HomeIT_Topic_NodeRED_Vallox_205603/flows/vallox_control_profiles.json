@@ -1,0 +1,104 @@
+[
+  {
+    "id": "tab2",
+    "type": "tab",
+    "label": "Vallox Mode Control",
+    "disabled": false
+  },
+  {
+    "id": "inj_home",
+    "type": "inject",
+    "z": "tab2",
+    "name": "Set HOME",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "payloadType": "json",
+    "payload": "{\"setProfile\":\"home\"}",
+    "repeat": "",
+    "once": false,
+    "x": 150,
+    "y": 60,
+    "wires": [
+      [
+        "vx_cmd"
+      ]
+    ]
+  },
+  {
+    "id": "inj_away",
+    "type": "inject",
+    "z": "tab2",
+    "name": "Set AWAY",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "payloadType": "json",
+    "payload": "{\"setProfile\":\"away\"}",
+    "x": 150,
+    "y": 110,
+    "wires": [
+      [
+        "vx_cmd"
+      ]
+    ]
+  },
+  {
+    "id": "inj_boost",
+    "type": "inject",
+    "z": "tab2",
+    "name": "Set BOOST",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "payloadType": "json",
+    "payload": "{\"setProfile\":\"boost\"}",
+    "x": 150,
+    "y": 160,
+    "wires": [
+      [
+        "vx_cmd"
+      ]
+    ]
+  },
+  {
+    "id": "inj_night",
+    "type": "inject",
+    "z": "tab2",
+    "name": "Set NIGHT",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "payloadType": "json",
+    "payload": "{\"setProfile\":\"night\"}",
+    "x": 150,
+    "y": 210,
+    "wires": [
+      [
+        "vx_cmd"
+      ]
+    ]
+  },
+  {
+    "id": "vx_cmd",
+    "type": "vallox",
+    "z": "tab2",
+    "name": "Vallox 192.168.123.123",
+    "host": "192.168.123.123",
+    "port": "80",
+    "pollInterval": "5",
+    "x": 420,
+    "y": 140,
+    "wires": [
+      []
+    ]
+  }
+]

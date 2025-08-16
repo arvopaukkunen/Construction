@@ -1,0 +1,100 @@
+[
+  {
+    "id": "f1",
+    "type": "tab",
+    "label": "RS485 to MQTT Bridge",
+    "disabled": false,
+    "info": "Reads Modbus over RS485 and publishes to MQTT"
+  },
+  {
+    "id": "mbr1",
+    "type": "modbus-read",
+    "z": "f1",
+    "name": "Read CO2 (ID=1)",
+    "topic": "",
+    "showStatusActivities": true,
+    "showErrors": true,
+    "unitid": "1",
+    "dataType": "InputRegister",
+    "adr": "0",
+    "quantity": "2",
+    "rate": "5",
+    "rateUnit": "s",
+    "delayOnStart": true,
+    "startDelayTime": "",
+    "server": "srv1",
+    "useIOFile": false,
+    "ioFile": "",
+    "useIOForPayload": false,
+    "x": 140,
+    "y": 80,
+    "wires": [
+      [
+        "fx1"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "fx1",
+    "type": "function",
+    "z": "f1",
+    "name": "Parse to PPM",
+    "func": "const regs = msg.payload.data || [];\n// Example: assume first register already equals PPM\nmsg.topic = \"sensors/co2\";\nmsg.payload = { ppm: regs[0] || 0, ts: Date.now() };\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 360,
+    "y": 80,
+    "wires": [
+      [
+        "mq1"
+      ]
+    ]
+  },
+  {
+    "id": "mq1",
+    "type": "mqtt out",
+    "z": "f1",
+    "name": "",
+    "topic": "",
+    "qos": "",
+    "retain": "",
+    "broker": "mqsrv",
+    "x": 560,
+    "y": 80,
+    "wires": []
+  },
+  {
+    "id": "srv1",
+    "type": "modbus-client",
+    "name": "RS485 /dev/ttyUSB0",
+    "clienttype": "serial",
+    "bufferCommands": true,
+    "stateLogEnabled": false,
+    "tcpHost": "127.0.0.1",
+    "tcpPort": "502",
+    "unit_id": 1,
+    "serialPort": "/dev/ttyUSB0",
+    "serialType": "RTU",
+    "serialBaudrate": "9600",
+    "serialDatabits": "8",
+    "serialStopbits": "1",
+    "serialParity": "none",
+    "serialConnectionDelay": "100",
+    "serialAsciiResponseStartDelimiter": "0x3A",
+    "serialAsciiResponseEndDelimiter": "0x0D",
+    "tcpType": "TPC-RTU-BUFFERD",
+    "tcpIPProtocol": "TCP"
+  },
+  {
+    "id": "mqsrv",
+    "type": "mqtt-broker",
+    "name": "MQTT",
+    "broker": "192.168.123.2",
+    "port": "1883",
+    "clientid": ""
+  }
+]

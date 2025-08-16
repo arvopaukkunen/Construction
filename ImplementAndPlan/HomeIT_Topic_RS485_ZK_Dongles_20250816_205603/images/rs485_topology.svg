@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="320">
+<rect x="20" y="40" width="200" height="70" rx="12" ry="12" stroke="black" fill="white"/>
+<text x="120" y="82" text-anchor="middle" font-family="Arial" font-size="14">Host (Raspberry Pi)</text>
+<line x1="220" y1="75" x2="850" y2="75" stroke="black" stroke-dasharray="6,6"/>
+<text x="535" y="60" text-anchor="middle" font-family="Arial" font-size="12">RS485 bus (A/B twisted pair)</text>
+<rect x="280" y="140" width="130" height="60" rx="10" ry="10" stroke="black" fill="white"/>
+<text x="345" y="168" text-anchor="middle" font-family="Arial" font-size="12">Device 1</text>
+<line x1="345" y1="140" x2="345" y2="75" stroke="black"/>
+<rect x="470" y="200" width="130" height="60" rx="10" ry="10" stroke="black" fill="white"/>
+<text x="535" y="228" text-anchor="middle" font-family="Arial" font-size="12">Device 2</text>
+<line x1="535" y1="200" x2="535" y2="75" stroke="black"/>
+<rect x="660" y="140" width="130" height="60" rx="10" ry="10" stroke="black" fill="white"/>
+<text x="725" y="168" text-anchor="middle" font-family="Arial" font-size="12">Device 3</text>
+<line x1="725" y1="140" x2="725" y2="75" stroke="black"/>
+<text x="850" y="90" font-family="Arial" font-size="12">120Ω</text>
+<text x="215" y="90" font-family="Arial" font-size="12">120Ω</text>
+</svg>
