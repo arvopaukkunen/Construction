@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <title>VS Code Arduino Setup Overview</title>
+  <rect x="0" y="0" width="1200" height="700" fill="#ffffff" stroke="#111"/>
+
+  <text x="24" y="40" font-size="24" font-family="Arial">VS Code Arduino Setup Overview</text>
+
+  <!-- Left: Editor -->
+  <rect x="40" y="80" width="320" height="220" rx="12" ry="12" fill="#eef" stroke="#333"/>
+  <text x="60" y="120" font-size="18" font-family="Arial">VS Code</text>
+  <text x="60" y="150" font-size="13" font-family="Arial">• Arduino extension</text>
+  <text x="60" y="170" font-size="13" font-family="Arial">• C/C++</text>
+  <text x="60" y="190" font-size="13" font-family="Arial">• PlatformIO (alt)</text>
+  <text x="60" y="230" font-size="13" font-family="Arial">Profiles to switch stacks</text>
+
+  <!-- Middle: Toolchains -->
+  <rect x="420" y="80" width="360" height="220" rx="12" ry="12" fill="#efe" stroke="#333"/>
+  <text x="440" y="120" font-size="18" font-family="Arial">Toolchains</text>
+  <text x="440" y="150" font-size="13" font-family="Arial">• Arduino CLI</text>
+  <text x="440" y="170" font-size="13" font-family="Arial">• PlatformIO (alt)</text>
+  <text x="440" y="210" font-size="13" font-family="Arial">Tasks for build/upload</text>
+
+  <!-- Right: Boards -->
+  <rect x="820" y="80" width="340" height="220" rx="12" ry="12" fill="#ffe" stroke="#333"/>
+  <text x="840" y="120" font-size="18" font-family="Arial">Boards</text>
+  <text x="840" y="150" font-size="13" font-family="Arial">• Arduino Uno (arduino:avr:uno)</text>
+  <text x="840" y="170" font-size="13" font-family="Arial">• Arduino Opta (find FQBN)</text>
+  <text x="840" y="210" font-size="13" font-family="Arial">USB/Serial drivers (Win)</text>
+
+  <!-- Arrows -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#000"/>
+    </marker>
+  </defs>
+  <line x1="360" y1="190" x2="420" y2="190" stroke="#000" marker-end="url(#arrow)"/>
+  <line x1="780" y1="190" x2="820" y2="190" stroke="#000" marker-end="url(#arrow)"/>
+
+  <!-- Bottom: Samples -->
+  <rect x="40" y="360" width="1120" height="280" rx="12" ry="12" fill="#f8f8f8" stroke="#aaa"/>
+  <text x="60" y="395" font-size="18" font-family="Arial">Samples</text>
+  <text x="60" y="425" font-size="13" font-family="Arial">• Uno Blink (Arduino CLI + Wokwi)</text>
+  <text x="60" y="445" font-size="13" font-family="Arial">• Opta Blink (Arduino CLI)</text>
+  <text x="60" y="465" font-size="13" font-family="Arial">• Uno Blink (PlatformIO)</text>
+</svg>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1100" height="620" viewBox="0 0 1100 620"
+     version="1.1">
+  <title>Home Automation App – Architecture (HomeKit backend)</title>
+  <desc>Overview of .NET MAUI iOS app using Apple HomeKit as a local backend</desc>
+
+  <rect x="0" y="0" width="1100" height="620" fill="#ffffff" stroke="#111111"/>
+
+  <g id="heading">
+    <text x="20" y="36" font-size="22" font-family="Arial, Helvetica, sans-serif">Home Automation App – Architecture (HomeKit backend)</text>
+  </g>
+
+  <!-- App -->
+  <g id="app">
+    <rect x="40" y="80" width="240" height="120" fill="#e9eefb" stroke="#000000" rx="14" ry="14"/>
+    <text x="60" y="115" font-size="16" font-family="Arial">.NET MAUI iOS App</text>
+    <text x="60" y="140" font-size="13" font-family="Arial">UI: rooms, devices, scenes</text>
+    <text x="60" y="160" font-size="13" font-family="Arial">Local-only control</text>
+  </g>
+
+  <!-- HomeKit -->
+  <g id="homekit">
+    <rect x="360" y="80" width="300" height="120" fill="#e8f7e8" stroke="#000000" rx="14" ry="14"/>
+    <text x="380" y="115" font-size="16" font-family="Arial">Apple HomeKit (on-device)</text>
+    <text x="380" y="140" font-size="13" font-family="Arial">HMHomeManager, HMAccessory</text>
+    <text x="380" y="160" font-size="13" font-family="Arial">Permissions &amp; pairing</text>
+  </g>
+
+  <!-- Home Hub -->
+  <g id="hub">
+    <rect x="720" y="80" width="320" height="120" fill="#fff6d8" stroke="#000000" rx="14" ry="14"/>
+    <text x="740" y="115" font-size="16" font-family="Arial">Home Hub (optional)</text>
+    <text x="740" y="140" font-size="13" font-family="Arial">Apple TV / HomePod / iPad</text>
+    <text x="740" y="160" font-size="13" font-family="Arial">Remote access &amp; automations</text>
+  </g>
+
+  <!-- Devices panel -->
+  <g id="devices">
+    <rect x="60" y="280" width="980" height="200" fill="#f8f8f8" stroke="#aaaaaa" rx="18" ry="18"/>
+    <text x="80" y="305" font-size="16" font-family="Arial">Devices</text>
+
+    <rect x="80" y="320" width="250" height="140" fill="#f0fff0" stroke="#000000" rx="12" ry="12"/>
+    <text x="100" y="350" font-size="14" font-family="Arial">Legrand Valena (Netatmo)</text>
+    <text x="100" y="370" font-size="12" font-family="Arial">• Pistorasiat</text>
+    <text x="100" y="388" font-size="12" font-family="Arial">• Valokytkimet</text>
+
+    <rect x="370" y="320" width="250" height="140" fill="#f0fff0" stroke="#000000" rx="12" ry="12"/>
+    <text x="390" y="350" font-size="14" font-family="Arial">Ilmanvaihdon venttiilit</text>
+    <text x="390" y="370" font-size="12" font-family="Arial">• Suora HomeKit</text>
+    <text x="390" y="388" font-size="12" font-family="Arial">• tai HA HomeKit Bridge</text>
+
+    <rect x="660" y="320" width="360" height="140" fill="#f0fff0" stroke="#000000" rx="12" ry="12"/>
+    <text x="680" y="350" font-size="14" font-family="Arial">Lisäintegraatiot (valinnaiset)</text>
+    <text x="680" y="370" font-size="12" font-family="Arial">• Node-RED scenes / webhooks</text>
+    <text x="680" y="388" font-size="12" font-family="Arial">• InfluxDB energianäkymä (read-only)</text>
+  </g>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#000000"/>
+    </marker>
+  </defs>
+
+  <!-- Lines -->
+  <line x1="280" y1="140" x2="360" y2="140" stroke="#000000" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="660" y1="140" x2="720" y2="140" stroke="#000000" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="510" y1="200" x2="510" y2="320" stroke="#000000" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+</svg>

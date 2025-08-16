@@ -1,0 +1,21 @@
+{
+  "$schema": "vscode://schemas/profile/2023-05-01",
+  "name": "Arduino CLI",
+  "extensions": {
+    "enabled": [
+      "ms-vscode.cpptools",
+      "vsciot-vscode.vscode-arduino",
+      "wokwi.wokwi-vscode"
+    ],
+    "disabled": [
+      "platformio.platformio-ide"
+    ]
+  },
+  "settings": {
+    "arduino.useArduinoCli": true,
+    "arduino.commandPath": "arduino-cli",
+    "files.associations": {
+      "*.ino": "cpp"
+    }
+  }
+}

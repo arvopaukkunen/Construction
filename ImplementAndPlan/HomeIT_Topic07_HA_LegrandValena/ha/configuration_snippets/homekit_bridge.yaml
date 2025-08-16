@@ -1,0 +1,14 @@
+# ha/configuration_snippets/homekit_bridge.yaml
+homekit:
+  - name: "HomeIT Bridge"
+    port: 21064
+    filter:
+      include_entities:
+        - switch.kitchen_coffee_socket
+        - switch.livingroom_tv_socket
+        - light.livingroom_main
+        - scene.aamu
+        - script.ventilation_max
+    entity_config:
+      script.ventilation_max:
+        name: "Ilmanvaihto MAX"

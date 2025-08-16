@@ -1,0 +1,31 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build (Arduino CLI)",
+      "type": "shell",
+      "command": "arduino-cli",
+      "args": [
+        "compile",
+        "-b",
+        "${config:arduino.fqbn}",
+        "${workspaceFolder}/${config:arduino.sketchFolder}"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Upload (Arduino CLI)",
+      "type": "shell",
+      "command": "arduino-cli",
+      "args": [
+        "upload",
+        "-b",
+        "${config:arduino.fqbn}",
+        "-p",
+        "${config:arduino.port}",
+        "${workspaceFolder}/${config:arduino.sketchFolder}"
+      ],
+      "problemMatcher": []
+    }
+  ]
+}

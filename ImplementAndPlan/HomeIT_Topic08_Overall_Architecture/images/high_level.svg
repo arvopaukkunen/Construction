@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1280" height="640" viewBox="0 0 1280 640">
+  <title>High-level Topology</title>
+  <rect x="0" y="0" width="1280" height="640" fill="#ffffff" stroke="#111111"/>
+
+  <g font-family="Arial" font-size="16">
+    <text x="20" y="36">High-level Topology</text>
+    <rect x="40" y="80" width="300" height="120" rx="16" ry="16" fill="#e8f5e9" stroke="#333333"/>
+    <text x="60" y="140">UI and Control</text>
+    <rect x="380" y="80" width="240" height="120" rx="16" ry="16" fill="#e3f2fd" stroke="#333333"/>
+    <text x="400" y="140">MQTT</text>
+    <rect x="660" y="80" width="240" height="120" rx="16" ry="16" fill="#ede7f6" stroke="#333333"/>
+    <text x="680" y="140">InfluxDB</text>
+    <rect x="940" y="80" width="260" height="120" rx="16" ry="16" fill="#fff3e0" stroke="#333333"/>
+    <text x="960" y="140">MariaDB</text>
+  </g>
+
+</svg>

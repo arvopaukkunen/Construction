@@ -1,0 +1,14 @@
+# Telegraf → InfluxDB2 example for Victron
+[[inputs.mqtt_consumer]]
+  servers = ["tcp://192.168.123.115:1883"]
+  topics  = ["N/+/battery/+/Soc","R/+/vebus/+/Dc/+/Current","N/+/generator/+/State"]
+  qos = 0
+  client_id = "telegraf-victron"
+  data_format = "value"
+  data_type   = "float"
+
+[[outputs.influxdb_v2]]
+  urls = ["http://192.168.123.115:8086"]
+  token = "YOUR-TOKEN"
+  organization = "Arvosoft Oy"
+  bucket = "sensors"

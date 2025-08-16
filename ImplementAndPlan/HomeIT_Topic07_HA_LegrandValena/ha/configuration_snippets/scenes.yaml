@@ -1,0 +1,15 @@
+# ha/configuration_snippets/scenes.yaml
+scene:
+  - id: aamu
+    name: Aamu
+    entities:
+      light.livingroom_main:
+        state: "on"
+        brightness: 180
+      switch.kitchen_coffee_socket: "on"
+  - id: poissa
+    name: Poissa
+    entities:
+      light.livingroom_main: "off"
+      switch.kitchen_coffee_socket: "off"
+      switch.livingroom_tv_socket: "off"

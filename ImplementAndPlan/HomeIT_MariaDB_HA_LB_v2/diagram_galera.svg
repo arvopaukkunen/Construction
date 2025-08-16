@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="560">
+  <rect x="0" y="0" width="980" height="560" fill="white" stroke="black"/>
+  <text x="20" y="30" font-size="20">MariaDB HA: Galera + HAProxy + Keepalived (VIP)</text>
+
+  <!-- LBs -->
+  <rect x="120" y="70" width="300" height="120" fill="#eef" stroke="#000"/>
+  <text x="140" y="100" font-size="16">LB1 (HAProxy + Keepalived)</text>
+  <text x="140" y="125" font-size="14">192.168.123.140</text>
+
+  <rect x="560" y="70" width="300" height="120" fill="#eef" stroke="#000"/>
+  <text x="580" y="100" font-size="16">LB2 (HAProxy + Keepalived)</text>
+  <text x="580" y="125" font-size="14">192.168.123.141</text>
+
+  <!-- VIP -->
+  <rect x="380" y="220" width="220" height="60" fill="#ffe" stroke="#000"/>
+  <text x="400" y="255" font-size="16">VIP: 192.168.123.150:3306</text>
+
+  <!-- DB nodes -->
+  <rect x="80" y="340" width="240" height="120" fill="#efe" stroke="#000"/>
+  <text x="100" y="370" font-size="16">Node1</text>
+  <text x="100" y="395" font-size="14">192.168.123.100</text>
+
+  <rect x="370" y="340" width="240" height="120" fill="#efe" stroke="#000"/>
+  <text x="390" y="370" font-size="16">Node2</text>
+  <text x="390" y="395" font-size="14">192.168.123.101</text>
+
+  <rect x="660" y="340" width="240" height="120" fill="#efe" stroke="#000"/>
+  <text x="680" y="370" font-size="16">Node3</text>
+  <text x="680" y="395" font-size="14">192.168.123.103</text>
+
+  <!-- Lines -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#000"/>
+    </marker>
+  </defs>
+
+  <!-- Clients to VIP -->
+  <line x1="490" y1="510" x2="490" y2="540" stroke="#000"/>
+  <text x="420" y="555" font-size="12">Clients (Home Assistant / Node-RED / Apps)</text>
+  <line x1="490" y1="540" x2="490" y2="250" stroke="#000" marker-end="url(#arrow)"/>
+
+  <!-- VIP to LB1 & LB2 -->
+  <line x1="490" y1="250" x2="270" y2="190" stroke="#000" marker-end="url(#arrow)"/>
+  <line x1="490" y1="250" x2="710" y2="190" stroke="#000" marker-end="url(#arrow)"/>
+
+  <!-- LBs to DB nodes -->
+  <line x1="270" y1="190" x2="200" y2="340" stroke="#000" marker-end="url(#arrow)"/>
+  <line x1="270" y1="190" x2="490" y2="340" stroke="#000" marker-end="url(#arrow)"/>
+  <line x1="270" y1="190" x2="780" y2="340" stroke="#000" marker-end="url(#arrow)"/>
+
+  <line x1="710" y1="190" x2="200" y2="340" stroke="#000" marker-end="url(#arrow)"/>
+  <line x1="710" y1="190" x2="490" y2="340" stroke="#000" marker-end="url(#arrow)"/>
+  <line x1="710" y1="190" x2="780" y2="340" stroke="#000" marker-end="url(#arrow)"/>
+
+  <!-- Galera ring -->
+  <line x1="200" y1="400" x2="490" y2="400" stroke="#000" marker-end="url(#arrow)"/>
+  <line x1="490" y1="400" x2="780" y2="400" stroke="#000" marker-end="url(#arrow)"/>
+  <line x1="780" y1="400" x2="200" y2="400" stroke="#000" marker-end="url(#arrow)"/>
+</svg>

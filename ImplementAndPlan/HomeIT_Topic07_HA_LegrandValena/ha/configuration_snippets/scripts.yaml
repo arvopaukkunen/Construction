@@ -1,0 +1,21 @@
+# ha/configuration_snippets/scripts.yaml
+script:
+  ventilation_max:
+    alias: "Ilmanvaihto MAX"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "hvac/command/boost"
+          payload: "on"
+      - service: switch.turn_on
+        target: { entity_id: switch.bathroom_fan_socket }
+
+  ventilation_normal:
+    alias: "Ilmanvaihto NORMAL"
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: "hvac/command/boost"
+          payload: "off"
+      - service: switch.turn_off
+        target: { entity_id: switch.bathroom_fan_socket }

@@ -1,0 +1,134 @@
+[
+  {
+    "id": "33dc0db3",
+    "type": "tab",
+    "label": "summer_sabiana_control",
+    "disabled": false,
+    "info": ""
+  },
+  {
+    "id": "5add1c79",
+    "type": "mqtt in",
+    "z": "33dc0db3",
+    "name": "T1 temperature",
+    "topic": "home/sensors/T1",
+    "qos": "0",
+    "datatype": "auto",
+    "broker": "035511d8",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "x": 170,
+    "y": 120,
+    "wires": [
+      [
+        "fn_summer"
+      ]
+    ]
+  },
+  {
+    "id": "fn_summer",
+    "type": "function",
+    "z": "33dc0db3",
+    "name": "summer_rules \u2192 speed",
+    "func": "// Input: msg.payload = temperature (\u00b0C)\n// Rules: >28 \u2192 MAX(3), 24< t <28 \u2192 MED(2), <=24 \u2192 OFF(0)\nvar t = Number(msg.payload);\nvar speed = 0;\nif (t > 28) speed = 3;\nelse if (t > 24 && t < 28) speed = 2;\nelse speed = 0;\n\n// Prepare Modbus single holding register write (FC=6)\n// Adjust address to match Sabiana fan speed register\nmsg.fc = 6;\nmsg.unitid = 1;\nmsg.address = 40010; // TODO: set correct address\nmsg.quantity = 1;\nmsg.payload = [ speed ];\nmsg.topic = \"sabiana/fan_speed\";\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 440,
+    "y": 120,
+    "wires": [
+      [
+        "mbw_sabiana_speed",
+        "debug_summer"
+      ]
+    ]
+  },
+  {
+    "id": "f62fc334",
+    "type": "modbus-write",
+    "z": "33dc0db3",
+    "name": "Write Fan Speed",
+    "showStatusActivities": true,
+    "showErrors": true,
+    "unitid": "1",
+    "dataType": "HoldingRegister",
+    "adr": "40010",
+    "quantity": "1",
+    "server": "ff701c8e",
+    "emptyMsgOnFail": true,
+    "keepMsgProperties": true,
+    "x": 730,
+    "y": 120,
+    "wires": [
+      [],
+      []
+    ]
+  },
+  {
+    "id": "c68b8c72",
+    "type": "debug",
+    "z": "33dc0db3",
+    "name": "summer log",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "complete": "true",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 740,
+    "y": 170,
+    "wires": []
+  },
+  {
+    "id": "035511d8",
+    "type": "mqtt-broker",
+    "name": "Local MQTT",
+    "broker": "192.168.123.115",
+    "port": "1883",
+    "clientid": "",
+    "usetls": false,
+    "protocolVersion": "4",
+    "keepalive": "60",
+    "cleansession": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthPayload": "",
+    "birthMsg": {},
+    "closeTopic": "",
+    "closeQos": "0",
+    "closePayload": "",
+    "closeMsg": {},
+    "willTopic": "",
+    "willQos": "0",
+    "willPayload": "",
+    "willMsg": {},
+    "sessionExpiry": ""
+  },
+  {
+    "id": "ff701c8e",
+    "type": "modbus-client",
+    "z": "",
+    "name": "Sabiana RS485",
+    "clienttype": "serial",
+    "bufferCommands": true,
+    "stateLogEnabled": false,
+    "queueLogEnabled": false,
+    "tcpHost": "192.168.0.10",
+    "tcpPort": "502",
+    "tcpType": "DEFAULT",
+    "serialPort": "/dev/ttyUSB0",
+    "serialType": "RTU-BUFFERD",
+    "serialBaudrate": "9600",
+    "serialDatabits": "8",
+    "serialStopbits": "1",
+    "serialParity": "none",
+    "serialConnectionDelay": "100",
+    "unit_id": 1,
+    "commandDelay": "1",
+    "clientTimeout": "1000",
+    "reconnectTimeout": "2000"
+  }
+]

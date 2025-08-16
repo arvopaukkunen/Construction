@@ -1,0 +1,13 @@
+{
+  "arduino.useArduinoCli": true,
+  "arduino.path": "",
+  "arduino.commandPath": "arduino-cli",
+  "arduino.logLevel": "info",
+  "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+  "files.associations": {
+    "*.ino": "cpp"
+  },
+  "arduino.sketchFolder": "samples/uno-blink",
+  "arduino.fqbn": "arduino:avr:uno",
+  "arduino.port": "COM3"
+}

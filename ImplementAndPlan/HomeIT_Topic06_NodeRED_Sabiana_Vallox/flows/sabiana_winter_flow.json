@@ -1,0 +1,82 @@
+[
+  {
+    "id": "5a380f1f",
+    "type": "tab",
+    "label": "winter_sabiana_control",
+    "disabled": false,
+    "info": "Winter rules with heating circulation"
+  },
+  {
+    "id": "4df3bd11",
+    "type": "mqtt in",
+    "z": "5a380f1f",
+    "name": "T1 temperature",
+    "topic": "home/sensors/T1",
+    "qos": "0",
+    "datatype": "auto",
+    "broker": "035511d8",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "x": 170,
+    "y": 120,
+    "wires": [
+      [
+        "fn_winter"
+      ]
+    ]
+  },
+  {
+    "id": "fn_winter",
+    "type": "function",
+    "z": "5a380f1f",
+    "name": "winter_rules \u2192 speed",
+    "func": "// Rules:\n// temp < 18 \u2192 MAX(3)\n// 17 < temp < 25 \u2192 MED(2)\n// 24 < temp < 30 \u2192 MIN(1)\n// temp >= 30 \u2192 OFF(0)\nvar t = Number(msg.payload);\nvar speed = 0;\nif (t < 18) speed = 3;\nelse if (t > 17 && t < 25) speed = 2;\nelse if (t > 24 && t < 30) speed = 1;\nelse speed = 0;\n\nmsg.fc = 6;\nmsg.unitid = 1;\nmsg.address = 40010; // TODO: set correct register\nmsg.quantity = 1;\nmsg.payload = [ speed ];\nmsg.topic = \"sabiana/fan_speed\";\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "x": 440,
+    "y": 120,
+    "wires": [
+      [
+        "mbw_sabiana_speed_w",
+        "debug_winter"
+      ]
+    ]
+  },
+  {
+    "id": "1fa6478d",
+    "type": "modbus-write",
+    "z": "5a380f1f",
+    "name": "Write Fan Speed (winter)",
+    "showStatusActivities": true,
+    "showErrors": true,
+    "unitid": "1",
+    "dataType": "HoldingRegister",
+    "adr": "40010",
+    "quantity": "1",
+    "server": "ff701c8e",
+    "emptyMsgOnFail": true,
+    "keepMsgProperties": true,
+    "x": 760,
+    "y": 120,
+    "wires": [
+      [],
+      []
+    ]
+  },
+  {
+    "id": "3d2de178",
+    "type": "debug",
+    "z": "5a380f1f",
+    "name": "winter log",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "complete": "true",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 770,
+    "y": 170,
+    "wires": []
+  }
+]

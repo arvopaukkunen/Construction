@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="460">
+  <rect x="0" y="0" width="900" height="460" fill="white" stroke="black"/>
+  <text x="20" y="30" font-size="20">MariaDB Basic: 1 Primary + 2 Replicas</text>
+
+  <rect x="60" y="80" width="240" height="110" fill="#f0f8ff" stroke="#000"/>
+  <text x="80" y="110" font-size="16">Primary</text>
+  <text x="80" y="135" font-size="14">192.168.123.100</text>
+  <text x="80" y="155" font-size="12">Writes</text>
+
+  <rect x="360" y="80" width="220" height="110" fill="#f8fff0" stroke="#000"/>
+  <text x="380" y="110" font-size="16">Replica A</text>
+  <text x="380" y="135" font-size="14">192.168.123.101</text>
+  <text x="380" y="155" font-size="12">Reads</text>
+
+  <rect x="620" y="80" width="220" height="110" fill="#f8fff0" stroke="#000"/>
+  <text x="640" y="110" font-size="16">Replica B</text>
+  <text x="640" y="135" font-size="14">192.168.123.103</text>
+  <text x="640" y="155" font-size="12">Reads</text>
+
+  <line x1="300" y1="120" x2="360" y2="120" stroke="#000" marker-end="url(#arrow)"/>
+  <line x1="300" y1="150" x2="360" y2="150" stroke="#000" marker-end="url(#arrow)"/>
+  <line x1="300" y1="140" x2="360" y2="140" stroke="#000" marker-end="url(#arrow)"/>
+
+  <line x1="300" y1="120" x2="620" y2="120" stroke="#000" marker-end="url(#arrow)"/>
+  <line x1="300" y1="150" x2="620" y2="150" stroke="#000" marker-end="url(#arrow)"/>
+
+  <rect x="60" y="250" width="780" height="160" fill="#fffaf0" stroke="#000"/>
+  <text x="80" y="275" font-size="16">Clients</text>
+  <text x="80" y="295" font-size="12">• Home Assistant / Node-RED (writes) → Primary</text>
+  <text x="80" y="315" font-size="12">• Grafana / analytics (reads) → Replicas</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#000"/>
+    </marker>
+  </defs>
+</svg>

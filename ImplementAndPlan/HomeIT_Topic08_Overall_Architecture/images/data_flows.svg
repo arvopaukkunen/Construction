@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1280" height="640" viewBox="0 0 1280 640">
+  <title>Data and Control Flows</title>
+  <rect x="0" y="0" width="1280" height="640" fill="#ffffff" stroke="#111111"/>
+
+  <g font-family="Arial" font-size="16">
+    <text x="20" y="36">Data and Control Flows</text>
+
+    <!-- Energy path -->
+    <rect x="40" y="80" width="230" height="100" rx="12" ry="12" fill="#f0fff0" stroke="#333333"/>
+    <text x="60" y="130">Victron MQTT</text>
+
+    <rect x="300" y="80" width="210" height="100" rx="12" ry="12" fill="#e3f2fd" stroke="#333333"/>
+    <text x="320" y="130">Mosquitto</text>
+
+    <rect x="540" y="80" width="210" height="100" rx="12" ry="12" fill="#fff3e0" stroke="#333333"/>
+    <text x="560" y="130">Telegraf</text>
+
+    <rect x="780" y="80" width="210" height="100" rx="12" ry="12" fill="#ede7f6" stroke="#333333"/>
+    <text x="800" y="130">InfluxDB</text>
+
+    <rect x="1020" y="80" width="220" height="100" rx="12" ry="12" fill="#f8f8f8" stroke="#333333"/>
+    <text x="1040" y="130">Dashboards and HA</text>
+
+    <!-- HVAC path -->
+    <rect x="40" y="240" width="230" height="100" rx="12" ry="12" fill="#e8f5e9" stroke="#333333"/>
+    <text x="60" y="290">Home Assistant</text>
+
+    <rect x="300" y="240" width="230" height="100" rx="12" ry="12" fill="#e8f5e9" stroke="#333333"/>
+    <text x="320" y="290">Node-RED</text>
+
+    <rect x="560" y="220" width="210" height="70" rx="12" ry="12" fill="#f0fff0" stroke="#333333"/>
+    <text x="580" y="260">Sabiana (Modbus)</text>
+
+    <rect x="560" y="310" width="210" height="70" rx="12" ry="12" fill="#f0fff0" stroke="#333333"/>
+    <text x="580" y="350">Vallox (Modbus)</text>
+
+    <!-- App path -->
+    <rect x="40" y="420" width="230" height="100" rx="12" ry="12" fill="#e8f5e9" stroke="#333333"/>
+    <text x="60" y="470">iOS .NET MAUI</text>
+
+    <rect x="300" y="420" width="230" height="100" rx="12" ry="12" fill="#f0fff0" stroke="#333333"/>
+    <text x="320" y="470">HomeKit</text>
+
+    <rect x="560" y="420" width="230" height="100" rx="12" ry="12" fill="#f0fff0" stroke="#333333"/>
+    <text x="580" y="470">Legrand and Devices</text>
+
+    <!-- Simple connector lines (no arrowheads) -->
+    <line x1="270" y1="130" x2="300" y2="130" stroke="#000000"/>
+    <line x1="510" y1="130" x2="540" y2="130" stroke="#000000"/>
+    <line x1="750" y1="130" x2="780" y2="130" stroke="#000000"/>
+    <line x1="990" y1="130" x2="1020" y2="130" stroke="#000000"/>
+
+    <line x1="270" y1="290" x2="300" y2="290" stroke="#000000"/>
+    <line x1="530" y1="255" x2="560" y2="255" stroke="#000000"/>
+    <line x1="530" y1="345" x2="560" y2="345" stroke="#000000"/>
+
+    <line x1="270" y1="470" x2="300" y2="470" stroke="#000000"/>
+    <line x1="530" y1="470" x2="560" y2="470" stroke="#000000"/>
+  </g>
+
+</svg>

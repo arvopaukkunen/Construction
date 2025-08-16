@@ -1,0 +1,15 @@
+{
+  "$schema": "vscode://schemas/profile/2023-05-01",
+  "name": "PlatformIO",
+  "extensions": {
+    "enabled": [
+      "platformio.platformio-ide",
+      "ms-vscode.cpptools"
+    ],
+    "disabled": [
+      "vsciot-vscode.vscode-arduino",
+      "wokwi.wokwi-vscode"
+    ]
+  },
+  "settings": {}
+}

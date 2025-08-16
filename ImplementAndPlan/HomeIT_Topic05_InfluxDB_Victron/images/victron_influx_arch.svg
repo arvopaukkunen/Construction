@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="560" viewBox="0 0 1180 560">
+  <title>Victron MQTT → Telegraf → InfluxDB (24h Queries)</title>
+  <rect x="0" y="0" width="1180" height="560" fill="#ffffff" stroke="#111111"/>
+  <text x="24" y="40" font-size="24" font-family="Arial">Victron MQTT → Telegraf → InfluxDB (24h Queries)</text>
+
+  <rect x="40" y="80" width="250" height="120" rx="12" fill="#E8F5E9" stroke="#333"/>
+  <text x="60" y="120" font-size="16" font-family="Arial">Victron / Cerbo GX</text>
+  <text x="60" y="142" font-size="12" font-family="Arial">SOC, DC Currents, Gen State</text>
+
+  <rect x="330" y="80" width="220" height="120" rx="12" fill="#E3F2FD" stroke="#333"/>
+  <text x="350" y="120" font-size="16" font-family="Arial">MQTT Broker</text>
+  <text x="350" y="142" font-size="12" font-family="Arial">192.168.123.115:1883</text>
+
+  <rect x="590" y="80" width="230" height="120" rx="12" fill="#FFF3E0" stroke="#333"/>
+  <text x="610" y="120" font-size="16" font-family="Arial">Telegraf</text>
+  <text x="610" y="142" font-size="12" font-family="Arial">inputs.mqtt_consumer</text>
+
+  <rect x="860" y="80" width="260" height="120" rx="12" fill="#EDE7F6" stroke="#333"/>
+  <text x="880" y="120" font-size="16" font-family="Arial">InfluxDB 2</text>
+  <text x="880" y="142" font-size="12" font-family="Arial">Bucket: sensors</text>
+
+  <rect x="40" y="260" width="330" height="120" rx="12" fill="#F8F8F8" stroke="#333"/>
+  <text x="60" y="300" font-size="16" font-family="Arial">Dashboards</text>
+  <text x="60" y="322" font-size="12" font-family="Arial">Grafana / InfluxDB UI</text>
+
+  <rect x="410" y="260" width="330" height="120" rx="12" fill="#F8F8F8" stroke="#333"/>
+  <text x="430" y="300" font-size="16" font-family="Arial">Flux Queries</text>
+  <text x="430" y="322" font-size="12" font-family="Arial">24h windows, pivot, decode</text>
+
+  <rect x="780" y="260" width="340" height="120" rx="12" fill="#F8F8F8" stroke="#333"/>
+  <text x="800" y="300" font-size="16" font-family="Arial">Tasks</text>
+  <text x="800" y="322" font-size="12" font-family="Arial">5m downsample → sensors_agg</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#000"/>
+    </marker>
+  </defs>
+
+  <line x1="290" y1="140" x2="330" y2="140" stroke="#000" marker-end="url(#arrow)"/>
+  <line x1="550" y1="140" x2="590" y2="140" stroke="#000" marker-end="url(#arrow)"/>
+  <line x1="820" y1="140" x2="860" y2="140" stroke="#000" marker-end="url(#arrow)"/>
+
+  <line x1="990" y1="200" x2="990" y2="260" stroke="#000" marker-end="url(#arrow)"/>
+  <line x1="700" y1="200" x2="700" y2="260" stroke="#000" marker-end="url(#arrow)"/>
+  <line x1="200" y1="200" x2="200" y2="260" stroke="#000" marker-end="url(#arrow)"/>
+</svg>

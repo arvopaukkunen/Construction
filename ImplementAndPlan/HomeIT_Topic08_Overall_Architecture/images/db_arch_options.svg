@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1280" height="640" viewBox="0 0 1280 640">
+  <title>DB Options</title>
+  <rect x="0" y="0" width="1280" height="640" fill="#ffffff" stroke="#111111"/>
+
+  <g font-family="Arial" font-size="16">
+    <text x="20" y="36">Database Architecture Options</text>
+    <rect x="40" y="80" width="560" height="500" rx="16" ry="16" fill="#f8f8f8" stroke="#aaaaaa"/>
+    <text x="60" y="110">Primary and Replica</text>
+    <rect x="660" y="80" width="560" height="500" rx="16" ry="16" fill="#f8f8f8" stroke="#aaaaaa"/>
+    <text x="680" y="110">Galera and VIP</text>
+  </g>
+
+</svg>

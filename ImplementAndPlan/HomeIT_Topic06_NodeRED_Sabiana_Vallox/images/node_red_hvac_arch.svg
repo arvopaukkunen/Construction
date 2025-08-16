@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520">
+  <title>Node-RED ↔ Sabiana/Vallox (Modbus + MQTT)</title>
+  <rect x="0" y="0" width="1200" height="520" fill="#fff" stroke="#111"/>
+  <text x="20" y="36" font-size="22" font-family="Arial">Node-RED ↔ Sabiana/Vallox (Modbus + MQTT)</text>
+
+  <rect x="60" y="80" width="300" height="120" rx="12" fill="#e3f2fd" stroke="#333"/>
+  <text x="80" y="120" font-size="16" font-family="Arial">MQTT broker</text>
+  <text x="80" y="144" font-size="12" font-family="Arial">192.168.123.115:1883</text>
+
+  <rect x="440" y="80" width="320" height="120" rx="12" fill="#e8f5e9" stroke="#333"/>
+  <text x="460" y="120" font-size="16" font-family="Arial">Node-RED</text>
+  <text x="460" y="144" font-size="12" font-family="Arial">Flows: Summer/Winter, Night, Boost</text>
+
+  <rect x="840" y="60" width="280" height="140" rx="12" fill="#fff3e0" stroke="#333"/>
+  <text x="860" y="110" font-size="16" font-family="Arial">Sabiana CVP–ECM–MB</text>
+  <text x="860" y="134" font-size="12" font-family="Arial">RS485 (Modbus RTU)</text>
+
+  <rect x="840" y="240" width="280" height="140" rx="12" fill="#fff3e0" stroke="#333"/>
+  <text x="860" y="290" font-size="16" font-family="Arial">Vallox TSK Multi 80 MV</text>
+  <text x="860" y="314" font-size="12" font-family="Arial">RS485 (Modbus RTU)</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#000"/>
+    </marker>
+  </defs>
+  <line x1="360" y1="140" x2="440" y2="140" stroke="#000" marker-end="url(#arrow)"/>
+  <line x1="760" y1="120" x2="840" y2="120" stroke="#000" marker-end="url(#arrow)"/>
+  <line x1="760" y1="300" x2="840" y2="300" stroke="#000" marker-end="url(#arrow)"/>
+  <line x1="380" y1="200" x2="440" y2="200" stroke="#000" marker-end="url(#arrow)"/>
+  <text x="120" y="200" font-size="12" font-family="Arial">home/sensors/T1</text>
+
+</svg>

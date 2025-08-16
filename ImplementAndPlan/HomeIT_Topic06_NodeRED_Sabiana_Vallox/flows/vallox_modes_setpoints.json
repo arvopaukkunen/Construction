@@ -1,0 +1,304 @@
+[
+  {
+    "id": "b126b20e",
+    "type": "tab",
+    "label": "vallox_modes_setpoints",
+    "disabled": false,
+    "info": "Night mode, Boost, Airflow setpoints (fill register addresses)"
+  },
+  {
+    "id": "cf31132b",
+    "type": "inject",
+    "z": "b126b20e",
+    "name": "Night Mode ON",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "1",
+    "payloadType": "num",
+    "x": 180,
+    "y": 100,
+    "wires": [
+      [
+        "fn_night"
+      ]
+    ]
+  },
+  {
+    "id": "944d0c49",
+    "type": "inject",
+    "z": "b126b20e",
+    "name": "Night Mode OFF",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "0",
+    "payloadType": "num",
+    "x": 180,
+    "y": 140,
+    "wires": [
+      [
+        "fn_night"
+      ]
+    ]
+  },
+  {
+    "id": "fn_night",
+    "type": "function",
+    "z": "b126b20e",
+    "name": "\u2192 REG NightMode",
+    "func": "\n// msg.payload: 1 or 0\n// Write to holding register for Night Mode (placeholder address 41001)\nmsg.fc = 6;           // write single holding register\nmsg.unitid = 1;\nmsg.address = 41001;  // TODO: set correct register\nmsg.quantity = 1;\nmsg.payload = [ Number(msg.payload) ];\nreturn msg;\n",
+    "outputs": 1,
+    "noerr": 0,
+    "x": 420,
+    "y": 120,
+    "wires": [
+      [
+        "mbw_vallox"
+      ]
+    ]
+  },
+  {
+    "id": "2370471f",
+    "type": "inject",
+    "z": "b126b20e",
+    "name": "Boost ON (30 min)",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "minutes",
+        "v": "30",
+        "vt": "num"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "1",
+    "payloadType": "num",
+    "x": 180,
+    "y": 220,
+    "wires": [
+      [
+        "fn_boost"
+      ]
+    ]
+  },
+  {
+    "id": "cdae280f",
+    "type": "inject",
+    "z": "b126b20e",
+    "name": "Boost OFF",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "0",
+    "payloadType": "num",
+    "x": 170,
+    "y": 260,
+    "wires": [
+      [
+        "fn_boost"
+      ]
+    ]
+  },
+  {
+    "id": "fn_boost",
+    "type": "function",
+    "z": "b126b20e",
+    "name": "\u2192 REG Boost",
+    "func": "\n// msg.payload: 1=on 0=off; optionally msg.minutes for duration\n// Placeholder register 41010 for boost toggle and 41011 for minutes\nvar on = Number(msg.payload) ? 1 : 0;\n\nvar msgs = [];\nvar toggle = { fc:6, unitid:1, address:41010, quantity:1, payload:[on] };\nmsgs.push(toggle);\n\nif (on && typeof msg.minutes !== 'undefined') {\n  msgs.push({ fc:6, unitid:1, address:41011, quantity:1, payload:[ Number(msg.minutes) ] });\n}\n\nreturn [msgs];\n",
+    "outputs": 1,
+    "noerr": 0,
+    "x": 400,
+    "y": 240,
+    "wires": [
+      [
+        "mbw_vallox"
+      ]
+    ]
+  },
+  {
+    "id": "15870469",
+    "type": "inject",
+    "z": "b126b20e",
+    "name": "Supply airflow 40%",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "40",
+    "payloadType": "num",
+    "x": 180,
+    "y": 320,
+    "wires": [
+      [
+        "fn_supply"
+      ]
+    ]
+  },
+  {
+    "id": "b4bf40c1",
+    "type": "inject",
+    "z": "b126b20e",
+    "name": "Supply airflow 60%",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "60",
+    "payloadType": "num",
+    "x": 180,
+    "y": 360,
+    "wires": [
+      [
+        "fn_supply"
+      ]
+    ]
+  },
+  {
+    "id": "fn_supply",
+    "type": "function",
+    "z": "b126b20e",
+    "name": "\u2192 REG Supply Airflow %",
+    "func": "\n// msg.payload: 0..100 (%)\n// Placeholder register 41100\nmsg.fc = 6; msg.unitid = 1; msg.address = 41100; msg.quantity = 1;\nmsg.payload = [ Math.max(0, Math.min(100, Number(msg.payload))) ];\nreturn msg;\n",
+    "outputs": 1,
+    "noerr": 0,
+    "x": 430,
+    "y": 340,
+    "wires": [
+      [
+        "mbw_vallox"
+      ]
+    ]
+  },
+  {
+    "id": "110c2c03",
+    "type": "modbus-write",
+    "z": "b126b20e",
+    "name": "Write Vallox",
+    "showStatusActivities": true,
+    "showErrors": true,
+    "unitid": "1",
+    "dataType": "HoldingRegister",
+    "adr": "41001",
+    "quantity": "1",
+    "server": "f2084f2a",
+    "emptyMsgOnFail": true,
+    "keepMsgProperties": true,
+    "x": 680,
+    "y": 220,
+    "wires": [
+      [],
+      []
+    ]
+  },
+  {
+    "id": "e04b9ec6",
+    "type": "modbus-read",
+    "z": "b126b20e",
+    "name": "Read Status (example)",
+    "topic": "",
+    "showStatusActivities": true,
+    "logIOActivities": false,
+    "showErrors": true,
+    "unitid": "1",
+    "dataType": "HoldingRegister",
+    "adr": "41200",
+    "quantity": "4",
+    "rate": "5",
+    "rateUnit": "s",
+    "delayOnStart": false,
+    "startDelayTime": "",
+    "server": "f2084f2a",
+    "useIOFile": false,
+    "ioFile": "",
+    "useIOForPayload": false,
+    "emptyMsgOnFail": true,
+    "keepMsgProperties": false,
+    "x": 180,
+    "y": 420,
+    "wires": [
+      [
+        "debug_vallox"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "55fd6dba",
+    "type": "debug",
+    "z": "b126b20e",
+    "name": "vallox status",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "complete": "true",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 420,
+    "y": 420,
+    "wires": []
+  },
+  {
+    "id": "f2084f2a",
+    "type": "modbus-client",
+    "z": "",
+    "name": "Vallox RS485",
+    "clienttype": "serial",
+    "bufferCommands": true,
+    "stateLogEnabled": false,
+    "queueLogEnabled": false,
+    "tcpHost": "192.168.0.11",
+    "tcpPort": "502",
+    "tcpType": "DEFAULT",
+    "serialPort": "/dev/ttyUSB1",
+    "serialType": "RTU-BUFFERD",
+    "serialBaudrate": "9600",
+    "serialDatabits": "8",
+    "serialStopbits": "1",
+    "serialParity": "none",
+    "serialConnectionDelay": "100",
+    "unit_id": 1,
+    "commandDelay": "1",
+    "clientTimeout": "1000",
+    "reconnectTimeout": "2000"
+  }
+]

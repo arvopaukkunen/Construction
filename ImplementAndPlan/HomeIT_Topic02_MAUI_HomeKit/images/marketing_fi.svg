@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3000" height="2000">
+  <rect width="3000" height="2000" fill="white"/>
+  <text x="150" y="240" font-size="96" font-weight="bold">Koti – Pistorasiat &amp; Ventiilit</text>
+  <text x="150" y="340" font-size="56">Ohjaa Legrand Valena -laitteita ja ilmanvaihtoa turvallisesti HomeKitin kautta.</text>
+
+  <rect x="150" y="420" width="1300" height="1400" fill="#f9f9f9" stroke="#ddd" rx="24"/>
+  <text x="190" y="520" font-size="48" font-weight="bold">Nopea ohjaus</text>
+  <text x="190" y="590" font-size="40">Huoneet, laitteet, skenet – kaikki yhdessä.</text>
+
+  <rect x="1650" y="420" width="1200" height="800" fill="#f9f9f9" stroke="#ddd" rx="24"/>
+  <text x="1690" y="520" font-size="48" font-weight="bold">Paikallinen &amp; yksityinen</text>
+  <text x="1690" y="590" font-size="40">Ei pilvitiliä. Toimii kotiverkossa.</text>
+
+  <rect x="1650" y="1260" width="1200" height="560" fill="#f9f9f9" stroke="#ddd" rx="24"/>
+  <text x="1690" y="1360" font-size="48" font-weight="bold">Tuki etäohjaukselle</text>
+  <text x="1690" y="1430" font-size="40">HomePod/Apple TV -keskittimen kautta.</text>
+
+  <text x="150" y="1920" font-size="40" fill="#777">Valmisteltu App Store -näyttökuvia varten (FI).</text>
+</svg>

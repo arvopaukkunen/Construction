@@ -1,0 +1,33 @@
+# ha/configuration_snippets/automations.yaml
+automation:
+  - id: coffee_on_weekdays
+    alias: Coffee ON at 07:00 weekdays
+    trigger:
+      - platform: time
+        at: "07:00:00"
+    condition:
+      - condition: time
+        weekday: [mon, tue, wed, thu, fri]
+    action:
+      - service: switch.turn_on
+        target:
+          entity_id: switch.kitchen_coffee_socket
+      - delay: "00:45:00"
+      - service: switch.turn_off
+        target:
+          entity_id: switch.kitchen_coffee_socket
+
+  - id: ventilation_max_scene_button
+    alias: Ventilation MAX scene button
+    trigger:
+      - platform: state
+        entity_id: input_boolean.ventilation_max_button
+        to: "on"
+    action:
+      - service: script.turn_on
+        target: { entity_id: script.ventilation_max }
+      - delay: "00:30:00"
+      - service: script.turn_on
+        target: { entity_id: script.ventilation_normal }
+      - service: input_boolean.turn_off
+        target: { entity_id: input_boolean.ventilation_max_button }

@@ -1,0 +1,32 @@
+# ha/lovelace/dashboard_valena.yaml
+title: Koti – Valena
+views:
+  - title: Rooms
+    path: rooms
+    type: panel
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: Olohuone
+            entities:
+              - light.livingroom_main
+              - switch.livingroom_tv_socket
+          - type: entities
+            title: Keittiö
+            entities:
+              - switch.kitchen_coffee_socket
+  - title: Scenes & Ventilation
+    path: scenes
+    cards:
+      - type: entities
+        title: Skenet
+        entities:
+          - scene.aamu
+          - scene.poissa
+      - type: entities
+        title: Ilmanvaihto
+        entities:
+          - input_boolean.ventilation_max_button
+          - script.ventilation_max
+          - script.ventilation_normal
