@@ -17,3 +17,4 @@
 
 ### All IT architectual designs including data architecture
 [Architecture stuff](/diagrams/readme.md)
+[Semantics generator](/ImplementAndPlan/SementicsGenerator/Semantic_AI_View_Generator_SmartHome.md)
