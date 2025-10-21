@@ -1,0 +1,32 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ImplementAndPlan", "ImplementAndPlan", "{9C402546-0190-BC4C-D39F-A9197C32A79E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HomeIT_Topic02_MAUI_HomeKit", "HomeIT_Topic02_MAUI_HomeKit", "{BB19988D-BC91-56E3-6394-1955FAFE62B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeApp", "ImplementAndPlan\HomeIT_Topic02_MAUI_HomeKit\samples\HomeApp.csproj", "{1C2A9A1E-2785-732D-8C05-44C822635FBE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1C2A9A1E-2785-732D-8C05-44C822635FBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C2A9A1E-2785-732D-8C05-44C822635FBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C2A9A1E-2785-732D-8C05-44C822635FBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C2A9A1E-2785-732D-8C05-44C822635FBE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BB19988D-BC91-56E3-6394-1955FAFE62B4} = {9C402546-0190-BC4C-D39F-A9197C32A79E}
+		{1C2A9A1E-2785-732D-8C05-44C822635FBE} = {BB19988D-BC91-56E3-6394-1955FAFE62B4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {084EB6CE-529B-463D-950D-6040C0DFF22A}
+	EndGlobalSection
+EndGlobal
