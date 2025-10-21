@@ -1,4 +1,4 @@
-What I'm thinking describing is exactly the kind of problem semantic modeling and ontology-based systems are designed for.
+What I'm thinking here is describing exactly the kind of problem semantic modeling and ontology-based systems are designed for.
 
 Let’s unpack this a bit so you can see how it fits together:
 
