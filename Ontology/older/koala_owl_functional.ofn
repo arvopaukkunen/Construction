@@ -1,0 +1,193 @@
+Prefix(:=<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl>
+
+Declaration(Class(:Animal))
+Declaration(Class(:Degree))
+Declaration(Class(:DryEucalyptForest))
+Declaration(Class(:Female))
+Declaration(Class(:Forest))
+Declaration(Class(:Gender))
+Declaration(Class(:GraduateStudent))
+Declaration(Class(:Habitat))
+Declaration(Class(:Koala))
+Declaration(Class(:KoalaWithPhD))
+Declaration(Class(:Male))
+Declaration(Class(:MaleStudentWith3Daughters))
+Declaration(Class(:Marsupials))
+Declaration(Class(:Parent))
+Declaration(Class(:Person))
+Declaration(Class(:Quokka))
+Declaration(Class(:Rainforest))
+Declaration(Class(:Student))
+Declaration(Class(:TasmanianDevil))
+Declaration(Class(:University))
+Declaration(ObjectProperty(:hasChildren))
+Declaration(ObjectProperty(:hasDegree))
+Declaration(ObjectProperty(:hasGender))
+Declaration(ObjectProperty(:hasHabitat))
+Declaration(DataProperty(:isHardWorking))
+Declaration(NamedIndividual(:BA))
+Declaration(NamedIndividual(:BS))
+Declaration(NamedIndividual(:MA))
+Declaration(NamedIndividual(:PhD))
+Declaration(NamedIndividual(:female))
+Declaration(NamedIndividual(:male))
+
+############################
+#   Object Properties
+############################
+
+# Object Property: :hasChildren (:hasChildren)
+
+ObjectPropertyDomain(:hasChildren :Animal)
+ObjectPropertyRange(:hasChildren :Animal)
+
+# Object Property: :hasDegree (:hasDegree)
+
+ObjectPropertyDomain(:hasDegree :Person)
+ObjectPropertyRange(:hasDegree :Degree)
+
+# Object Property: :hasGender (:hasGender)
+
+FunctionalObjectProperty(:hasGender)
+ObjectPropertyDomain(:hasGender :Animal)
+ObjectPropertyRange(:hasGender :Gender)
+
+# Object Property: :hasHabitat (:hasHabitat)
+
+ObjectPropertyDomain(:hasHabitat :Animal)
+ObjectPropertyRange(:hasHabitat :Habitat)
+
+
+############################
+#   Data Properties
+############################
+
+# Data Property: :isHardWorking (:isHardWorking)
+
+FunctionalDataProperty(:isHardWorking)
+DataPropertyDomain(:isHardWorking :Person)
+DataPropertyRange(:isHardWorking xsd:boolean)
+
+
+
+############################
+#   Classes
+############################
+
+# Class: :Animal (:Animal)
+
+AnnotationAssertion(rdfs:seeAlso :Animal "Male")
+AnnotationAssertion(owl:versionInfo :Animal "1.1")
+SubClassOf(:Animal ObjectMinCardinality(1 :hasHabitat))
+SubClassOf(:Animal ObjectExactCardinality(1 :hasGender))
+
+# Class: :DryEucalyptForest (:DryEucalyptForest)
+
+SubClassOf(:DryEucalyptForest :Forest)
+
+# Class: :Female (:Female)
+
+EquivalentClasses(:Female ObjectHasValue(:hasGender :female))
+
+# Class: :Forest (:Forest)
+
+SubClassOf(:Forest :Habitat)
+
+# Class: :GraduateStudent (:GraduateStudent)
+
+SubClassOf(:GraduateStudent :Student)
+SubClassOf(:GraduateStudent ObjectSomeValuesFrom(:hasDegree ObjectOneOf(:BA :BS)))
+
+# Class: :Koala (:Koala)
+
+SubClassOf(:Koala :Marsupials)
+SubClassOf(:Koala ObjectSomeValuesFrom(:hasHabitat :DryEucalyptForest))
+SubClassOf(:Koala DataHasValue(:isHardWorking "false"^^xsd:boolean))
+
+# Class: :KoalaWithPhD (:KoalaWithPhD)
+
+AnnotationAssertion(owl:versionInfo :KoalaWithPhD "1.2")
+EquivalentClasses(:KoalaWithPhD ObjectIntersectionOf(:Koala ObjectHasValue(:hasDegree :PhD)))
+
+# Class: :Male (:Male)
+
+EquivalentClasses(:Male ObjectHasValue(:hasGender :male))
+
+# Class: :MaleStudentWith3Daughters (:MaleStudentWith3Daughters)
+
+EquivalentClasses(:MaleStudentWith3Daughters ObjectIntersectionOf(:Student ObjectAllValuesFrom(:hasChildren :Female) ObjectHasValue(:hasGender :male) ObjectExactCardinality(3 :hasChildren)))
+
+# Class: :Marsupials (:Marsupials)
+
+SubClassOf(:Marsupials :Animal)
+DisjointClasses(:Marsupials :Person)
+
+# Class: :Parent (:Parent)
+
+EquivalentClasses(:Parent ObjectIntersectionOf(:Animal ObjectMinCardinality(1 :hasChildren)))
+SubClassOf(:Parent :Animal)
+
+# Class: :Person (:Person)
+
+SubClassOf(:Person :Animal)
+
+# Class: :Quokka (:Quokka)
+
+SubClassOf(:Quokka :Marsupials)
+SubClassOf(:Quokka DataHasValue(:isHardWorking "true"^^xsd:boolean))
+
+# Class: :Rainforest (:Rainforest)
+
+SubClassOf(:Rainforest :Forest)
+
+# Class: :Student (:Student)
+
+EquivalentClasses(:Student ObjectIntersectionOf(:Person ObjectSomeValuesFrom(:hasHabitat :University) DataHasValue(:isHardWorking "true"^^xsd:boolean)))
+
+# Class: :TasmanianDevil (:TasmanianDevil)
+
+SubClassOf(:TasmanianDevil :Marsupials)
+
+# Class: :University (:University)
+
+SubClassOf(:University :Habitat)
+
+
+############################
+#   Named Individuals
+############################
+
+# Individual: :BA (:BA)
+
+ClassAssertion(:Degree :BA)
+
+# Individual: :BS (:BS)
+
+ClassAssertion(:Degree :BS)
+
+# Individual: :MA (:MA)
+
+ClassAssertion(:Degree :MA)
+
+# Individual: :PhD (:PhD)
+
+ClassAssertion(:Degree :PhD)
+
+# Individual: :female (:female)
+
+ClassAssertion(:Gender :female)
+
+# Individual: :male (:male)
+
+ClassAssertion(:Gender :male)
+
+
+)

@@ -1,0 +1,360 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="https://github.com/arvopaukkunen/Construction/tree/main/ImplementAndPlan/SementicsGenerator/Ontology/smarthome#"
+     xml:base="https://github.com/arvopaukkunen/Construction/tree/main/ImplementAndPlan/SementicsGenerator/Ontology/smarthome"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:home="http://example.com/home#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:sosa="http://www.w3.org/ns/sosa/"
+     xmlns:saref="https://saref.etsi.org/core/">
+    <owl:Ontology rdf:about="https://github.com/arvopaukkunen/Construction/tree/main/ImplementAndPlan/SementicsGenerator/Ontology/smarthome#">
+        <owl:versionIRI rdf:resource="https://github.com/arvopaukkunen/Construction/tree/main/ImplementAndPlan/SementicsGenerator/Ontology/SmarhomeV1"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://example.com/home#hasDevice -->
+
+    <owl:AnnotationProperty rdf:about="http://example.com/home#hasDevice"/>
+    
+
+
+    <!-- http://example.com/home#hasEnergySystem -->
+
+    <owl:AnnotationProperty rdf:about="http://example.com/home#hasEnergySystem"/>
+    
+
+
+    <!-- http://example.com/home#hasSensor -->
+
+    <owl:AnnotationProperty rdf:about="http://example.com/home#hasSensor"/>
+    
+
+
+    <!-- http://example.com/home#recommendedCO2Max -->
+
+    <owl:AnnotationProperty rdf:about="http://example.com/home#recommendedCO2Max"/>
+    
+
+
+    <!-- http://example.com/home#recommendedHumidity -->
+
+    <owl:AnnotationProperty rdf:about="http://example.com/home#recommendedHumidity"/>
+    
+
+
+    <!-- http://example.com/home#recommendedTempRange -->
+
+    <owl:AnnotationProperty rdf:about="http://example.com/home#recommendedTempRange"/>
+    
+
+
+    <!-- http://www.w3.org/ns/sosa/observes -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/ns/sosa/observes"/>
+    
+
+
+    <!-- https://saref.etsi.org/core/measures -->
+
+    <owl:AnnotationProperty rdf:about="https://saref.etsi.org/core/measures"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://example.com/home#EnergySystem -->
+
+    <owl:Class rdf:about="http://example.com/home#EnergySystem"/>
+    
+
+
+    <!-- http://example.com/home#HealthProfile -->
+
+    <owl:Class rdf:about="http://example.com/home#HealthProfile"/>
+    
+
+
+    <!-- http://example.com/home#Room -->
+
+    <owl:Class rdf:about="http://example.com/home#Room"/>
+    
+
+
+    <!-- http://example.com/home#Sensor -->
+
+    <owl:Class rdf:about="http://example.com/home#Sensor"/>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#AggregateShed -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#AggregateShed">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Building"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#BatteruShed -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#BatteruShed">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Building"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#BatteryShed -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#BatteryShed">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Building"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Building -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Building"/>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Cottage -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Cottage">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Building"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Device -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Device"/>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#MainBuilding -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#MainBuilding">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Building"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Mainbuilding -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Mainbuilding">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Building"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Outhouse -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Outhouse">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Building"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#RedCabin -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#RedCabin">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Building"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Redcabin -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Redcabin">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Building"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#WoodShed_1 -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#WoodShed_1">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Building"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#WoodShed_2 -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#WoodShed_2">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Building"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#WoodShed_3 -->
+
+    <owl:Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#WoodShed_3">
+        <rdfs:subClassOf rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Building"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://example.com/home#Bedroom -->
+
+    <owl:NamedIndividual rdf:about="http://example.com/home#Bedroom">
+        <rdf:type rdf:resource="http://example.com/home#Room"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.com/home#HealthySleepProfile -->
+
+    <owl:NamedIndividual rdf:about="http://example.com/home#HealthySleepProfile">
+        <rdf:type rdf:resource="http://example.com/home#HealthProfile"/>
+        <home:recommendedCO2Max>800</home:recommendedCO2Max>
+        <home:recommendedHumidity>40-55</home:recommendedHumidity>
+        <home:recommendedTempRange>19-21</home:recommendedTempRange>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.com/home#Kitchen -->
+
+    <owl:NamedIndividual rdf:about="http://example.com/home#Kitchen">
+        <rdf:type rdf:resource="http://example.com/home#Room"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#HealthyDaytimeProfile -->
+
+    <owl:NamedIndividual rdf:about="http://www.co-ode.org/ontologies/ont.owl#HealthyDaytimeProfile">
+        <rdf:type rdf:resource="http://example.com/home#HealthProfile"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Utility_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.co-ode.org/ontologies/ont.owl#Utility_1">
+        <rdf:type rdf:resource="http://example.com/home#Room"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotations
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="http://example.com/home#Bedroom1">
+        <home:hasSensor rdf:resource="http://example.com/home#CO2Sensor1"/>
+        <home:hasSensor rdf:resource="http://example.com/home#TempSensor1"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://example.com/home#CO2Sensor1">
+        <sosa:observes rdf:resource="https://saref.etsi.org/core/CO2Concentration"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://example.com/home#House1">
+        <home:hasEnergySystem rdf:resource="http://example.com/home#ValloxVentilation"/>
+        <home:hasEnergySystem rdf:resource="http://example.com/home#VictronSolar"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://example.com/home#Kitchen1">
+        <home:hasDevice rdf:resource="http://example.com/home#Woodburner1"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://example.com/home#TempSensor1">
+        <sosa:observes rdf:resource="https://saref.etsi.org/core/Temperature"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://example.com/home#VictronSolar">
+        <saref:measures rdf:resource="https://saref.etsi.org/core/EnergyProduction"/>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://example.com/home#EnergySystem"/>
+            <rdf:Description rdf:about="http://example.com/home#HealthProfile"/>
+            <rdf:Description rdf:about="http://example.com/home#Room"/>
+            <rdf:Description rdf:about="http://example.com/home#Sensor"/>
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#Building"/>
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#Device"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#AggregateShed"/>
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#BatteruShed"/>
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#BatteryShed"/>
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#Cottage"/>
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#MainBuilding"/>
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#Mainbuilding"/>
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#Outhouse"/>
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#RedCabin"/>
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#Redcabin"/>
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#WoodShed_1"/>
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#WoodShed_2"/>
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#WoodShed_3"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#AggregateShed"/>
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#BatteruShed"/>
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#Cottage"/>
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#MainBuilding"/>
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#Outhouse"/>
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#Redcabin"/>
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#WoodShed_1"/>
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#WoodShed_2"/>
+            <rdf:Description rdf:about="http://www.co-ode.org/ontologies/ont.owl#WoodShed_3"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+

@@ -1,0 +1,266 @@
+@prefix : <https://github.com/arvopaukkunen/Construction/tree/main/ImplementAndPlan/SementicsGenerator/Ontology/smarthome#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix home: <https://github.com/arvopaukkunen/Construction/tree/main/ImplementAndPlan/SementicsGenerator/Ontology/home#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix saref: <https://saref.etsi.org/core/> .
+@base <https://github.com/arvopaukkunen/Construction/tree/main/ImplementAndPlan/SementicsGenerator/Ontology/smarthome#> .
+
+<https://github.com/arvopaukkunen/Construction/tree/main/ImplementAndPlan/SementicsGenerator/Ontology/smarthome#> rdf:type owl:Ontology ;
+                                                                                                                   owl:versionIRI <https://github.com/arvopaukkunen/Construction/tree/main/ImplementAndPlan/SementicsGenerator/Ontology/SmarhomeV1> ;
+                                                                                                                   owl:imports sosa: ,
+                                                                                                                               <https://saref.etsi.org/core/v3.1.1/> .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://example.com/home#hasDevice
+<http://example.com/home#hasDevice> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.com/home#hasEnergySystem
+<http://example.com/home#hasEnergySystem> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.com/home#hasSensor
+<http://example.com/home#hasSensor> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.com/home#recommendedCO2Max
+<http://example.com/home#recommendedCO2Max> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.com/home#recommendedHumidity
+<http://example.com/home#recommendedHumidity> rdf:type owl:AnnotationProperty .
+
+
+###  http://example.com/home#recommendedTempRange
+<http://example.com/home#recommendedTempRange> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/ns/sosa/observes
+sosa:observes rdf:type owl:AnnotationProperty .
+
+
+###  https://saref.etsi.org/core/measures
+saref:measures rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://example.com/home#EnergySystem
+<http://example.com/home#EnergySystem> rdf:type owl:Class .
+
+
+###  http://example.com/home#HealthProfile
+<http://example.com/home#HealthProfile> rdf:type owl:Class .
+
+
+###  http://example.com/home#Room
+<http://example.com/home#Room> rdf:type owl:Class .
+
+
+###  http://example.com/home#Sensor
+<http://example.com/home#Sensor> rdf:type owl:Class .
+
+
+###  http://www.co-ode.org/ontologies/ont.owl#BatteryShed
+<http://www.co-ode.org/ontologies/ont.owl#BatteryShed> rdf:type owl:Class ;
+                                                       rdfs:subClassOf saref:Building .
+
+
+###  http://www.co-ode.org/ontologies/ont.owl#Building
+<http://www.co-ode.org/ontologies/ont.owl#Building> rdf:type owl:Class .
+
+
+###  http://www.co-ode.org/ontologies/ont.owl#Cottage
+<http://www.co-ode.org/ontologies/ont.owl#Cottage> rdf:type owl:Class ;
+                                                   rdfs:subClassOf saref:Building .
+
+
+###  http://www.co-ode.org/ontologies/ont.owl#MainBuilding
+<http://www.co-ode.org/ontologies/ont.owl#MainBuilding> rdf:type owl:Class ;
+                                                        rdfs:subClassOf saref:Building .
+
+
+###  http://www.co-ode.org/ontologies/ont.owl#Outhouse
+<http://www.co-ode.org/ontologies/ont.owl#Outhouse> rdf:type owl:Class ;
+                                                    rdfs:subClassOf saref:Building .
+
+
+###  http://www.co-ode.org/ontologies/ont.owl#RedCabin
+<http://www.co-ode.org/ontologies/ont.owl#RedCabin> rdf:type owl:Class ;
+                                                    rdfs:subClassOf saref:Building .
+
+
+###  http://www.co-ode.org/ontologies/ont.owl#WoodShed_1
+<http://www.co-ode.org/ontologies/ont.owl#WoodShed_1> rdf:type owl:Class ;
+                                                      rdfs:subClassOf saref:Building .
+
+
+###  http://www.co-ode.org/ontologies/ont.owl#WoodShed_2
+<http://www.co-ode.org/ontologies/ont.owl#WoodShed_2> rdf:type owl:Class ;
+                                                      rdfs:subClassOf saref:Building .
+
+
+###  http://www.co-ode.org/ontologies/ont.owl#WoodShed_3
+<http://www.co-ode.org/ontologies/ont.owl#WoodShed_3> rdf:type owl:Class ;
+                                                      rdfs:subClassOf saref:Building .
+
+
+###  https://github.com/arvopaukkunen/Construction/tree/main/ImplementAndPlan/SementicsGenerator/Ontology/home#AggregateShed
+home:AggregateShed rdf:type owl:Class ;
+                   rdfs:subClassOf saref:Building .
+
+
+###  https://github.com/arvopaukkunen/Construction/tree/main/ImplementAndPlan/SementicsGenerator/Ontology/home#Cottage
+home:Cottage rdf:type owl:Class ;
+             rdfs:subClassOf saref:Building .
+
+
+###  https://github.com/arvopaukkunen/Construction/tree/main/ImplementAndPlan/SementicsGenerator/Ontology/home#DownstarisKitchen
+home:DownstarisKitchen rdf:type owl:Class ;
+                       rdfs:subClassOf <http://www.co-ode.org/ontologies/ont.owl#MainBuilding> .
+
+
+###  https://github.com/arvopaukkunen/Construction/tree/main/ImplementAndPlan/SementicsGenerator/Ontology/home#DownstarisSauna
+home:DownstarisSauna rdf:type owl:Class ;
+                     rdfs:subClassOf <http://www.co-ode.org/ontologies/ont.owl#MainBuilding> .
+
+
+###  https://github.com/arvopaukkunen/Construction/tree/main/ImplementAndPlan/SementicsGenerator/Ontology/home#DownstarisShower
+home:DownstarisShower rdf:type owl:Class ;
+                      rdfs:subClassOf <http://www.co-ode.org/ontologies/ont.owl#MainBuilding> .
+
+
+###  https://github.com/arvopaukkunen/Construction/tree/main/ImplementAndPlan/SementicsGenerator/Ontology/home#DownstarisSpa
+home:DownstarisSpa rdf:type owl:Class ;
+                   rdfs:subClassOf <http://www.co-ode.org/ontologies/ont.owl#MainBuilding> .
+
+
+###  https://github.com/arvopaukkunen/Construction/tree/main/ImplementAndPlan/SementicsGenerator/Ontology/home#DownstarisUtility
+home:DownstarisUtility rdf:type owl:Class ;
+                       rdfs:subClassOf <http://www.co-ode.org/ontologies/ont.owl#MainBuilding> .
+
+
+###  https://github.com/arvopaukkunen/Construction/tree/main/ImplementAndPlan/SementicsGenerator/Ontology/home#DownstarisWC
+home:DownstarisWC rdf:type owl:Class ;
+                  rdfs:subClassOf <http://www.co-ode.org/ontologies/ont.owl#MainBuilding> .
+
+
+###  https://github.com/arvopaukkunen/Construction/tree/main/ImplementAndPlan/SementicsGenerator/Ontology/home#Hall
+home:Hall rdf:type owl:Class ;
+          rdfs:subClassOf home:Cottage .
+
+
+###  https://github.com/arvopaukkunen/Construction/tree/main/ImplementAndPlan/SementicsGenerator/Ontology/home#LivingRoom
+home:LivingRoom rdf:type owl:Class ;
+                rdfs:subClassOf home:Cottage .
+
+
+###  https://github.com/arvopaukkunen/Construction/tree/main/ImplementAndPlan/SementicsGenerator/Ontology/home#Room1
+home:Room1 rdf:type owl:Class ;
+           rdfs:subClassOf <http://www.co-ode.org/ontologies/ont.owl#Outhouse> ,
+                           <http://www.co-ode.org/ontologies/ont.owl#RedCabin> ,
+                           <http://www.co-ode.org/ontologies/ont.owl#WoodShed_1> ,
+                           <http://www.co-ode.org/ontologies/ont.owl#WoodShed_2> ,
+                           <http://www.co-ode.org/ontologies/ont.owl#WoodShed_3> .
+
+
+###  https://github.com/arvopaukkunen/Construction/tree/main/ImplementAndPlan/SementicsGenerator/Ontology/home#UpstarisBedroom
+home:UpstarisBedroom rdf:type owl:Class ;
+                     rdfs:subClassOf <http://www.co-ode.org/ontologies/ont.owl#MainBuilding> .
+
+
+###  https://github.com/arvopaukkunen/Construction/tree/main/ImplementAndPlan/SementicsGenerator/Ontology/home#UpstarisDining
+home:UpstarisDining rdf:type owl:Class ;
+                    rdfs:subClassOf <http://www.co-ode.org/ontologies/ont.owl#MainBuilding> .
+
+
+###  https://github.com/arvopaukkunen/Construction/tree/main/ImplementAndPlan/SementicsGenerator/Ontology/home#UpstarisLivingroom
+home:UpstarisLivingroom rdf:type owl:Class ;
+                        rdfs:subClassOf <http://www.co-ode.org/ontologies/ont.owl#MainBuilding> .
+
+
+###  https://github.com/arvopaukkunen/Construction/tree/main/ImplementAndPlan/SementicsGenerator/Ontology/home#UpstarisUtility
+home:UpstarisUtility rdf:type owl:Class ;
+                     rdfs:subClassOf <http://www.co-ode.org/ontologies/ont.owl#MainBuilding> .
+
+
+###  https://github.com/arvopaukkunen/Construction/tree/main/ImplementAndPlan/SementicsGenerator/Ontology/smarthome#CO
+:CO rdf:type owl:Class ;
+    rdfs:subClassOf saref:Property .
+
+
+###  https://github.com/arvopaukkunen/Construction/tree/main/ImplementAndPlan/SementicsGenerator/Ontology/smarthome#CO2
+:CO2 rdf:type owl:Class ;
+     rdfs:subClassOf saref:Property .
+
+
+###  https://saref.etsi.org/core/Building
+saref:Building rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://example.com/home#Bedroom
+<http://example.com/home#Bedroom> rdf:type owl:NamedIndividual ,
+                                           <http://example.com/home#Room> .
+
+
+###  http://example.com/home#HealthySleepProfile
+<http://example.com/home#HealthySleepProfile> rdf:type owl:NamedIndividual ,
+                                                       <http://example.com/home#HealthProfile> ;
+                                              <http://example.com/home#recommendedCO2Max> "800" ;
+                                              <http://example.com/home#recommendedHumidity> "40-55" ;
+                                              <http://example.com/home#recommendedTempRange> "19-21" .
+
+
+###  http://example.com/home#Kitchen
+<http://example.com/home#Kitchen> rdf:type owl:NamedIndividual ,
+                                           <http://example.com/home#Room> .
+
+
+###  http://www.co-ode.org/ontologies/ont.owl#HealthyDaytimeProfile
+<http://www.co-ode.org/ontologies/ont.owl#HealthyDaytimeProfile> rdf:type owl:NamedIndividual ,
+                                                                          <http://example.com/home#HealthProfile> .
+
+
+###  http://www.co-ode.org/ontologies/ont.owl#Utility_1
+<http://www.co-ode.org/ontologies/ont.owl#Utility_1> rdf:type owl:NamedIndividual ,
+                                                              <http://example.com/home#Room> .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+<http://example.com/home#Bedroom1> <http://example.com/home#hasSensor> <http://example.com/home#CO2Sensor1> ,
+                                                                       <http://example.com/home#TempSensor1> .
+
+
+<http://example.com/home#CO2Sensor1> sosa:observes saref:CO2Concentration .
+
+
+<http://example.com/home#House1> <http://example.com/home#hasEnergySystem> <http://example.com/home#ValloxVentilation> ,
+                                                                           <http://example.com/home#VictronSolar> .
+
+
+<http://example.com/home#Kitchen1> <http://example.com/home#hasDevice> <http://example.com/home#Woodburner1> .
+
+
+<http://example.com/home#TempSensor1> sosa:observes saref:Temperature .
+
+
+<http://example.com/home#VictronSolar> saref:measures saref:EnergyProduction .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

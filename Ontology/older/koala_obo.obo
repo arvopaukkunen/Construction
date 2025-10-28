@@ -1,0 +1,94 @@
+format-version: 1.2
+ontology: http://protege.stanford.edu/plugins/owl/owl-library/koala.owl
+owl-axioms: Prefix(owl:=<http://www.w3.org/2002/07/owl#>)\nPrefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)\nPrefix(xml:=<http://www.w3.org/XML/1998/namespace>)\nPrefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)\nPrefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)\n\n\nOntology(\nDeclaration(Class(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Animal>))\nDeclaration(Class(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Female>))\nDeclaration(Class(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#GraduateStudent>))\nDeclaration(Class(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Koala>))\nDeclaration(Class(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#KoalaWithPhD>))\nDeclaration(Class(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Male>))\nDeclaration(Class(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#MaleStudentWith3Daughters>))\nDeclaration(Class(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Person>))\nDeclaration(Class(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Quokka>))\nDeclaration(Class(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Student>))\nDeclaration(Class(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#University>))\nDeclaration(ObjectProperty(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#hasChildren>))\nDeclaration(ObjectProperty(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#hasDegree>))\nDeclaration(ObjectProperty(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#hasGender>))\nDeclaration(ObjectProperty(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#hasHabitat>))\nDeclaration(DataProperty(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#isHardWorking>))\nDeclaration(NamedIndividual(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#BA>))\nDeclaration(NamedIndividual(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#BS>))\nDeclaration(NamedIndividual(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#PhD>))\nDeclaration(NamedIndividual(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#female>))\nDeclaration(NamedIndividual(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#male>))\n\n############################\n#   Data Properties\n############################\n\n# Data Property: <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#isHardWorking> (<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#isHardWorking>)\n\nFunctionalDataProperty(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#isHardWorking>)\nDataPropertyDomain(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#isHardWorking> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Person>)\nDataPropertyRange(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#isHardWorking> xsd:boolean)\n\n\n\n############################\n#   Classes\n############################\n\n# Class: <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Animal> (<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Animal>)\n\nSubClassOf(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Animal> ObjectMinCardinality(1 <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#hasHabitat>))\nSubClassOf(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Animal> ObjectExactCardinality(1 <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#hasGender>))\n\n# Class: <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Female> (<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Female>)\n\nEquivalentClasses(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Female> ObjectHasValue(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#hasGender> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#female>))\n\n# Class: <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#GraduateStudent> (<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#GraduateStudent>)\n\nSubClassOf(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#GraduateStudent> ObjectSomeValuesFrom(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#hasDegree> ObjectOneOf(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#BA> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#BS>)))\n\n# Class: <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Koala> (<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Koala>)\n\nSubClassOf(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Koala> DataHasValue(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#isHardWorking> \"false\"^^xsd:boolean))\n\n# Class: <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#KoalaWithPhD> (<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#KoalaWithPhD>)\n\nEquivalentClasses(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#KoalaWithPhD> ObjectIntersectionOf(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Koala> ObjectHasValue(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#hasDegree> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#PhD>)))\n\n# Class: <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Male> (<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Male>)\n\nEquivalentClasses(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Male> ObjectHasValue(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#hasGender> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#male>))\n\n# Class: <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#MaleStudentWith3Daughters> (<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#MaleStudentWith3Daughters>)\n\nEquivalentClasses(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#MaleStudentWith3Daughters> ObjectIntersectionOf(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Student> ObjectAllValuesFrom(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#hasChildren> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Female>) ObjectHasValue(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#hasGender> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#male>) ObjectExactCardinality(3 <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#hasChildren>)))\n\n# Class: <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Quokka> (<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Quokka>)\n\nSubClassOf(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Quokka> DataHasValue(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#isHardWorking> \"true\"^^xsd:boolean))\n\n# Class: <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Student> (<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Student>)\n\nEquivalentClasses(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Student> ObjectIntersectionOf(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#Person> ObjectSomeValuesFrom(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#hasHabitat> <http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#University>) DataHasValue(<http://protege.stanford.edu/plugins/owl/owl-library/koala.owl#isHardWorking> \"true\"^^xsd:boolean)))\n\n\n\n)
+
+[Term]
+id: Animal
+property_value: owl:versionInfo "1.1" xsd:string
+property_value: seeAlso "Male" xsd:string
+
+[Term]
+id: DryEucalyptForest
+is_a: Forest
+
+[Term]
+id: Female
+
+[Term]
+id: Forest
+is_a: Habitat
+
+[Term]
+id: GraduateStudent
+is_a: Student
+
+[Term]
+id: Koala
+is_a: Marsupials
+relationship: hasHabitat DryEucalyptForest
+
+[Term]
+id: KoalaWithPhD
+property_value: owl:versionInfo "1.2" xsd:string
+
+[Term]
+id: Male
+
+[Term]
+id: MaleStudentWith3Daughters
+
+[Term]
+id: Marsupials
+is_a: Animal
+disjoint_from: Person
+
+[Term]
+id: Parent
+is_a: Animal
+intersection_of: Animal
+intersection_of: hasChildren owl:Thing {minCardinality="1"}
+
+[Term]
+id: Person
+is_a: Animal
+
+[Term]
+id: Quokka
+is_a: Marsupials
+
+[Term]
+id: Rainforest
+is_a: Forest
+
+[Term]
+id: Student
+
+[Term]
+id: TasmanianDevil
+is_a: Marsupials
+
+[Term]
+id: University
+is_a: Habitat
+
+[Typedef]
+id: hasChildren
+domain: Animal
+range: Animal
+
+[Typedef]
+id: hasDegree
+domain: Person
+range: Degree
+
+[Typedef]
+id: hasGender
+domain: Animal
+range: Gender
+is_functional: true
+
+[Typedef]
+id: hasHabitat
+domain: Animal
+range: Habitat
+

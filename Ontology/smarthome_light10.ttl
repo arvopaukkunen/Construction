@@ -1,0 +1,239 @@
+@prefix :       <http://example.org/smarthome#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix sosa:   <http://www.w3.org/ns/sosa/> .
+@prefix saref:  <https://saref.etsi.org/core/> .
+@prefix qudt:   <http://qudt.org/schema/qudt/> .
+@prefix unit:   <http://qudt.org/vocab/unit/> .
+
+<http://example.org/smarthome>
+    a owl:Ontology ;
+    rdfs:label "Home IT SmartHome Ontology (lightweight SOSA/SAREF stubbed)" ;
+    rdfs:comment "SmartHome model with AC, sensors, water heating, off-grid power, and health-based air control. Optimized for Ontop/Protégé performance." .
+
+### --- Minimal SOSA stubs ---
+sosa:Observation a owl:Class .
+sosa:Sensor a owl:Class .
+sosa:FeatureOfInterest a owl:Class .
+sosa:hasFeatureOfInterest a owl:ObjectProperty .
+sosa:hasResult a owl:ObjectProperty .
+sosa:madeBySensor a owl:ObjectProperty .
+sosa:observedProperty a owl:ObjectProperty .
+sosa:hasSimpleResult a owl:DatatypeProperty .
+sosa:resultTime a owl:DatatypeProperty .
+
+### --- Minimal SAREF stubs ---
+saref:Device a owl:Class .
+saref:Actuator a owl:Class .
+saref:Function a owl:Class .
+saref:Property a owl:Class .
+saref:observes a owl:ObjectProperty .
+
+### --- Local QUDT lightweight definitions ---
+qudt:numericValue a owl:DatatypeProperty .
+qudt:unit a owl:ObjectProperty .
+qudt:QuantityValue a owl:Class .
+
+### ===== Core classes =====
+:House              a owl:Class .
+:Room               a owl:Class .
+:OutdoorEnvironment a owl:Class .
+
+:Device             a owl:Class ; rdfs:subClassOf saref:Device .
+:ACSystem           a owl:Class ; rdfs:subClassOf :Device .
+:ElectricVent       a owl:Class ; rdfs:subClassOf saref:Actuator .
+:ACDuct             a owl:Class .
+:WaterHeatingSystem a owl:Class ; rdfs:subClassOf :Device .
+:Oven               a owl:Class ; rdfs:subClassOf :Device .
+:Pump               a owl:Class ; rdfs:subClassOf :Device .
+:SabianaConvector   a owl:Class ; rdfs:subClassOf :Device .
+:SorelController    a owl:Class ; rdfs:subClassOf :Device .
+
+:OffGridPowerPlant  a owl:Class ; rdfs:subClassOf :Device .
+:BatteryBank        a owl:Class ; rdfs:subClassOf :Device .
+:PVArray            a owl:Class ; rdfs:subClassOf :Device .
+:Generator          a owl:Class ; rdfs:subClassOf :Device .
+
+:HealthyAirPolicy   a owl:Class .
+:ACController       a owl:Class ; rdfs:subClassOf saref:Function .
+
+### Sensors & properties
+:CO2Sensor          a owl:Class ; rdfs:subClassOf sosa:Sensor .
+:TempSensor         a owl:Class ; rdfs:subClassOf sosa:Sensor .
+:HumiditySensor     a owl:Class ; rdfs:subClassOf sosa:Sensor .
+
+:CO2ppm             a owl:Class ; rdfs:subClassOf saref:Property .
+:AirTemperature     a owl:Class ; rdfs:subClassOf saref:Property .
+:RelativeHumidity   a owl:Class ; rdfs:subClassOf saref:Property .
+
+### ===== Object properties =====
+:hasRoom        a owl:ObjectProperty ; rdfs:domain :House ; rdfs:range :Room .
+:hasAC          a owl:ObjectProperty ; rdfs:domain :House ; rdfs:range :ACSystem .
+:hasWaterSystem a owl:ObjectProperty ; rdfs:domain :House ; rdfs:range :WaterHeatingSystem .
+:hasPowerSystem a owl:ObjectProperty ; rdfs:domain :House ; rdfs:range :OffGridPowerPlant .
+:hasDevice      a owl:ObjectProperty ; rdfs:domain :House ; rdfs:range :Device .
+:locatedIn      a owl:ObjectProperty ; rdfs:domain [ owl:unionOf ( :Device sosa:Sensor sosa:Observation ) ] ;
+                rdfs:range [ owl:unionOf ( :Room :OutdoorEnvironment ) ] .
+
+:hasVent        a owl:ObjectProperty ; rdfs:domain :ACSystem ; rdfs:range :ElectricVent .
+:servesRoom     a owl:ObjectProperty ; rdfs:domain [ owl:unionOf ( :ElectricVent :SabianaConvector ) ] ; rdfs:range :Room .
+:hasDuct        a owl:ObjectProperty ; rdfs:domain :ACSystem ; rdfs:range :ACDuct .
+:controlledBy   a owl:ObjectProperty ; rdfs:domain :ElectricVent ; rdfs:range :ACController .
+:controlsVent   a owl:ObjectProperty ; rdfs:domain :ACController ; rdfs:range :ElectricVent .
+
+:hasHeatSource  a owl:ObjectProperty ; rdfs:domain :WaterHeatingSystem ; rdfs:range :Oven .
+:hasPump        a owl:ObjectProperty ; rdfs:domain :WaterHeatingSystem ; rdfs:range :Pump .
+:distributesTo  a owl:ObjectProperty ; rdfs:domain :WaterHeatingSystem ; rdfs:range :SabianaConvector .
+:hasController  a owl:ObjectProperty ; rdfs:domain :WaterHeatingSystem ; rdfs:range :SorelController .
+
+:hasBattery     a owl:ObjectProperty ; rdfs:domain :OffGridPowerPlant ; rdfs:range :BatteryBank .
+:hasPV          a owl:ObjectProperty ; rdfs:domain :OffGridPowerPlant ; rdfs:range :PVArray .
+:hasGenerator   a owl:ObjectProperty ; rdfs:domain :OffGridPowerPlant ; rdfs:range :Generator .
+:poweredBy      a owl:ObjectProperty ; rdfs:domain :Device ; rdfs:range :OffGridPowerPlant .
+
+:policy         a owl:ObjectProperty ; rdfs:domain :House ; rdfs:range :HealthyAirPolicy .
+
+:monitorsRoom   a owl:ObjectProperty ; rdfs:domain sosa:Sensor ; rdfs:range :Room .
+:observesProp   a owl:ObjectProperty ; rdfs:subPropertyOf sosa:observedProperty ;
+                rdfs:domain sosa:Sensor ; rdfs:range saref:Property .
+
+### ===== Data properties =====
+:desiredCO2Day       a owl:DatatypeProperty ; rdfs:domain :HealthyAirPolicy ; rdfs:range xsd:integer .
+:desiredCO2Night     a owl:DatatypeProperty ; rdfs:domain :HealthyAirPolicy ; rdfs:range xsd:integer .
+:desiredTempDayC     a owl:DatatypeProperty ; rdfs:domain :HealthyAirPolicy ; rdfs:range xsd:decimal .
+:desiredTempNightC   a owl:DatatypeProperty ; rdfs:domain :HealthyAirPolicy ; rdfs:range xsd:decimal .
+:humidityMinPct      a owl:DatatypeProperty ; rdfs:domain :HealthyAirPolicy ; rdfs:range xsd:decimal .
+:humidityMaxPct      a owl:DatatypeProperty ; rdfs:domain :HealthyAirPolicy ; rdfs:range xsd:decimal .
+
+:maxVentOpeningPct   a owl:DatatypeProperty ; rdfs:domain :ElectricVent ; rdfs:range xsd:decimal .
+:ventOpeningPct      a owl:DatatypeProperty ; rdfs:domain :ElectricVent ; rdfs:range xsd:decimal .
+
+:capacityKWh         a owl:DatatypeProperty ; rdfs:domain :BatteryBank ; rdfs:range xsd:decimal .
+:stateOfChargePct    a owl:DatatypeProperty ; rdfs:domain :BatteryBank ; rdfs:range xsd:decimal .
+:genRatedPowerKW     a owl:DatatypeProperty ; rdfs:domain :Generator ; rdfs:range xsd:decimal .
+:pvDailyYieldKWh     a owl:DatatypeProperty ; rdfs:domain :PVArray ; rdfs:range xsd:decimal .
+
+:dailyEnergyProductionKWh a owl:DatatypeProperty ; rdfs:domain :House ; rdfs:range xsd:decimal .
+:occupancyNominal    a owl:DatatypeProperty ; rdfs:domain :House ; rdfs:range xsd:integer .
+
+### ===== Instances =====
+:House1 a :House ;
+    rdfs:label "Main House" ;
+    :hasRoom :LivingRoom, :Hall, :Bedroom1, :Bedroom2, :Kitchen ;
+    :hasAC :ValloxAC1 ;
+    :hasWaterSystem :WaterHeat1 ;
+    :hasPowerSystem :Victron1 ;
+    :policy :Policy1 ;
+    :dailyEnergyProductionKWh "11.0"^^xsd:decimal ;
+    :occupancyNominal "2"^^xsd:integer .
+
+:LivingRoom a :Room .
+:Hall a :Room .
+:Bedroom1 a :Room .
+:Bedroom2 a :Room .
+:Kitchen a :Room .
+:Outside a :OutdoorEnvironment .
+
+### ===== Healthy Air Policy =====
+:Policy1 a :HealthyAirPolicy ;
+    :desiredCO2Day "900"^^xsd:integer ;
+    :desiredCO2Night "800"^^xsd:integer ;
+    :desiredTempDayC "21.0"^^xsd:decimal ;
+    :desiredTempNightC "19.0"^^xsd:decimal ;
+    :humidityMinPct "35.0"^^xsd:decimal ;
+    :humidityMaxPct "55.0"^^xsd:decimal .
+
+### ===== AC System =====
+:ValloxAC1 a :ACSystem ;
+    :hasVent :Vent_LivingRoom, :Vent_Hall, :Vent_Bedroom1, :Vent_Bedroom2, :Vent_Kitchen .
+
+:ACCtrl1 a :ACController ;
+    :controlsVent :Vent_LivingRoom, :Vent_Hall, :Vent_Bedroom1, :Vent_Bedroom2, :Vent_Kitchen .
+
+:Vent_LivingRoom a :ElectricVent ; :servesRoom :LivingRoom ; :controlledBy :ACCtrl1 ; :ventOpeningPct "40"^^xsd:decimal .
+:Vent_Hall a :ElectricVent ; :servesRoom :Hall ; :controlledBy :ACCtrl1 ; :ventOpeningPct "35"^^xsd:decimal .
+:Vent_Bedroom1 a :ElectricVent ; :servesRoom :Bedroom1 ; :controlledBy :ACCtrl1 ; :ventOpeningPct "30"^^xsd:decimal .
+:Vent_Bedroom2 a :ElectricVent ; :servesRoom :Bedroom2 ; :controlledBy :ACCtrl1 ; :ventOpeningPct "30"^^xsd:decimal .
+:Vent_Kitchen a :ElectricVent ; :servesRoom :Kitchen ; :controlledBy :ACCtrl1 ; :ventOpeningPct "50"^^xsd:decimal .
+
+### ===== Water Heating =====
+:WaterHeat1 a :WaterHeatingSystem ;
+    :hasHeatSource :WoodOven1, :WoodOven2 ;
+    :hasController :SorelXHCC1 ;
+    :hasPump :Pump1, :Pump2, :Pump3 ;
+    :distributesTo :Sabiana1, :Sabiana2 .
+
+:WoodOven1 a :Oven .
+:WoodOven2 a :Oven .
+:SorelXHCC1 a :SorelController .
+:Pump1 a :Pump .
+:Pump2 a :Pump .
+:Pump3 a :Pump .
+:Sabiana1 a :SabianaConvector ; :servesRoom :LivingRoom .
+:Sabiana2 a :SabianaConvector ; :servesRoom :Bedroom1 .
+
+### ===== Off-grid energy =====
+:Victron1 a :OffGridPowerPlant ;
+    :hasBattery :Battery15kWh ;
+    :hasGenerator :Yanmar7kW ;
+    :hasPV :PVArray1 .
+
+:Battery15kWh a :BatteryBank ; :capacityKWh "15.0"^^xsd:decimal ; :stateOfChargePct "72.0"^^xsd:decimal .
+:Yanmar7kW a :Generator ; :genRatedPowerKW "7.0"^^xsd:decimal .
+:PVArray1 a :PVArray ; :pvDailyYieldKWh "10.5"^^xsd:decimal .
+
+### ===== Sensors =====
+:T_LR a :TempSensor ; :monitorsRoom :LivingRoom ; :observesProp :AirTemperature ; :locatedIn :LivingRoom .
+:H_LR a :HumiditySensor ; :monitorsRoom :LivingRoom ; :observesProp :RelativeHumidity ; :locatedIn :LivingRoom .
+:C_LR a :CO2Sensor ; :monitorsRoom :LivingRoom ; :observesProp :CO2ppm ; :locatedIn :LivingRoom .
+
+:T_Hall a :TempSensor ; :monitorsRoom :Hall ; :observesProp :AirTemperature .
+:H_Hall a :HumiditySensor ; :monitorsRoom :Hall ; :observesProp :RelativeHumidity .
+:C_Hall a :CO2Sensor ; :monitorsRoom :Hall ; :observesProp :CO2ppm .
+
+:T_B1 a :TempSensor ; :monitorsRoom :Bedroom1 ; :observesProp :AirTemperature .
+:H_B1 a :HumiditySensor ; :monitorsRoom :Bedroom1 ; :observesProp :RelativeHumidity .
+:C_B1 a :CO2Sensor ; :monitorsRoom :Bedroom1 ; :observesProp :CO2ppm .
+
+:T_B2 a :TempSensor ; :monitorsRoom :Bedroom2 ; :observesProp :AirTemperature .
+:H_B2 a :HumiditySensor ; :monitorsRoom :Bedroom2 ; :observesProp :RelativeHumidity .
+:C_B2 a :CO2Sensor ; :monitorsRoom :Bedroom2 ; :observesProp :CO2ppm .
+
+:T_K a :TempSensor ; :monitorsRoom :Kitchen ; :observesProp :AirTemperature .
+:H_K a :HumiditySensor ; :monitorsRoom :Kitchen ; :observesProp :RelativeHumidity .
+:C_K a :CO2Sensor ; :monitorsRoom :Kitchen ; :observesProp :CO2ppm .
+
+:T_Outside a :TempSensor ; :monitorsRoom :Outside ; :observesProp :AirTemperature .
+:H_Outside a :HumiditySensor ; :monitorsRoom :Outside ; :observesProp :RelativeHumidity .
+
+### ===== Example Observations =====
+:Obs_CO2_LR_1 a sosa:Observation ;
+    sosa:madeBySensor :C_LR ;
+    sosa:hasFeatureOfInterest :LivingRoom ;
+    sosa:observedProperty :CO2ppm ;
+    sosa:resultTime "2025-10-24T21:00:00+03:00"^^xsd:dateTime ;
+    sosa:hasSimpleResult "950"^^xsd:decimal .
+
+:Obs_T_LR_1 a sosa:Observation ;
+    sosa:madeBySensor :T_LR ;
+    sosa:hasFeatureOfInterest :LivingRoom ;
+    sosa:observedProperty :AirTemperature ;
+    sosa:resultTime "2025-10-24T21:00:00+03:00"^^xsd:dateTime ;
+    sosa:hasResult [
+        a qudt:QuantityValue ;
+        qudt:numericValue "21.8"^^xsd:decimal ;
+        qudt:unit unit:DEG_C
+    ] .
+
+:Obs_RH_LR_1 a sosa:Observation ;
+    sosa:madeBySensor :H_LR ;
+    sosa:hasFeatureOfInterest :LivingRoom ;
+    sosa:observedProperty :RelativeHumidity ;
+    sosa:resultTime "2025-10-24T21:00:00+03:00"^^xsd:dateTime ;
+    sosa:hasResult [
+        a qudt:QuantityValue ;
+        qudt:numericValue "48.0"^^xsd:decimal ;
+        qudt:unit unit:PERCENT
+    ] .
