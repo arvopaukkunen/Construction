@@ -1,0 +1,57 @@
+site_name: Construction – SmartHouse Documentation
+repo_url: https://github.com/arvopaukkunen/Construction
+repo_name: arvopaukkunen/Construction
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+
+plugins:
+  - search
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+
+nav:
+  - Home: index.md
+
+  - General:
+      - Overview: general/index.md
+      - Concept: general/concept.md
+      - House: general/house.md
+      - Yard: general/yard.md
+      - "Home That Listens to the Forest (EN)": general/home-that-listens-to-the-forest.en.md
+      - "Home That Listens to the Forest (FI)": general/home-that-listens-to-the-forest.fi.md
+      - "Home That Listens to the Forest (SV)": general/home-that-listens-to-the-forest.sv.md
+
+  - Technical:
+      - Overview: technical/index.md
+      - "Smarthousing Blueprint (EN)": technical/smarthousing-blueprint.en.md
+      - "Smarthousing Blueprint (FI)": technical/smarthousing-blueprint.fi.md
+      - "Smarthousing Blueprint (SV)": technical/smarthousing-blueprint.sv.md
+      - Vallox AC: technical/vallox-ac.md
+      - "Vallox AC → On-prem DB": technical/vallox-ac-data-to-onprem-db.md
+      - Water Heater (Jäspi): technical/waterheater-jaspi.md
+      - Solar Panel Stand: technical/solar-panel-stand.md
+      - Wind Turbine Stand: technical/wind-turbine-stand.md
+      - Implementation Plans: technical/implementation-plans.md
+      - Architecture:
+          - Overview: technical/architecture/index.md
+          - Diagrams: technical/architecture/diagrams.md
+      - Data Engineering: technical/dataengineering/index.md
+      - Ontology: technical/ontology/index.md
+
+  - Academic:
+      - Overview: academic/index.md
+      - Publications: academic/publications.md
+      - Research notes: academic/research-notes.md
