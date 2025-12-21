@@ -1525,3 +1525,315 @@ dbt run --select md_sensor_reading md_sensor_reading_from_work --target dev
   - audit.dbt_run
 
   - audit.dbt_result
+
+# CI/CD automation
+CI/CD and run orchestration pattern that matches your landing zone (RAW/WORK/CURATED in MinIO + same schemas in RDBMS) and your responsibility split (Node-RED = ingestion/sync; dbt = DQ + master data + STG/MD/MART transforms).
+
+## 1) Target operating model (what runs when)
+### Responsibilities
+
+#### Node-RED (ETL / ingestion & sync)
+
+- Pulls from sources, lands immutable RAW objects in MinIO (JSON).
+
+- Produces WORK (normalized/reshaped but still “processing”).
+
+- Produces CURATED (contracted “ready for analytics” dataset).
+
+- Syncs RAW/WORK/CURATED into corresponding RDBMS schemas (or at minimum sync CURATED + optional RAW/WORK for traceability and debugging).
+
+- Maintains watermarks (per entity/source) and idempotent loads.
+
+#### dbt (data quality + modeling)
+
+- Treats RAW/WORK/CURATED RDBMS schemas as dbt sources.
+
+- Implements:
+
+  - DQ assertions (schema tests, relationships, accepted values, freshness, anomaly tests)
+
+  - DQ logging to your DQ schema / separate DQ database
+
+  - Master data models (MD schema) and conformed dimensions/facts (MART)
+
+  - STG models for standardized business-layer semantics
+#### Orchestration (the key automation decision)
+
+You typically choose one of these patterns:
+
+A. Event-driven (recommended if you already have MinIO notifications)
+
+- When CURATED objects arrive (or a “_SUCCESS” marker object is written), MinIO emits an event.
+
+- Node-RED catches the event and triggers a dbt run (directly or via CI pipeline “run” endpoint).
+
+- dbt builds only what is impacted (incremental models keyed by load watermark) and runs tests.
+
+B. Schedule-driven (simpler)
+
+- A pipeline runs every X minutes/hours:
+
+  - confirms ingestion health / reads watermark tables
+
+  - runs dbt incremental build + tests
+
+- This is easier to operate initially, but less “reactive.”
+
+In both cases, Node-RED remains the data-movement engine and dbt remains the data-trust + business-model engine.
+
+## 2) What “good” looks like for CI/CD (core principles)
+### Principle 1: Treat CURATED as a contract boundary
+
+- CURATED is the stable interface between ingestion and analytics.
+
+- Enforce it with:
+
+  - JSON schema checks (at ingestion time)
+
+  - dbt source tests and freshness checks (at modeling time)
+
+- If CURATED breaks, dbt should fail fast and log to DQ.
+
+### Principle 2: Separate “build pipeline” from “data run pipeline”
+
+- Build pipeline (CI): validate code, compile dbt, run unit-style checks, package artifacts (Node-RED container image, dbt runner image).
+
+- Data run pipeline (CD / Ops): deploy Node-RED, then execute dbt against real environments, publish DQ outcomes.
+
+### Principle 3: Use promotion with immutable artifacts
+
+- Build once (image/artifact), promote the same artifact dev → test → prod.
+
+- Only environment configuration differs (secrets, connection strings, dbt targets).
+
+## 3) Repo and artifact structure (recommended)
+### Option: mono-repo (works well for small teams)
+
+````
+/infra                 (IaC: network, MinIO, DB, runners, etc.)
+/nodered               (flows, subflows, custom nodes, package.json)
+/dbt                   (dbt_project.yml, models/, macros/, tests/, packages.yml)
+/contracts             (JSON schemas, source-to-curated contracts, naming rules)
+/ops                   (runbooks, sql bootstrap, scripts)
+````
+### Artifacts
+
+- Node-RED runtime image (pinned Node-RED + custom nodes + flows packaged)
+
+- dbt runner image (dbt + adapter + sqlfluff + dbt deps cached)
+
+- Optional: a “contract bundle” versioned separately (contracts used by both Node-RED validation and dbt tests)
+
+## 4) Azure DevOps Pipelines: ideal CI/CD flow
+### A) CI pipeline (trigger: PR to main / feature branches)
+
+#### Stage 1 — Validate Node-RED
+
+- Lint any JS in Function nodes (best practice: move complex logic to versioned JS modules and test them).
+
+- Validate flows.json structure and required environment variables.
+
+- Run minimal unit tests if you maintain Node modules.
+
+#### Stage 2 — Validate dbt
+
+- dbt deps
+
+- dbt parse and dbt compile
+
+- Run style/lint: sqlfluff lint (optional but valuable)
+
+- Run dbt tests against an ephemeral MariaDB container with small fixture data (fast feedback).
+
+  - This is not a full integration test; it’s to catch regressions in SQL and macros.
+
+#### Stage 3 — Build & publish artifacts
+
+- Build/push Node-RED Docker image to ACR
+
+- Build/push dbt runner image to ACR
+
+- Publish dbt manifest.json and run_results.json as build artifacts (useful for state-based selection later)
+
+Outputs: versioned images + build artifacts.
+
+#### Stage Dev
+
+- Deploy Node-RED image (or update flows) to Dev runtime
+
+- Smoke test ingestion endpoints (basic health check)
+
+- Run dbt (Dev target):
+
+  - dbt build --select state:modified+ (if using state) or entity-based selectors
+
+  - Run DQ tests; write results to DQ database/schema
+
+- Publish artifacts:
+
+  - dbt docs (optional)
+
+  - DQ report summary (pipeline summary)
+
+#### Stage Test
+
+- Repeat with test connection strings + approvals + more extensive tests
+
+#### Stage Prod
+
+- Repeat with prod approvals
+
+- Add:
+
+  - Strict “no breaking changes” gate based on contract checks
+
+  - Optional “backout” strategy: revert to previous images; db rollback strategy depends on your approach (see below)
+
+### How dbt writes to your DQ database
+
+#### Common pattern:
+
+- Run dbt tests with store_failures (where supported) or custom test macros that insert into dq.test_results.
+
+- Alternatively, add a dbt package like Elementary-style observability if it supports your adapter; if not, implement a lightweight “dq_results” incremental model that ingests test artifacts (manifest/run_results) into tables.
+
+## 5) GitLab CI/CD: equivalent flow (clean mapping)
+
+### GitLab maps naturally:
+
+#### CI (Merge Request pipelines)
+
+- validate:nodered
+
+- validate:dbt
+
+- build:images
+
+- publish:artifacts
+
+#### CD (environments)
+
+- deploy:dev → run:dbt:dev
+
+- deploy:test → run:dbt:test
+
+- deploy:prod → run:dbt:prod
+Use protected environments + manual approvals.
+
+### GitLab advantages in this setup
+
+- Integrated container registry and environment approvals are often simpler.
+
+- Review apps can be used if you can spin disposable DB targets (optional).
+
+## 6) Automation details that make this robust
+### A) Triggering dbt after ingestion (without tight coupling)
+
+#### Recommended pattern:
+
+- Node-RED writes a marker when a CURATED batch is complete:
+
+  - e.g., curated/<entity>/load_dt=YYYY-MM-DDTHH:MM/_SUCCESS.json
+
+- MinIO event triggers a small webhook → CI pipeline “run”
+
+- Pipeline runs dbt with selectors restricted to that entity.
+
+This avoids “dbt on every file,” and instead runs “dbt on completed batch.”
+
+### B) Selectors to avoid full rebuilds
+
+#### Define dbt selectors such as:
+
+- curated_entity:<name> (models that depend on that source)
+
+- dq_critical (critical tests must pass to promote)
+
+- mart_refresh (facts/dims for that domain)
+
+#### Then your pipeline runs:
+
+- Dev: build + tests for impacted domain
+
+- Prod: same, plus critical DQ
+
+### C) Schema changes (contracts + controlled evolution)
+
+#### Because your RAW/WORK data is JSON and your CURATED is the contract boundary:
+
+- Node-RED should validate JSON schema before promoting to CURATED.
+
+- If schema changes:
+
+  - update /contracts
+
+  - update dbt sources.yml and downstream models
+
+  - CI catches compile/test failures before deployment
+
+### D) Database changes and rollback reality
+
+#### For MariaDB:
+
+- Prefer additive changes in analytics layers (new columns/models) where possible.
+
+- For destructive changes:
+
+  - gate with explicit migration steps (Flyway/Liquibase) or carefully managed dbt pre-hooks
+
+  - run in test first
+
+- Rollback: usually “roll forward” with a fix, not DB rollback, unless you’ve invested in migration tooling.
+
+## 7) Minimal YAML skeletons (illustrative, not copy-paste complete)
+### Azure DevOps (conceptual)
+
+- CI pipeline:
+
+  - jobs: validate nodered, validate dbt, build images, publish artifacts
+
+- CD pipeline:
+
+  - stages: dev/test/prod
+
+  - each stage: deploy nodered → run dbt build/tests → publish DQ summary
+
+### GitLab CI (conceptual)
+
+- stages: validate, build, deploy, run_dbt
+
+- deploy:dev uses environment dev
+
+- run_dbt:dev depends on deploy:dev and uses dbt image
+
+If you want, I can provide full working YAML templates aligned to your current stack (MinIO, MariaDB, dbt 1.7.x, Node-RED) and your naming conventions—without changing your operating model.
+
+## 8) Practical “ideal” end-state workflow (end-to-end)
+
+### 1. Developer changes Node-RED flow or dbt model in a feature branch.
+
+### 2. CI runs:
+
+- validates flows + contracts
+
+- dbt compile + unit-style tests
+
+- builds versioned images
+
+### 3. Merge to main triggers CD:
+
+- deploy Node-RED to Dev
+
+- ingestion writes CURATED batch markers
+
+- pipeline runs dbt build/tests for impacted domains
+
+- DQ results logged to DQ DB/schema and surfaced in pipeline summary
+
+### 4. Promote to Test/Prod with approvals:
+
+- same artifacts, different env configs
+
+- critical DQ gates enforced
+
+This gives you: direct loads via Node-RED, while dbt owns trust, master data, and all STG/MD/MART transformations—and it is automated with clear promotion controls.
