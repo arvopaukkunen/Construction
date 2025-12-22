@@ -1839,3 +1839,6 @@ If you want, I can provide full working YAML templates aligned to your current s
 This gives you: direct loads via Node-RED, while dbt owns trust, master data, and all STG/MD/MART transformations—and it is automated with clear promotion controls.
 
 # Data Profiling
+![alt text](image-1.png)
+
+![alt text](image-2.png)
