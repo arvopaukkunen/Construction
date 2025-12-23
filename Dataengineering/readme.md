@@ -1842,3 +1842,583 @@ This gives you: direct loads via Node-RED, while dbt owns trust, master data, an
 ![alt text](image-1.png)
 
 ![alt text](image-2.png)
+## Snowflake-style column profiling in dbt 
+by generating a column-level profile table/view that reports, per column:
+- row count
+
+- null count / fill rate %
+
+- (optional) blank count / non-blank fill rate %
+
+- distinct count / cardinality %
+
+- “unique if non-null” and “strict unique (no nulls)” flags
+
+- min/max values (for orderable types)
+
+- min/max string length (for string types)
+And then a second model can rank key candidates (single columns) and (optionally) a third model can evaluate common multi-column key combinations such as (time_epoch, entity_id, measurement).
+
+Below is a complete implementation you can drop into your dbt project (works on MariaDB; written to be adapter-safe enough for later SQL Server work).
+
+## 1) Add macros to generate profiling SQL dynamically
+Create: macros/profiling/type_helpers.sql
+````
+{% macro is_string_type(dtype) -%}
+  {%- set d = (dtype or '') | lower -%}
+  {{ return('char' in d or 'text' in d or 'varchar' in d) }}
+{%- endmacro %}
+
+{% macro is_numeric_type(dtype) -%}
+  {%- set d = (dtype or '') | lower -%}
+  {{ return(
+      'int' in d or 'decimal' in d or 'numeric' in d or 'float' in d or 'double' in d or 'real' in d
+  ) }}
+{%- endmacro %}
+````
+Create: macros/profiling/profile_relation.sql
+````
+{% macro profile_relation(relation, relation_label) %}
+  {%- set cols = adapter.get_columns_in_relation(relation) -%}
+
+  {%- if cols | length == 0 -%}
+    select
+      '{{ relation_label }}' as relation_name,
+      null as column_name,
+      null as data_type,
+      0 as row_count,
+      0 as null_count,
+      null as blank_count,
+      0 as nonnull_count,
+      null as fill_rate_nonnull,
+      null as fill_rate_nonblank,
+      0 as distinct_count_nonnull,
+      null as distinct_rate_nonnull,
+      null as is_unique_nonnull,
+      null as is_strict_unique,
+      null as min_value,
+      null as max_value,
+      null as avg_value,
+      null as min_length,
+      null as max_length
+    where 1 = 0
+  {%- else -%}
+
+    {%- for c in cols -%}
+      {%- set colname = adapter.quote(c.name) -%}
+      {%- set dtype = c.data_type -%}
+      {%- set is_str = is_string_type(dtype) -%}
+      {%- set is_num = is_numeric_type(dtype) -%}
+
+      select
+        '{{ relation_label }}' as relation_name,
+        '{{ c.name }}' as column_name,
+        '{{ dtype }}' as data_type,
+
+        count(*) as row_count,
+
+        sum(case when {{ colname }} is null then 1 else 0 end) as null_count,
+
+        {%- if is_str -%}
+        sum(case when {{ colname }} is not null and trim({{ colname }}) = '' then 1 else 0 end) as blank_count,
+        {%- else -%}
+        cast(null as signed) as blank_count,
+        {%- endif -%}
+
+        sum(case when {{ colname }} is not null then 1 else 0 end) as nonnull_count,
+
+        case
+          when count(*) = 0 then null
+          else (sum(case when {{ colname }} is not null then 1 else 0 end) * 1.0 / count(*))
+        end as fill_rate_nonnull,
+
+        {%- if is_str -%}
+        case
+          when count(*) = 0 then null
+          else (
+            sum(case when {{ colname }} is not null and trim({{ colname }}) <> '' then 1 else 0 end) * 1.0 / count(*)
+          )
+        end as fill_rate_nonblank,
+        {%- else -%}
+        cast(null as decimal(18,6)) as fill_rate_nonblank,
+        {%- endif -%}
+
+        count(distinct {{ colname }}) as distinct_count_nonnull,
+
+        case
+          when sum(case when {{ colname }} is not null then 1 else 0 end) = 0 then null
+          else (
+            count(distinct {{ colname }}) * 1.0 /
+            sum(case when {{ colname }} is not null then 1 else 0 end)
+          )
+        end as distinct_rate_nonnull,
+
+        case
+          when sum(case when {{ colname }} is not null then 1 else 0 end) = 0 then null
+          when count(distinct {{ colname }}) =
+               sum(case when {{ colname }} is not null then 1 else 0 end)
+          then 1 else 0 end as is_unique_nonnull,
+
+        case
+          when count(*) = 0 then null
+          when sum(case when {{ colname }} is null then 1 else 0 end) = 0
+           and count(distinct {{ colname }}) = count(*)
+          then 1 else 0 end as is_strict_unique,
+
+        min({{ colname }}) as min_value,
+        max({{ colname }}) as max_value,
+
+        {%- if is_num -%}
+        avg({{ colname }}) as avg_value,
+        {%- else -%}
+        cast(null as decimal(18,6)) as avg_value,
+        {%- endif -%}
+
+        {%- if is_str -%}
+        min(case when {{ colname }} is null then null else char_length({{ colname }}) end) as min_length,
+        max(case when {{ colname }} is null then null else char_length({{ colname }}) end) as max_length
+        {%- else -%}
+        cast(null as signed) as min_length,
+        cast(null as signed) as max_length
+        {%- endif -%}
+
+      from {{ relation }}
+
+      {%- if not loop.last -%}
+      union all
+      {%- endif -%}
+
+    {%- endfor -%}
+
+  {%- endif -%}
+{% endmacro %}
+````
+Create: macros/profiling/profile_relation_windowed.sql:
+````
+{% macro profile_relation_windowed(relation, relation_label, ts_col_name) %}
+  {%- set cols = adapter.get_columns_in_relation(relation) -%}
+  {%- set ts_col = adapter.quote(ts_col_name) -%}
+  {%- set parts = [] -%}
+
+  {%- for c in cols -%}
+    {%- set colname = adapter.quote(c.name) -%}
+    {%- set dtype = c.data_type -%}
+    {%- set is_str = is_string_type(dtype) -%}
+    {%- set is_num = is_numeric_type(dtype) -%}
+
+    {%- set stmt -%}
+select
+  '{{ relation_label }}' as relation_name,
+  '{{ c.name }}' as column_name,
+  '{{ dtype }}' as data_type,
+
+  count(*) as row_count,
+  sum(case when {{ colname }} is null then 1 else 0 end) as null_count,
+
+  {%- if is_str %}
+  sum(case when {{ colname }} is not null and trim({{ colname }}) = '' then 1 else 0 end) as blank_count,
+  {%- else %}
+  cast(null as signed) as blank_count,
+  {%- endif %}
+
+  sum(case when {{ colname }} is not null then 1 else 0 end) as nonnull_count,
+
+  case when count(*) = 0 then null
+       else (sum(case when {{ colname }} is not null then 1 else 0 end) * 1.0 / count(*))
+  end as fill_rate_nonnull,
+
+  {%- if is_str %}
+  case when count(*) = 0 then null
+       else (sum(case when {{ colname }} is not null and trim({{ colname }}) <> '' then 1 else 0 end) * 1.0 / count(*))
+  end as fill_rate_nonblank,
+  {%- else %}
+  cast(null as decimal(18,6)) as fill_rate_nonblank,
+  {%- endif %}
+
+  count(distinct {{ colname }}) as distinct_count_nonnull,
+
+  case
+    when sum(case when {{ colname }} is not null then 1 else 0 end) = 0 then null
+    else (count(distinct {{ colname }}) * 1.0 /
+          sum(case when {{ colname }} is not null then 1 else 0 end))
+  end as distinct_rate_nonnull,
+
+  case
+    when sum(case when {{ colname }} is not null then 1 else 0 end) = 0 then null
+    when count(distinct {{ colname }}) =
+         sum(case when {{ colname }} is not null then 1 else 0 end)
+    then 1 else 0 end as is_unique_nonnull,
+
+  case
+    when count(*) = 0 then null
+    when sum(case when {{ colname }} is null then 1 else 0 end) = 0
+     and count(distinct {{ colname }}) = count(*)
+    then 1 else 0 end as is_strict_unique,
+
+  min({{ colname }}) as min_value,
+  max({{ colname }}) as max_value,
+
+  {%- if is_num %}
+  avg({{ colname }}) as avg_value,
+  {%- else %}
+  cast(null as decimal(18,6)) as avg_value,
+  {%- endif %}
+
+  {%- if is_str %}
+  min(case when {{ colname }} is null then null else char_length({{ colname }}) end) as min_length,
+  max(case when {{ colname }} is null then null else char_length({{ colname }}) end) as max_length
+  {%- else %}
+  cast(null as signed) as min_length,
+  cast(null as signed) as max_length
+  {%- endif %}
+
+from {{ relation }}
+where {{ profile_window_filter_epoch('`time_epoch`') }}
+    {%- endset -%}
+
+    {%- do parts.append(stmt) -%}
+  {%- endfor -%}
+
+  {{ parts | join('\n\nunion all\n\n') }}
+{% endmacro %}
+````
+## 2) Create profiling models (views/tables)
+### 2.1 Column profiling across your key tables
+Create: models/dq_profile/profile__sensoraverages_columns.sql
+````
+{{ config(materialized='table', tags=['profile','dq']) }}
+
+{% set rels = [
+  ('raw_sensoraverages',      source('smarthome','raw_sensoraverages'),      'time_epoch'),
+  ('work_sensoraverages',     source('smarthome','work_sensoraverages'),     'time_epoch'),
+  ('curated_sensoraverages',  source('smarthome','curated_sensoraverages'),  'time_epoch')
+] %}
+
+{% for name, rel, ts_col in rels %}
+{{ profile_relation_windowed(rel, name, ts_col) }}
+{% if not loop.last %}
+
+union all
+
+{% endif %}
+{% endfor %}
+````
+This produces a single profiling table with one row per (relation, column).
+### 2.2 “Candidate unique key columns” view (Snowflake-like shortlist)
+Create: models/dq_profile/profile__candidate_key_columns.sql
+````
+{{ config(materialized='view', tags=['profile','dq']) }}
+
+select
+  relation_name,
+  column_name,
+  data_type,
+  row_count,
+  null_count,
+  nonnull_count,
+  fill_rate_nonnull,
+  blank_count,
+  fill_rate_nonblank,
+  distinct_count_nonnull,
+  distinct_rate_nonnull,
+  is_unique_nonnull,
+  is_strict_unique
+from {{ ref('profile__sensoraverages_columns') }}
+where
+  row_count > 0
+  and fill_rate_nonnull >= 0.98
+  and distinct_rate_nonnull >= 0.98
+order by
+  is_strict_unique desc,
+  distinct_rate_nonnull desc,
+  fill_rate_nonnull desc,
+  relation_name,
+  column_name
+````
+This is your “profile report” view to quickly see which columns could serve as unique keys (single-column).
+## 3) Profile common multi-column key candidates, including your new time_epoc
+Single-column uniqueness is rarely enough for IoT. You want to evaluate a handful of realistic compound keys. Below is a model that scores common candidates without window functions (so it is MariaDB-friendly and fast enough to iterate).
+Create: models/dq_profile/profile__key_candidates_sensoraverages.sql
+````
+{{ config(materialized='table', tags=['profile','dq']) }}
+
+{% set candidates = [
+  ('raw_sensoraverages',     source('smarthome','raw_sensoraverages')),
+  ('work_sensoraverages',    source('smarthome','work_sensoraverages')),
+  ('curated_sensoraverages', source('smarthome','curated_sensoraverages'))
+] %}
+
+{% set keys = [
+  ('time_epoch + entity_id + measurement',  ['time_epoch','entity_id','measurement']),
+  ('time_epoch + friendly_name + measurement', ['time_epoch','friendly_name','measurement']),
+  ('time_epoch + entity_id',                ['time_epoch','entity_id']),
+  ('time_epoch + friendly_name',            ['time_epoch','friendly_name']),
+  ('time + entity_id + measurement',        ['time','entity_id','measurement']),
+  ('time + friendly_name + measurement',    ['time','friendly_name','measurement'])
+] %}
+
+{% set selects = [] %}
+
+{% for rel_name, rel in candidates %}
+  {% for key_name, cols in keys %}
+    {% set sql %}
+select
+  '{{ rel_name }}' as relation_name,
+  '{{ key_name }}' as key_name,
+  count(*) as row_count,
+  count(distinct {{ key_hash(cols) }}) as distinct_key_count,
+  (count(*) - count(distinct {{ key_hash(cols) }})) as approx_duplicate_rows,
+  case when count(*) = 0 then null
+       else (count(distinct {{ key_hash(cols) }}) * 1.0 / count(*))
+  end as distinct_key_rate
+from {{ rel }}
+where {{ profile_window_filter_epoch('`time_epoch`') }}
+    {% endset %}
+    {% do selects.append(sql) %}
+  {% endfor %}
+{% endfor %}
+
+{{ selects | join('\n\nunion all\n\n') }}
+````
+Notes:
+
+- This assumes your raw/work/curated tables have:
+
+  - time_epoc (your new field) and time (timestamp)
+
+  - entity_id, friendly_name, measurement
+
+- If any table does not contain one of these columns, this will fail compilation. If that is the case, tell me which tables are missing which fields and I will make the macro column-existence aware.
+
+## 4) How to run just profiling
+````
+dbt run --select tag:profile --target dev
+````
+And query the outputs:
+
+- Column profile:
+
+  - smarthome.profile__sensoraverages_columns (table)
+
+- Candidate unique columns:
+
+  - smarthome.profile__candidate_key_columns (view)
+
+- Compound key scoring:
+
+  - smarthome.profile__key_candidates_sensoraverages (table)
+
+## 5) How this feeds your next DQ upgrade (with time_epoc)
+Once you confirm which compound key has the best distinct_key_rate, you can:
+
+- change your uniqueness tests from (measurement_time, entity_id, measurement) to (time_epoc, entity_id, measurement) (or similar)
+
+- downgrade “duplicates per second” to a KPI if multiple events per second are valid
+
+- base governance/stability on CURATED as the merged ingest stage (your stated future direction), while RAW/WORK become alternate source paths (good design)
+
+When you are ready, I will update your current DQ models to:
+
+- use time_epoc where present
+
+- treat second-grain duplicates as expected behavior (threshold-based tests, not absolute uniqueness)
+
+- produce consistent “ingest stability” KPIs for governance at CURATED.
+
+### One important practicality
+
+Profiling raw tables can be expensive (your raw staging is ~2.2M rows). Here's an optional time window (e.g., last 7 days) controlled by a dbt var so profiling stays fast during development.
+
+## Implement “last 7 days only” profiling
+
+### 1) Add a variable to control the window
+In dbt_project.yml, add:
+````
+vars:
+  profile_days: 7
+````
+(You can override at runtime: --vars '{profile_days: 3}'.)
+### 2) Add a reusable macro that returns the “last 7 days” predicate
+Create: macros/profiling/window_filter.sql
+````
+{% macro profile_window_filter_time(ts_col) -%}
+  {{ ts_col }} >= date_sub(now(), interval {{ var('profile_days', 7) }} day)
+{%- endmacro %}
+
+{% macro profile_window_filter_epoch(epoch_col) -%}
+  {{ epoch_col }} >= unix_timestamp(date_sub(now(), interval {{ var('profile_days', 7) }} day))
+{%- endmacro %}
+````
+This assumes your timestamp column is time (as in sensoraverages). If you prefer to filter by time_epoc, decide, if it’s seconds or milliseconds and do the numeric predicate.
+### 3) Create the profiling models (put them under models/profile/)
+Make sure these paths are under your dbt models-paths (default: models).
+models/profile/profile__sensoraverages_columns.sql (twise here in docs in diff name?)
+```
+{{ config(materialized='table', tags=['profile','dq']) }}
+
+{% set rels = [
+  ('raw_sensoraverages',      source('smarthome','raw_sensoraverages'),      'time_epoch'),
+  ('work_sensoraverages',     source('smarthome','work_sensoraverages'),     'time_epoch'),
+  ('curated_sensoraverages',  source('smarthome','curated_sensoraverages'),  'time_epoch')
+] %}
+
+{% for name, rel, ts_col in rels %}
+{{ profile_relation_windowed(rel, name, ts_col) }}
+{% if not loop.last %}
+
+union all
+
+{% endif %}
+{% endfor %}
+```
+
+This relies on a macro profile_relation_windowed below.
+#### Add the windowed profiling macro
+Create: macros/profiling/profile_relation_windowed.sql (twise?)
+````
+{% macro profile_relation_windowed(relation, relation_label, ts_col_name) %}
+  {%- set cols = adapter.get_columns_in_relation(relation) -%}
+  {%- set ts_col = adapter.quote(ts_col_name) -%}
+  {%- set parts = [] -%}
+
+  {%- for c in cols -%}
+    {%- set colname = adapter.quote(c.name) -%}
+    {%- set dtype = c.data_type -%}
+    {%- set is_str = is_string_type(dtype) -%}
+    {%- set is_num = is_numeric_type(dtype) -%}
+
+    {%- set stmt -%}
+select
+  '{{ relation_label }}' as relation_name,
+  '{{ c.name }}' as column_name,
+  '{{ dtype }}' as data_type,
+
+  count(*) as row_count,
+  sum(case when {{ colname }} is null then 1 else 0 end) as null_count,
+
+  {%- if is_str %}
+  sum(case when {{ colname }} is not null and trim({{ colname }}) = '' then 1 else 0 end) as blank_count,
+  {%- else %}
+  cast(null as signed) as blank_count,
+  {%- endif %}
+
+  sum(case when {{ colname }} is not null then 1 else 0 end) as nonnull_count,
+
+  case when count(*) = 0 then null
+       else (sum(case when {{ colname }} is not null then 1 else 0 end) * 1.0 / count(*))
+  end as fill_rate_nonnull,
+
+  {%- if is_str %}
+  case when count(*) = 0 then null
+       else (sum(case when {{ colname }} is not null and trim({{ colname }}) <> '' then 1 else 0 end) * 1.0 / count(*))
+  end as fill_rate_nonblank,
+  {%- else %}
+  cast(null as decimal(18,6)) as fill_rate_nonblank,
+  {%- endif %}
+
+  count(distinct {{ colname }}) as distinct_count_nonnull,
+
+  case
+    when sum(case when {{ colname }} is not null then 1 else 0 end) = 0 then null
+    else (count(distinct {{ colname }}) * 1.0 /
+          sum(case when {{ colname }} is not null then 1 else 0 end))
+  end as distinct_rate_nonnull,
+
+  case
+    when sum(case when {{ colname }} is not null then 1 else 0 end) = 0 then null
+    when count(distinct {{ colname }}) =
+         sum(case when {{ colname }} is not null then 1 else 0 end)
+    then 1 else 0 end as is_unique_nonnull,
+
+  case
+    when count(*) = 0 then null
+    when sum(case when {{ colname }} is null then 1 else 0 end) = 0
+     and count(distinct {{ colname }}) = count(*)
+    then 1 else 0 end as is_strict_unique,
+
+  min({{ colname }}) as min_value,
+  max({{ colname }}) as max_value,
+
+  {%- if is_num %}
+  avg({{ colname }}) as avg_value,
+  {%- else %}
+  cast(null as decimal(18,6)) as avg_value,
+  {%- endif %}
+
+  {%- if is_str %}
+  min(case when {{ colname }} is null then null else char_length({{ colname }}) end) as min_length,
+  max(case when {{ colname }} is null then null else char_length({{ colname }}) end) as max_length
+  {%- else %}
+  cast(null as signed) as min_length,
+  cast(null as signed) as max_length
+  {%- endif %}
+
+from {{ relation }}
+where {{ profile_window_filter_epoch('`time_epoch`') }}
+    {%- endset -%}
+
+    {%- do parts.append(stmt) -%}
+  {%- endfor -%}
+
+  {{ parts | join('\n\nunion all\n\n') }}
+{% endmacro %}
+````
+models/profile/profile__candidate_key_columns.sql
+````
+{{ config(materialized='view', tags=['profile','dq']) }}
+
+select
+  relation_name,
+  column_name,
+  data_type,
+  row_count,
+  null_count,
+  nonnull_count,
+  fill_rate_nonnull,
+  blank_count,
+  fill_rate_nonblank,
+  distinct_count_nonnull,
+  distinct_rate_nonnull,
+  is_unique_nonnull,
+  is_strict_unique
+from {{ ref('profile__sensoraverages_columns') }}
+where
+  row_count > 0
+  and fill_rate_nonnull >= 0.98
+  and distinct_rate_nonnull >= 0.98
+order by
+  is_strict_unique desc,
+  distinct_rate_nonnull desc,
+  fill_rate_nonnull desc,
+  relation_name,
+  column_name
+````
+Now you definitely have models tagged profile.
+## D) Run it
+````
+dbt ls  --select tag:profile --target dev
+dbt run --select tag:profile --target dev
+````
+### E) Optional: if you want to profile stg_* instead of sources
+If profiling raw sources is too heavy even for 7 days, we can profile:
+
+- stg_raw_sensoraverages
+
+- stg_work_sensoraverages
+
+- stg_curated_sensoraverages
+
+But since there arw already created staging tables, those are often the best profiling surface.
+### 4) Re-run
+````
+dbt deps
+dbt compile --select tag:profile --target dev
+dbt run --select tag:profile --target dev
+````
+Expected:
+
+- profile__sensoraverages_columns builds
+
+- profile__key_candidates_sensoraverages builds
+
+- then profile__candidate_key_columns view builds (it was skipped only due to upstream failure)
