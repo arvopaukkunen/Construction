@@ -12,7 +12,7 @@ Below is a complete, warehouse-native dbt pattern that delivers:
 It is designed to work for both SQL Server and MariaDB via adapter-dispatched macros (noting that MariaDB has no varchar(max), so the closest equivalent is typically LONGTEXT). 
 
 Attention!
-Datatypes in data standardization is, by default a bit off. LONGTEXT and BIGINT types does not translate correctly with MariaDb (mySQL dbt connector). BIGINT must be INT and LONGTEXT must be varchar(2000). Othervice, it does not work at all. Another bug - prehaps with Dbt mysql/mariadb connector - may be CTE/WITH capabilities with views. I'll work only when materialized as table.
+Datatypes in data standardization is, by default a bit off. LONGTEXT and BIGINT types does not translate correctly with MariaDb (mySQL dbt connector). BIGINT must be INT and LONGTEXT must be varchar(2000). Othervice, it does not work at all. Another bug - prehaps with Dbt mysql/mariadb connector - may be CTE/WITH capabilities with views. I'll work only when materialized as table. Some confusion with BIGINT and LONGTEXT in MAriaDb. Directly in SQL (without Dbt connector - atleast) Bigint as epoch milliseconds field - works. Potentially such models needs to be created manually, as a work-around. Therefore Dbt model design needs to be using these modela un-managed model as sources, not ref ?
 
 ## 1) Target architecture (dbt-native)
 ### A. Standardization layer (views)
@@ -25,6 +25,8 @@ Create stg_* standardized views on top of raw_*, work_*, curated_* tables/files:
 
 - Strings normalized to “varchar(max)-equivalent”
 ### B. DQ layer (tests + stored failures)
+
+It may be a good idea to do Dbt based profiler first, thenDQ layer, becaus some DQ measures like accepted values is known (really known) after profiling analysis.
 
 - Use dbt tests (not_null, unique, accepted_values, relationships, custom tests)
 
