@@ -3,9 +3,9 @@
 
 This page documents how to:
 
-- Configure the InfluxDB 2.x CLI on the Linux host.
+- Configure the InfluxDB 2.x CLI on the Linux host (VSCodde dev container).
 - Verify connectivity to the local InfluxDB 2 server.
-- Run Flux queries from the CLI to **copy data by day** from the main `sensors` bucket into yearly archive buckets like `sensor_2024`, `sensor_2023`, etc.
+- Run Flux queries from the CLI to **copy data by day** from the main `sensors` bucket into yearly archive buckets like `sensors_2024`, `sensors_2023`, etc.
 - Avoid common errors (`RequestTimedOutError`, bash syntax errors).
 
 The examples assume:
@@ -13,7 +13,7 @@ The examples assume:
 - InfluxDB 2.x is running on `http://db2:8086`
 - Organization is: `Arvosoft Oy`
 - Online bucket with full data: `sensors`
-- Archive buckets per year: `sensor_2024`, `sensor_2023`, `sensor_2022`, `sensor_2021`
+- Archive buckets per year: `sensors_2024`, `sensors_2023`, `sensors_2022`, `sensors_2021`
 - Influx CLI is installed and in `PATH` on the Linux host.
 
 ---
@@ -72,10 +72,10 @@ influx bucket list
 You should see at least:
 
 - `sensors`
-- `sensor_2024`
-- `sensor_2023`
-- `sensor_2022`
-- `sensor_2021`
+- `sensors_2024`
+- `sensors_2023`
+- `sensors_2022`
+- `sensors_2021`
 
 ---
 
@@ -91,7 +91,7 @@ import "influxdata/influxdb/schema"
 from(bucket: "sensors")
   |> range(start: 2024-12-30T00:00:00Z, stop: 2024-12-31T00:00:00Z)
   |> keep(columns: ["_time", "_value"])
-  |> to(bucket: "sensor_2024")
+  |> to(bucket: "sensors_2024")
 ```
 
 bash will interpret `import`, `from`, and `|>` as shell syntax and you will get errors such as:
@@ -115,7 +115,7 @@ influx query '
 '
 ```
 
-Example (single-day copy from `sensors` to `sensor_2024`):
+Example (single-day copy from `sensors` to `sensors_2024`):
 
 ```bash
 influx query '
@@ -126,7 +126,7 @@ from(bucket: "sensors")
   |> keep(columns: ["_time", "_value", "_field", "_measurement",
                     "entity_id", "friendly_name", "domain", "source",
                     "location", "room"])
-  |> to(bucket: "sensor_2024")
+  |> to(bucket: "sensors_2024")
 '
 ```
 
@@ -145,7 +145,7 @@ from(bucket: "sensors")
   |> keep(columns: ["_time", "_value", "_field", "_measurement",
                     "entity_id", "friendly_name", "domain", "source",
                     "location", "room"])
-  |> to(bucket: "sensor_2024")
+  |> to(bucket: "sensors_2024")
 '
 ```
 
@@ -176,7 +176,7 @@ from(bucket: "sensors")
   |> keep(columns: ["_time", "_value", "_field", "_measurement",
                     "entity_id", "friendly_name", "domain", "source",
                     "location", "room"])
-  |> to(bucket: "sensor_2024")
+  |> to(bucket: "sensors_2024")
 EOF
 ```
 
@@ -187,11 +187,11 @@ Notes:
 
 ---
 
-## 3. One-day archive copy: `sensors` → `sensor_YYYY`
+## 3. One-day archive copy: `sensors` → `sensors_YYYY`
 
 ### 3.1. General Flux template (per day, per year)
 
-Use this template to copy one day from the main bucket `sensors` to a yearly bucket such as `sensor_2024`:
+Use this template to copy one day from the main bucket `sensors` to a yearly bucket such as `sensors_2024`:
 
 ```flux
 import "influxdata/influxdb/schema"
@@ -201,12 +201,12 @@ from(bucket: "sensors")
   |> keep(columns: ["_time", "_value", "_field", "_measurement",
                     "entity_id", "friendly_name", "domain", "source",
                     "location", "room"])
-  |> to(bucket: "sensor_YYYY")
+  |> to(bucket: "sensors_YYYY")
 ```
 
 You then run it via CLI as shown above.
 
-### 3.2. Concrete example: 2024-12-30 → `sensor_2024`
+### 3.2. Concrete example: 2024-12-30 → `sensors_2024`
 
 ```bash
 influx query '
@@ -217,13 +217,13 @@ from(bucket: "sensors")
   |> keep(columns: ["_time", "_value", "_field", "_measurement",
                     "entity_id", "friendly_name", "domain", "source",
                     "location", "room"])
-  |> to(bucket: "sensor_2024")
+  |> to(bucket: "sensors_2024")
 '
 ```
 
 After it completes, validate in the InfluxDB UI:
 
-- Bucket: `sensor_2024`
+- Bucket: `sensors_2024`
 - Time range: 2024-12-30
 - Check that measurements and tags are present as expected.
 
@@ -274,7 +274,7 @@ from(bucket: \"sensors\")
   |> keep(columns: [\"_time\", \"_value\", \"_field\", \"_measurement\",
                     \"entity_id\", \"friendly_name\", \"domain\", \"source\",
                     \"location\", \"room\"])
-  |> to(bucket: \"sensor_2024\")
+  |> to(bucket: \"sensors_2024\")
 "
   sleep 5
 done
@@ -360,5 +360,5 @@ Always:
 
 - Use `influx config create` to define a stable CLI profile pointing to `http://db2:8086` with org `Arvosoft Oy`.
 - Run Flux scripts via `influx query` (quoted string or here-doc), not directly in bash.
-- Copy data day-by-day from `sensors` to `sensor_YYYY` to reduce load on the small InfluxDB server.
-- Consider cleaning or shortening retention on the main `sensors` bucket once archives are verified in the `sensor_YYYY` buckets.
+- Copy data day-by-day from `sensors` to `sensors_YYYY` to reduce load on the small InfluxDB server.
+- Consider cleaning or shortening retention on the main `sensors` bucket once archives are verified in the `sensors_YYYY` buckets.
