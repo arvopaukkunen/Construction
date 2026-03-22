@@ -4,7 +4,7 @@ _Work in progress design note for GitHub_
 
 Date: 2026-03-22  
 Scope: MinIO RAW/WORK/CURATED, InfluxDB2 `sensors`, MariaDB `smarthome`, Node-RED ETL flows  
-Focus: Ruuvi data quality, metadata correctness, stage semantics, relational stabilization 
+Focus: Ruuvi data quality, metadata correctness, stage semantics, relational stabilization  
 Why now: After 4 years of implementing averything directly to production, the expected refactoring and technical debt is must be done. All is working as planned, but when going to full automation there is quite a lot of those things that can not be 'I'll fix them when time is right' - the time is now..
 ---
 
