@@ -15,3 +15,5 @@ The house features:
     Low-Impact, Sustainable Materials and modular building techniques for minimum ecological footprint.
 
 This repository outlines architectural schematics, system configurations, IoT integrations, and performance metrics. It serves as a practical foundation for architects, engineers, and developers building autonomous, smart dwellings for remote or future-proof environments.
+
+[](<Development/techdebt/refactoringneeds-tech-debt-after4 yearss-ruuvi-dq-pipeline-wip.md>)
