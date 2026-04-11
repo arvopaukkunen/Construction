@@ -5,7 +5,7 @@
 This runbook documents the current working setup for the Home IT data pipeline.
 
 The pipeline now has two stages:
-Before these 2 stages, IoT sensor and appliance integration layer is extracting data and get archestrated by NodeRed. Nodered is in role, that does not do any data alterations - simply integrates and delivered it to device falyly by device famity - to S3 compatible onprem storage bucket named raw.
+Before these 2 stages, IoT sensor and appliance integration layer is extracting data and get orchestrated by NodeRed. Nodered is in role, that does not do any data alterations - simply integrates and delivered it to device falyly by device famity - to S3 compatible onprem storage bucket named raw.
 
 1. `dbt_homeit`
    - reads RAW data from MinIO
