@@ -54,7 +54,7 @@ Devices / Systems
 Run:
 
 - Node-RED
-- Mosquitto MQTT
+- Teltonika MQTT broker / Mosquitto MQTT
 - optional Modbus / serial helpers
 
 Purpose:
